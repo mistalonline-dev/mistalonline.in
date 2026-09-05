@@ -1,5 +1,5 @@
 /* ============================================================
-   MISTALONLINE.IN - Complete Styles
+   MISTALONLINE.IN - Complete Styles (FIXED)
    ============================================================ */
 
 * {
@@ -32,7 +32,9 @@ body {
     border-radius: 10px;
 }
 
-/* VOICE INDICATOR */
+/* ============================================================
+   VOICE INDICATOR
+   ============================================================ */
 .voice-indicator {
     position: fixed;
     bottom: 20px;
@@ -76,7 +78,9 @@ body {
     }
 }
 
-/* HEADER / NAVBAR */
+/* ============================================================
+   HEADER / NAVBAR
+   ============================================================ */
 .navbar {
     position: fixed;
     top: 0;
@@ -201,7 +205,9 @@ body {
     background: rgba(249, 212, 35, 0.15);
 }
 
-/* MAIN CONTENT */
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
 .main-content {
     padding-top: 90px;
     max-width: 1200px;
@@ -210,7 +216,9 @@ body {
     padding-right: 20px;
 }
 
-/* HERO */
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
 .hero {
     text-align: center;
     padding: 40px 20px 30px;
@@ -254,7 +262,9 @@ body {
     font-weight: 700;
 }
 
-/* LIVE ORDERS */
+/* ============================================================
+   LIVE ORDERS TICKER
+   ============================================================ */
 .live-orders {
     background: rgba(255, 71, 87, 0.06);
     border: 1px solid rgba(255, 71, 87, 0.08);
@@ -322,7 +332,9 @@ body {
     }
 }
 
-/* ORDER SECTION */
+/* ============================================================
+   ORDER SECTION
+   ============================================================ */
 .order-section {
     padding: 20px 0 40px;
 }
@@ -432,9 +444,12 @@ body {
     font-weight: 600;
 }
 
+/* ============================================================
+   🔥 BUTTON FIX - Next Button
+   ============================================================ */
 .btn-next {
     width: 100%;
-    padding: 17px;
+    padding: 17px 20px;
     background: linear-gradient(135deg, #f9d423, #f7971e);
     border: none;
     border-radius: 14px;
@@ -442,13 +457,29 @@ body {
     font-size: 16px;
     font-weight: 900;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 30px rgba(249, 212, 35, 0.15);
+    display: block;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .btn-next:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 50px rgba(249, 212, 35, 0.2);
+    box-shadow: 0 14px 50px rgba(249, 212, 35, 0.25);
+}
+
+.btn-next:active {
+    transform: scale(0.97);
+}
+
+.btn-next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 #statusMsg {
@@ -465,7 +496,9 @@ body {
     color: #ff4757;
 }
 
-/* PAYMENT SECTION */
+/* ============================================================
+   PAYMENT SECTION
+   ============================================================ */
 .payment-section {
     margin-top: 25px;
     padding-top: 25px;
@@ -626,7 +659,9 @@ body {
     color: #ffffff;
 }
 
-/* REVIEWS */
+/* ============================================================
+   REVIEWS SECTION
+   ============================================================ */
 .reviews-section {
     padding: 40px 0 20px;
 }
@@ -691,7 +726,9 @@ body {
     font-size: 12px;
 }
 
-/* SERVICES */
+/* ============================================================
+   SERVICE SECTIONS
+   ============================================================ */
 .service-section {
     padding: 40px 0 20px;
 }
@@ -758,7 +795,9 @@ body {
     color: #ffffff;
 }
 
-/* FOOTER */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .footer {
     background: rgba(10, 10, 10, 0.9);
     border-top: 1px solid rgba(255, 215, 0, 0.04);
@@ -835,7 +874,9 @@ body {
     font-size: 11px;
 }
 
-/* OVERLAY */
+/* ============================================================
+   OVERLAY
+   ============================================================ */
 .overlay {
     position: fixed;
     top: 0;
@@ -921,7 +962,9 @@ body {
     color: #ffffff;
 }
 
-/* RESPONSIVE */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
     .navbar {
         padding: 0 16px;
