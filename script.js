@@ -293,13 +293,15 @@ function renderReviews() {
 }
 
 // ============================================================
-// 🔥 STEP 1: GO TO PAYMENT
+// 🔥 STEP 1: GO TO PAYMENT (FIXED)
 // ============================================================
 function goToPayment() {
     const uid = uidInput.value.trim();
     const country = countrySelect.value;
     const service = serviceSelect.value;
     const amount = parseInt(serviceSelect.options[serviceSelect.selectedIndex]?.dataset?.price || 0);
+
+    console.log('goToPayment called!', { uid, country, service, amount });
 
     if (!uid) {
         statusMsg.textContent = '⚠️ Please enter your Free Fire UID!';
@@ -531,4 +533,17 @@ window.addEventListener('load', function() {
     console.log('🎮 MistalOnline.in Ready!');
     console.log('💳 UPI ID:', UPI_ID);
     console.log('📱 QR Code:', QR_IMAGE);
+    console.log('✅ goToPayment function is defined!');
 });
+
+// ============================================================
+// 🔥 MAKE FUNCTIONS GLOBAL (so HTML onclick can find them)
+// ============================================================
+window.goToPayment = goToPayment;
+window.submitOrder = submitOrder;
+window.goBack = goBack;
+window.closeOverlay = closeOverlay;
+window.selectService = selectService;
+window.playVoice = playVoice;
+window.updatePrice = updatePrice;
+window.updateRegion = updateRegion;
