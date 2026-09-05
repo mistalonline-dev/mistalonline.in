@@ -1,14 +1,11 @@
 // ============================================================
-// MISTALONLINE.IN - Complete JavaScript (FINAL FIXED)
+// MISTALONLINE.IN - Complete JavaScript
 // ============================================================
 
 // ============================================================
 // CONFIG
 // ============================================================
-const UPI_ID = '9250150041@ybl';
-const MERCHANT_NAME = 'Gaurav Pandey';
 const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
-const QR_IMAGE = 'AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp';
 
 // ============================================================
 // FAKE DATA
@@ -17,22 +14,16 @@ const fakeOrders = [
     '🎯 UID 1234567890 just ordered 5,000 Likes!',
     '🔥 UID 9876543210 ordered 10,000 Likes!',
     '⭐ UID 1122334455 ordered Instagram Followers!',
-    '📸 UID 9988776655 ordered Video Growth package!',
-    '💬 UID 5544332211 ordered Telegram Members!',
-    '🚀 UID 7766554433 ordered 3,000 Likes!',
-    '🎯 UID 6677889900 ordered YouTube Views!',
-    '🔥 UID 4455667788 ordered 1,000 Likes!'
+    '📸 UID 9988776655 ordered Video Growth!',
+    '💬 UID 5544332211 ordered Telegram Members!'
 ];
 
 const fakeReviews = [
-    { name: 'Rahul Sharma', stars: '⭐⭐⭐⭐⭐', text: 'Best service ever! Got 10K likes in 2 hours. Highly recommended!', service: 'Free Fire Likes' },
-    { name: 'Priya Patel', stars: '⭐⭐⭐⭐⭐', text: 'Amazing service! My Instagram followers increased instantly.', service: 'Instagram Followers' },
-    { name: 'Amit Kumar', stars: '⭐⭐⭐⭐', text: 'Good service. Delivery was fast and reliable. Will order again.', service: 'Telegram Members' },
+    { name: 'Rahul Sharma', stars: '⭐⭐⭐⭐⭐', text: 'Best service ever! Got 10K likes in 2 hours!', service: 'Free Fire Likes' },
+    { name: 'Priya Patel', stars: '⭐⭐⭐⭐⭐', text: 'Amazing service! My followers increased instantly.', service: 'Instagram Followers' },
+    { name: 'Amit Kumar', stars: '⭐⭐⭐⭐', text: 'Good service. Delivery was fast and reliable.', service: 'Telegram Members' },
     { name: 'Neha Singh', stars: '⭐⭐⭐⭐⭐', text: 'Very professional service. Got exactly what I paid for.', service: 'YouTube Views' },
-    { name: 'Vikram Raj', stars: '⭐⭐⭐⭐⭐', text: 'Quick delivery and great support team. 5 stars!', service: 'Free Fire Likes' },
-    { name: 'Sneha Reddy', stars: '⭐⭐⭐⭐', text: 'Good quality followers. Customer support is very responsive.', service: 'Instagram Followers' },
-    { name: 'Arjun Mehta', stars: '⭐⭐⭐⭐⭐', text: 'Best price and fastest delivery. Will order again for sure!', service: 'Video Growth' },
-    { name: 'Kavya Nair', stars: '⭐⭐⭐⭐⭐', text: 'Very satisfied with the service. Got my order within 30 minutes.', service: 'Telegram Members' }
+    { name: 'Vikram Raj', stars: '⭐⭐⭐⭐⭐', text: 'Quick delivery and great support team. 5 stars!', service: 'Free Fire Likes' }
 ];
 
 // ============================================================
@@ -109,7 +100,7 @@ const voiceMessages = {
     uid: 'कृपया अपना फ्री फायर यूजर आईडी दर्ज करें',
     country: 'कृपया अपना देश चुनें',
     service: 'कृपया अपनी सेवा चुनें',
-    order_placed: 'आपका ऑर्डर सफलतापूर्वक बन गया है, कृपया पेमेंट करें',
+    order_placed: 'आपका ऑर्डर सफलतापूर्वक बन गया है',
     payment_confirm: 'आपका पेमेंट कन्फर्म हो गया है',
     error: 'कृपया सभी फील्ड भरें',
     thank_you: 'धन्यवाद, आपका ऑर्डर कन्फर्म हो गया है'
@@ -177,15 +168,6 @@ document.addEventListener('click', function(e) {
         hamburger.classList.remove('active');
         navMenu.classList.remove('open');
     }
-});
-
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', function() {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('open');
-        document.querySelectorAll('.nav-menu a').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-    });
 });
 
 // ============================================================
@@ -301,8 +283,6 @@ function goToPayment() {
     const service = serviceSelect.value;
     const amount = parseInt(serviceSelect.options[serviceSelect.selectedIndex]?.dataset?.price || 0);
 
-    console.log('goToPayment called!', { uid, country, service, amount });
-
     if (!uid) {
         statusMsg.textContent = '⚠️ Please enter your Free Fire UID!';
         statusMsg.className = 'error';
@@ -337,6 +317,7 @@ function goToPayment() {
         screenshot: null
     };
 
+    // Show Payment Section
     paymentSection.style.display = 'block';
     orderIdDisplay.textContent = orderId;
     paymentAmountDisplay.textContent = '₹' + amount;
@@ -437,6 +418,7 @@ async function submitOrder() {
             statusMsg.textContent = '✅ Order Submitted Successfully!';
             statusMsg.className = 'success';
 
+            // Reset
             document.getElementById('orderForm').reset();
             paymentSection.style.display = 'none';
             screenshotPreview.innerHTML = '';
@@ -460,7 +442,6 @@ async function submitOrder() {
 // ============================================================
 function goBack() {
     paymentSection.style.display = 'none';
-    paymentSection.scrollIntoView({ behavior: 'smooth' });
     statusMsg.textContent = '💰 Select service & click Next';
     statusMsg.className = '';
 }
@@ -483,11 +464,8 @@ screenshotInput.addEventListener('change', function() {
     reader.onload = function(e) {
         currentOrder.screenshot = e.target.result;
         screenshotPreview.innerHTML = `
-            <div style="position:relative;display:inline-block;">
-                <img src="${e.target.result}" alt="Screenshot" 
-                     style="max-width:150px;border-radius:12px;border:2px solid rgba(255,215,0,0.1);" />
-                <span style="position:absolute;top:-8px;right:-8px;background:#2ed573;color:#000;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;">✓</span>
-            </div>
+            <img src="${e.target.result}" alt="Screenshot" 
+                 style="max-width:120px;border-radius:10px;border:2px solid rgba(255,215,0,0.1);margin-top:8px;" />
         `;
         statusMsg.textContent = '✅ Screenshot uploaded! Click "Submit Order".';
         statusMsg.className = 'success';
@@ -504,27 +482,42 @@ function closeOverlay() {
 }
 
 // ============================================================
-// KEYBOARD SHORTCUTS
-// ============================================================
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'r' || e.key === 'R') {
-        if (confirm('Reset page?')) location.reload();
-    }
-});
-
-// ============================================================
-// 🔥 EVENT LISTENER - Next Button (No inline onclick)
+// EVENT LISTENERS
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
+    // Next Button
     const nextBtn = document.getElementById('nextBtn');
     if (nextBtn) {
         nextBtn.addEventListener('click', function(e) {
             e.preventDefault();
             goToPayment();
         });
-        console.log('✅ Next button event listener attached!');
-    } else {
-        console.log('❌ Next button not found!');
+    }
+
+    // Submit Button
+    const submitBtn = document.getElementById('submitBtn');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            submitOrder();
+        });
+    }
+
+    // Back Button
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            goBack();
+        });
+    }
+
+    // Close Overlay
+    const closeBtn = document.getElementById('closeOverlayBtn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            closeOverlay();
+        });
     }
 });
 
@@ -544,12 +537,11 @@ window.addEventListener('load', function() {
     if (liveUsersEl) liveUsersEl.textContent = liveUsers;
 
     console.log('🎮 MistalOnline.in Ready!');
-    console.log('💳 UPI ID:', UPI_ID);
-    console.log('📱 QR Code:', QR_IMAGE);
+    console.log('✅ All functions loaded successfully!');
 });
 
 // ============================================================
-// 🔥 MAKE FUNCTIONS GLOBAL (for other inline calls)
+// MAKE FUNCTIONS GLOBAL
 // ============================================================
 window.goToPayment = goToPayment;
 window.submitOrder = submitOrder;
