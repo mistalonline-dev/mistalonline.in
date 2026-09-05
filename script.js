@@ -1,5 +1,5 @@
 // ============================================================
-// MISTALONLINE.IN - Complete JavaScript (FULLY FIXED)
+// MISTALONLINE.IN - Complete JavaScript (FINAL FIXED)
 // ============================================================
 
 // ============================================================
@@ -127,9 +127,6 @@ function findHindiVoice() {
     return hindiVoice || voices[0] || null;
 }
 
-// ============================================================
-// 🔥 playVoice - GLOBAL FUNCTION
-// ============================================================
 function playVoice(type) {
     if (!('speechSynthesis' in window)) return;
     const message = voiceMessages[type];
@@ -192,7 +189,7 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 });
 
 // ============================================================
-// 🔥 updateRegion - GLOBAL FUNCTION
+// REGION DETECTION
 // ============================================================
 function updateRegion() {
     const uid = uidInput.value.trim();
@@ -223,7 +220,7 @@ uidInput.addEventListener('input', updateRegion);
 countrySelect.addEventListener('change', updateRegion);
 
 // ============================================================
-// 🔥 updatePrice - GLOBAL FUNCTION
+// PRICE UPDATE
 // ============================================================
 function updatePrice() {
     const selected = serviceSelect.options[serviceSelect.selectedIndex];
@@ -296,7 +293,7 @@ function renderReviews() {
 }
 
 // ============================================================
-// 🔥 goToPayment - GLOBAL FUNCTION (FIXED)
+// 🔥 GO TO PAYMENT
 // ============================================================
 function goToPayment() {
     const uid = uidInput.value.trim();
@@ -340,7 +337,6 @@ function goToPayment() {
         screenshot: null
     };
 
-    // Show Payment Section
     paymentSection.style.display = 'block';
     orderIdDisplay.textContent = orderId;
     paymentAmountDisplay.textContent = '₹' + amount;
@@ -355,7 +351,7 @@ function goToPayment() {
 }
 
 // ============================================================
-// 📧 SEND ORDER EMAIL
+// SEND ORDER EMAIL
 // ============================================================
 async function sendOrderEmail(order) {
     try {
@@ -384,7 +380,7 @@ async function sendOrderEmail(order) {
 }
 
 // ============================================================
-// 🔥 submitOrder - GLOBAL FUNCTION
+// SUBMIT ORDER
 // ============================================================
 async function submitOrder() {
     if (!currentOrder.orderId) {
@@ -426,7 +422,6 @@ async function submitOrder() {
         const result = await response.json();
 
         if (result.success) {
-            // Show success overlay
             document.getElementById('overlayOrderId').textContent = currentOrder.orderId;
             document.getElementById('overlayService').textContent = currentOrder.service;
             document.getElementById('overlayAmount').textContent = '₹' + currentOrder.amount;
@@ -442,7 +437,6 @@ async function submitOrder() {
             statusMsg.textContent = '✅ Order Submitted Successfully!';
             statusMsg.className = 'success';
 
-            // Reset
             document.getElementById('orderForm').reset();
             paymentSection.style.display = 'none';
             screenshotPreview.innerHTML = '';
@@ -462,7 +456,7 @@ async function submitOrder() {
 }
 
 // ============================================================
-// 🔥 goBack - GLOBAL FUNCTION
+// GO BACK
 // ============================================================
 function goBack() {
     paymentSection.style.display = 'none';
@@ -519,6 +513,22 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ============================================================
+// 🔥 EVENT LISTENER - Next Button (No inline onclick)
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const nextBtn = document.getElementById('nextBtn');
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            goToPayment();
+        });
+        console.log('✅ Next button event listener attached!');
+    } else {
+        console.log('❌ Next button not found!');
+    }
+});
+
+// ============================================================
 // ON LOAD
 // ============================================================
 window.addEventListener('load', function() {
@@ -536,11 +546,10 @@ window.addEventListener('load', function() {
     console.log('🎮 MistalOnline.in Ready!');
     console.log('💳 UPI ID:', UPI_ID);
     console.log('📱 QR Code:', QR_IMAGE);
-    console.log('✅ All functions are defined and global!');
 });
 
 // ============================================================
-// 🔥 MAKE ALL FUNCTIONS GLOBAL (so HTML onclick can find them)
+// 🔥 MAKE FUNCTIONS GLOBAL (for other inline calls)
 // ============================================================
 window.goToPayment = goToPayment;
 window.submitOrder = submitOrder;
@@ -550,25 +559,3 @@ window.selectService = selectService;
 window.playVoice = playVoice;
 window.updatePrice = updatePrice;
 window.updateRegion = updateRegion;
-window.updateOrderTicker = updateOrderTicker;
-
-// ============================================================
-// 🔥 EVENT LISTENER - Next Button (No inline onclick)
-// ============================================================
-document.addEventListener('DOMContentLoaded', function() {
-    const nextBtn = document.getElementById('nextBtn');
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            goToPayment();
-        });
-        console.log('✅ Next button event listener attached!');
-    } else {
-        console.log('❌ Next button not found!');
-    }
-});
-
-
-
-
-
