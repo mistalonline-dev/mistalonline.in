@@ -1,5 +1,5 @@
 // ============================================================
-// MISTALONLINE.IN - Complete JavaScript
+// MISTALONLINE.IN - Complete JavaScript (FULLY FIXED)
 // ============================================================
 
 // ============================================================
@@ -127,6 +127,9 @@ function findHindiVoice() {
     return hindiVoice || voices[0] || null;
 }
 
+// ============================================================
+// 🔥 playVoice - GLOBAL FUNCTION
+// ============================================================
 function playVoice(type) {
     if (!('speechSynthesis' in window)) return;
     const message = voiceMessages[type];
@@ -189,7 +192,7 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 });
 
 // ============================================================
-// REGION DETECTION
+// 🔥 updateRegion - GLOBAL FUNCTION
 // ============================================================
 function updateRegion() {
     const uid = uidInput.value.trim();
@@ -220,7 +223,7 @@ uidInput.addEventListener('input', updateRegion);
 countrySelect.addEventListener('change', updateRegion);
 
 // ============================================================
-// PRICE UPDATE
+// 🔥 updatePrice - GLOBAL FUNCTION
 // ============================================================
 function updatePrice() {
     const selected = serviceSelect.options[serviceSelect.selectedIndex];
@@ -293,7 +296,7 @@ function renderReviews() {
 }
 
 // ============================================================
-// 🔥 STEP 1: GO TO PAYMENT (FIXED)
+// 🔥 goToPayment - GLOBAL FUNCTION (FIXED)
 // ============================================================
 function goToPayment() {
     const uid = uidInput.value.trim();
@@ -381,7 +384,7 @@ async function sendOrderEmail(order) {
 }
 
 // ============================================================
-// 🔥 STEP 2: SUBMIT ORDER (After Payment + Screenshot)
+// 🔥 submitOrder - GLOBAL FUNCTION
 // ============================================================
 async function submitOrder() {
     if (!currentOrder.orderId) {
@@ -459,7 +462,7 @@ async function submitOrder() {
 }
 
 // ============================================================
-// 🔥 GO BACK
+// 🔥 goBack - GLOBAL FUNCTION
 // ============================================================
 function goBack() {
     paymentSection.style.display = 'none';
@@ -533,11 +536,11 @@ window.addEventListener('load', function() {
     console.log('🎮 MistalOnline.in Ready!');
     console.log('💳 UPI ID:', UPI_ID);
     console.log('📱 QR Code:', QR_IMAGE);
-    console.log('✅ goToPayment function is defined!');
+    console.log('✅ All functions are defined and global!');
 });
 
 // ============================================================
-// 🔥 MAKE FUNCTIONS GLOBAL (so HTML onclick can find them)
+// 🔥 MAKE ALL FUNCTIONS GLOBAL (so HTML onclick can find them)
 // ============================================================
 window.goToPayment = goToPayment;
 window.submitOrder = submitOrder;
@@ -547,3 +550,4 @@ window.selectService = selectService;
 window.playVoice = playVoice;
 window.updatePrice = updatePrice;
 window.updateRegion = updateRegion;
+window.updateOrderTicker = updateOrderTicker;
