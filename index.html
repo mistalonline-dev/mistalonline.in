@@ -34,7 +34,7 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <main class="main-content" id="home">
 
         <!-- HERO -->
@@ -48,80 +48,68 @@
             </div>
         </section>
 
-        <!-- LIVE ORDERS -->
-        <section class="live-orders">
-            <div class="live-orders-container">
-                <span class="live-badge">🔴 LIVE</span>
-                <div class="order-ticker">
-                    <span id="orderTickerText">🎯 UID 1234567890 just ordered 5,000 Likes!</span>
-                </div>
-            </div>
-        </section>
-
         <!-- ORDER SECTION -->
         <section class="order-section" id="orderSection">
             <div class="order-container">
 
                 <h2>📦 Place Your Order</h2>
-                <p class="order-sub">Enter your UID, select service & complete payment</p>
+                <p class="order-sub">Enter your UID, select service & click Next</p>
 
-                <!-- ORDER FORM -->
-                <form id="orderForm">
-                    <div class="form-group">
-                        <label>🎯 Free Fire UID</label>
-                        <input type="text" id="uid" placeholder="Enter your Free Fire UID" required />
-                    </div>
+                <!-- FORM -->
+                <div class="form-group">
+                    <label>🎯 Free Fire UID</label>
+                    <input type="text" id="uid" placeholder="Enter your Free Fire UID" />
+                </div>
 
-                    <div class="form-group">
-                        <label>🌍 Country / Server</label>
-                        <select id="country" required>
-                            <option value="">— Select Country —</option>
-                            <option value="India">India</option>
-                            <option value="USA">USA</option>
-                            <option value="UK">United Kingdom</option>
-                            <option value="Canada">Canada</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Germany">Germany</option>
-                            <option value="France">France</option>
-                            <option value="Japan">Japan</option>
-                            <option value="Brazil">Brazil</option>
-                            <option value="UAE">UAE</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="Malaysia">Malaysia</option>
-                            <option value="Thailand">Thailand</option>
-                            <option value="Vietnam">Vietnam</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>🌍 Country / Server</label>
+                    <select id="country">
+                        <option value="">— Select Country —</option>
+                        <option value="India">India</option>
+                        <option value="USA">USA</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="UAE">UAE</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
 
-                    <div class="form-group">
-                        <label>🔥 Select Service</label>
-                        <select id="service" required>
-                            <option value="">— Select Service —</option>
-                            <option value="1000" data-price="139">🔥 1,000 Likes - ₹139</option>
-                            <option value="3000" data-price="399">🔥 3,000 Likes - ₹399</option>
-                            <option value="5000" data-price="649">🔥 5,000 Likes - ₹649</option>
-                            <option value="10000" data-price="1199">🔥 10,000 Likes - ₹1,199</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>🔥 Select Service</label>
+                    <select id="service">
+                        <option value="">— Select Service —</option>
+                        <option value="1000" data-price="139">🔥 1,000 Likes - ₹139</option>
+                        <option value="3000" data-price="399">🔥 3,000 Likes - ₹399</option>
+                        <option value="5000" data-price="649">🔥 5,000 Likes - ₹649</option>
+                        <option value="10000" data-price="1199">🔥 10,000 Likes - ₹1,199</option>
+                    </select>
+                </div>
 
-                    <div class="price-display">
-                        <span class="price-label">💰 Total Amount</span>
-                        <span class="price-amount" id="priceAmount">₹0</span>
-                    </div>
+                <div class="price-display">
+                    <span class="price-label">💰 Total Amount</span>
+                    <span class="price-amount" id="priceAmount">₹0</span>
+                </div>
 
-                    <div class="region-display" id="regionDisplay">
-                        <span>📍 Detected Region: </span>
-                        <span id="regionText">—</span>
-                    </div>
+                <div class="region-display" id="regionDisplay">
+                    <span>📍 Region: </span>
+                    <span id="regionText">—</span>
+                </div>
 
-                    <!-- NEXT BUTTON -->
-                    <button type="button" class="btn-next" id="nextBtn">➡️ Next: Proceed to Payment</button>
-                    <div id="statusMsg">💰 Select service & click Next</div>
-                </form>
+                <!-- 🔥 ONLY NEXT BUTTON -->
+                <button class="btn-next" id="nextBtn">➡️ Next</button>
+                <div id="statusMsg">💰 Select service & click Next</div>
 
-                <!-- PAYMENT SECTION -->
+                <!-- 🔥 PAYMENT SECTION (Hidden by default) -->
                 <div class="payment-section" id="paymentSection" style="display:none;">
                     <div class="payment-header">
                         <h3>💳 Complete Payment</h3>
@@ -129,7 +117,7 @@
                         <p>Amount: <span id="paymentAmountDisplay">₹0</span></p>
                     </div>
 
-                    <!-- QR CODE - SIRF QR -->
+                    <!-- QR CODE -->
                     <div class="qr-container">
                         <span class="qr-label">📱 Scan to Pay</span>
                         <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
@@ -271,7 +259,7 @@
     <!-- SUCCESS OVERLAY -->
     <div class="overlay" id="successOverlay">
         <span class="overlay-icon">✅</span>
-        <h2 class="overlay-title">Order Confirmed!</h2>
+        <h2 class="overlay-title">🎯 HEADSHOT!</h2>
         <p class="overlay-sub">🎉 Your order has been placed successfully.</p>
         <div class="overlay-details">
             <p>Order ID: <span id="overlayOrderId">—</span></p>
