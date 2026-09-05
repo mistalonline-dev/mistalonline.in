@@ -330,7 +330,7 @@ body {
 .region-display.show { display: flex; }
 .region-display #regionText { color: #2ed573; font-weight: 600; }
 
-.btn-order {
+.btn-next {
     width: 100%;
     padding: 17px;
     background: linear-gradient(135deg, #f9d423, #f7971e);
@@ -344,8 +344,7 @@ body {
     text-transform: uppercase;
 }
 
-.btn-order:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(249, 212, 35, 0.2); }
-.btn-order:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-next:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(249, 212, 35, 0.2); }
 
 #statusMsg {
     text-align: center;
@@ -354,12 +353,11 @@ body {
     font-size: 13px;
     min-height: 30px;
 }
-
 #statusMsg.success { color: #2ed573; }
 #statusMsg.error { color: #ff4757; }
 
 /* ============================================================
-   PAYMENT SECTION - SIRF QR CODE
+   PAYMENT SECTION
    ============================================================ */
 .payment-section {
     margin-top: 25px;
@@ -442,7 +440,7 @@ body {
     margin-top: 10px;
 }
 
-.btn-confirm {
+.btn-submit-order {
     width: 100%;
     padding: 16px;
     background: linear-gradient(135deg, #2ed573, #26de81);
@@ -456,7 +454,23 @@ body {
     text-transform: uppercase;
 }
 
-.btn-confirm:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(46, 213, 115, 0.25); }
+.btn-submit-order:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(46, 213, 115, 0.25); }
+
+.btn-back {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-back:hover { background: rgba(255, 255, 255, 0.06); color: #ffffff; }
 
 /* ============================================================
    REVIEWS SECTION
