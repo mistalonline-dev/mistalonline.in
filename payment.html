@@ -31,7 +31,38 @@
             border-radius: 24px;
             padding: 35px 30px;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-            transition: 0.3s;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 🔥 SUCCESS GLOW OVERLAY */
+        .payment-container.success-mode {
+            border-color: rgba(46, 213, 115, 0.3);
+            box-shadow: 0 0 60px rgba(46, 213, 115, 0.1), 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+        .payment-container.success-mode::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(46, 213, 115, 0.05), transparent 60%);
+            animation: glowPulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
         }
 
         .back-link {
@@ -41,6 +72,8 @@
             font-size: 13px;
             margin-bottom: 15px;
             transition: 0.3s;
+            position: relative;
+            z-index: 1;
         }
         .back-link:hover {
             color: #f9d423;
@@ -49,6 +82,8 @@
         .payment-header {
             text-align: center;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         .payment-header h2 {
             font-size: 24px;
@@ -61,13 +96,15 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* ORDER DETAILS */
+        /* ORDER DETAILS - ONLY UID, COUNTRY, SERVICE, AMOUNT */
         .order-details {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 215, 0, 0.06);
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
         }
         .order-details .detail-row {
             display: flex;
@@ -100,7 +137,6 @@
             font-weight: 900;
         }
 
-        /* UPI DETAILS */
         .upi-details-box {
             text-align: center;
             padding: 12px;
@@ -108,6 +144,8 @@
             border: 1px solid rgba(249, 212, 35, 0.06);
             border-radius: 12px;
             margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
         }
         .upi-details-box .upi-label {
             color: rgba(255, 255, 255, 0.3);
@@ -126,13 +164,14 @@
             font-size: 13px;
         }
 
-        /* INSTRUCTIONS */
         .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
             border-radius: 12px;
             padding: 14px 16px;
             margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
         }
         .instructions .inst-title {
             color: #2ed573;
@@ -161,6 +200,8 @@
             border: 2px solid rgba(255, 215, 0, 0.06);
             border-radius: 16px;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         .qr-container .qr-label {
             display: block;
@@ -197,6 +238,8 @@
             cursor: pointer;
             transition: 0.3s;
             text-transform: uppercase;
+            position: relative;
+            z-index: 1;
         }
         .btn-confirm:hover {
             transform: translateY(-3px);
@@ -223,6 +266,8 @@
             text-decoration: none;
             text-align: center;
             display: block;
+            position: relative;
+            z-index: 1;
         }
         .btn-back:hover {
             background: rgba(255, 255, 255, 0.06);
@@ -235,6 +280,8 @@
             color: rgba(255, 255, 255, 0.3);
             font-size: 13px;
             min-height: 30px;
+            position: relative;
+            z-index: 1;
         }
         #statusMsg.success {
             color: #2ed573;
@@ -244,13 +291,15 @@
         }
 
         /* ============================================================
-           🔥 SUCCESS ANIMATION - GREEN TICK
+           🔥 PHONEPE STYLE SUCCESS SCREEN
            ============================================================ */
         .success-container {
             display: none;
             text-align: center;
-            padding: 20px 0;
-            animation: successFadeIn 0.8s ease;
+            padding: 30px 10px;
+            position: relative;
+            z-index: 2;
+            animation: successFadeIn 0.6s ease;
         }
         .success-container.show {
             display: block;
@@ -259,11 +308,11 @@
         @keyframes successFadeIn {
             0% {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: scale(0.9);
             }
             50% {
                 opacity: 1;
-                transform: scale(1.05);
+                transform: scale(1.02);
             }
             100% {
                 opacity: 1;
@@ -271,13 +320,41 @@
             }
         }
 
-        .success-container .success-icon {
-            font-size: 80px;
-            display: block;
-            animation: successBounce 0.6s ease;
+        /* 🔥 BIG GREEN TICK CIRCLE */
+        .success-container .success-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2ed573, #26de81);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            animation: circlePop 0.6s ease;
+            box-shadow: 0 0 60px rgba(46, 213, 115, 0.3);
         }
 
-        @keyframes successBounce {
+        @keyframes circlePop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-container .success-circle .tick {
+            font-size: 50px;
+            color: #ffffff;
+            animation: tickBounce 0.5s ease 0.3s both;
+        }
+
+        @keyframes tickBounce {
             0% {
                 transform: scale(0);
             }
@@ -291,25 +368,39 @@
 
         .success-container .success-title {
             color: #2ed573;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 900;
-            margin-top: 8px;
-            letter-spacing: 1px;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+            animation: fadeUp 0.5s ease 0.2s both;
         }
 
         .success-container .success-sub {
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 14px;
-            margin-top: 4px;
+            margin-top: 2px;
+            animation: fadeUp 0.5s ease 0.3s both;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .success-container .success-details {
-            margin-top: 16px;
+            margin-top: 20px;
             padding: 16px 20px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(46, 213, 115, 0.06);
             border-radius: 12px;
             text-align: center;
+            animation: fadeUp 0.5s ease 0.4s both;
         }
         .success-container .success-details p {
             color: rgba(255, 255, 255, 0.4);
@@ -326,8 +417,8 @@
         }
 
         .success-container .btn-home {
-            margin-top: 16px;
-            padding: 12px 36px;
+            margin-top: 18px;
+            padding: 12px 40px;
             background: rgba(255, 255, 255, 0.06);
             border: 1.5px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
@@ -339,6 +430,7 @@
             text-transform: uppercase;
             text-decoration: none;
             display: inline-block;
+            animation: fadeUp 0.5s ease 0.5s both;
         }
         .success-container .btn-home:hover {
             background: rgba(255, 255, 255, 0.08);
@@ -346,11 +438,11 @@
         }
 
         /* Hide payment elements on success */
-        .payment-container.success-mode .payment-content {
+        .payment-content.hidden {
             display: none;
         }
-        .payment-container.success-mode .success-container {
-            display: block;
+        .back-link.hidden {
+            display: none;
         }
 
         @media (max-width: 480px) {
@@ -372,11 +464,15 @@
             .upi-details-box .upi-id {
                 font-size: 17px;
             }
-            .success-container .success-title {
-                font-size: 22px;
+            .success-container .success-circle {
+                width: 80px;
+                height: 80px;
             }
-            .success-container .success-icon {
-                font-size: 60px;
+            .success-container .success-circle .tick {
+                font-size: 40px;
+            }
+            .success-container .success-title {
+                font-size: 20px;
             }
         }
     </style>
@@ -396,7 +492,7 @@
                 <h2>💳 Complete <span>Payment</span></h2>
             </div>
 
-            <!-- Order Details -->
+            <!-- ORDER DETAILS - ONLY UID, COUNTRY, SERVICE, AMOUNT -->
             <div class="order-details">
                 <div class="detail-row">
                     <span class="detail-label">📦 Order ID</span>
@@ -420,14 +516,14 @@
                 </div>
             </div>
 
-            <!-- UPI Details -->
+            <!-- UPI DETAILS -->
             <div class="upi-details-box">
                 <div class="upi-label">📱 Pay to UPI ID</div>
                 <div class="upi-id">9250150041@ybl</div>
                 <div class="upi-name">Gaurav Pandey</div>
             </div>
 
-            <!-- Instructions -->
+            <!-- INSTRUCTIONS -->
             <div class="instructions">
                 <div class="inst-title">📌 Payment Instructions</div>
                 <div class="inst-step">QR Code को PhonePe / GPay / Paytm से Scan करें</div>
@@ -436,7 +532,7 @@
                 <div class="inst-step">आपका Order Automatic Confirm हो जाएगा 🎯</div>
             </div>
 
-            <!-- QR Code -->
+            <!-- QR CODE -->
             <div class="qr-container">
                 <span class="qr-label">📱 Scan to Pay</span>
                 <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
@@ -449,7 +545,7 @@
                 </div>
             </div>
 
-            <!-- Confirm Button -->
+            <!-- CONFIRM BUTTON -->
             <button class="btn-confirm" id="confirmBtn">✅ Confirm Payment</button>
             <a href="index.html" class="btn-back">⬅ Back</a>
 
@@ -458,12 +554,14 @@
         </div>
 
         <!-- ============================================================
-        🔥 SUCCESS SECTION - GREEN TICK ANIMATION
+        🔥 PHONEPE STYLE SUCCESS SCREEN
         ============================================================ -->
         <div class="success-container" id="successContainer">
-            <span class="success-icon">✅</span>
-            <div class="success-title">Order Placed Successfully! 🎯</div>
-            <div class="success-sub">🎉 Your order has been confirmed.</div>
+            <div class="success-circle">
+                <span class="tick">✔</span>
+            </div>
+            <div class="success-title">Payment Successful!</div>
+            <div class="success-sub">🎉 Your order has been confirmed</div>
             <div class="success-details">
                 <p>📦 Order ID: <span class="gold" id="successOrderId">—</span></p>
                 <p>🎯 UID: <span id="successUid">—</span></p>
@@ -524,8 +622,8 @@
             if (!('speechSynthesis' in window)) return;
 
             const messages = [
-                'ऑर्डर प्लेस सक्सेसफुली हो गया है',
-                'आपका पेमेंट कन्फर्म हो गया है'
+                'पेमेंट सक्सेसफुल',
+                'आपका ऑर्डर कन्फर्म हो गया है'
             ];
 
             let index = 0;
@@ -579,7 +677,7 @@
         console.log('📦 Order:', currentOrder);
 
         // ============================================================
-        // 🔥 SHOW SUCCESS - GREEN TICK
+        // 🔥 SHOW SUCCESS - PHONEPE STYLE
         // ============================================================
         function showSuccess() {
             // Fill success details
@@ -590,13 +688,16 @@
             successAmount.textContent = '₹' + currentOrder.amount;
 
             // Hide payment content, show success
-            paymentContent.style.display = 'none';
-            backLink.style.display = 'none';
+            paymentContent.classList.add('hidden');
+            backLink.classList.add('hidden');
             successContainer.classList.add('show');
             paymentContainer.classList.add('success-mode');
 
             // Play voice
             playSuccessVoice();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // ============================================================
