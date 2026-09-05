@@ -210,89 +210,64 @@
             stroke: currentColor;
         }
 
-        /* Fake Orders Floating */
-        .fake-order-float {
+        /* 🔥 NEW ORDER NOTIFICATION - POPUP STYLE */
+        .new-order-notification {
             position: fixed;
-            z-index: 9999;
-            background: rgba(10, 10, 10, 0.92);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(249, 212, 35, 0.08);
-            border-radius: 12px;
-            padding: 10px 16px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            animation: floatUp 8s ease forwards;
+            top: 80px;
+            right: 20px;
+            z-index: 99999;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(46, 213, 115, 0.15);
+            border-radius: 14px;
+            padding: 14px 20px;
+            max-width: 320px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+            animation: slideInRight 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
             pointer-events: none;
-            max-width: 300px;
         }
-        .fake-order-float .order-amount {
+        .new-order-notification .notif-icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        .new-order-notification .notif-title {
+            color: #2ed573;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .new-order-notification .notif-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+        .new-order-notification .notif-amount {
             color: #f9d423;
             font-weight: 700;
         }
-        .fake-order-float .order-uid {
+        .new-order-notification .notif-uid {
             color: #2ed573;
             font-weight: 600;
         }
 
-        @keyframes floatUp {
+        @keyframes slideInRight {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.8);
+                transform: translateX(50px);
             }
-            10% {
+            100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateX(0);
             }
-            80% {
+        }
+        @keyframes fadeOut {
+            0% {
                 opacity: 1;
-                transform: translateY(-30px) scale(1);
+                transform: translateX(0);
             }
             100% {
                 opacity: 0;
-                transform: translateY(-60px) scale(0.8);
+                transform: translateX(30px);
             }
-        }
-
-        .fake-order-float:nth-child(1) {
-            left: 5%;
-            top: 20%;
-        }
-        .fake-order-float:nth-child(2) {
-            right: 5%;
-            top: 30%;
-        }
-        .fake-order-float:nth-child(3) {
-            left: 10%;
-            top: 50%;
-        }
-        .fake-order-float:nth-child(4) {
-            right: 8%;
-            top: 60%;
-        }
-        .fake-order-float:nth-child(5) {
-            left: 3%;
-            top: 70%;
-        }
-        .fake-order-float:nth-child(6) {
-            right: 3%;
-            top: 40%;
-        }
-        .fake-order-float:nth-child(7) {
-            left: 15%;
-            top: 15%;
-        }
-        .fake-order-float:nth-child(8) {
-            right: 15%;
-            top: 75%;
-        }
-        .fake-order-float:nth-child(9) {
-            left: 5%;
-            top: 85%;
-        }
-        .fake-order-float:nth-child(10) {
-            right: 5%;
-            top: 85%;
         }
 
         .order-section {
@@ -365,55 +340,37 @@
             color: #fff;
         }
 
-        /* ============================================================
-           🔥 QUANTITY SELECTOR - CUSTOM STYLING
-           ============================================================ */
+        /* 🔥 QUANTITY SELECTOR - 1000, 3000, 5000, 10000 */
         .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 215, 0, 0.06);
-            border-radius: 10px;
-            padding: 4px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
-        .quantity-selector .qty-btn {
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 8px;
+        .qty-option {
+            padding: 10px 8px;
             background: rgba(255, 255, 255, 0.04);
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 700;
+            border: 1.5px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
         }
-        .quantity-selector .qty-btn:hover {
+        .qty-option:hover {
+            border-color: rgba(249, 212, 35, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .qty-option.active {
+            border-color: #f9d423;
             background: rgba(249, 212, 35, 0.08);
             color: #f9d423;
         }
-        .quantity-selector .qty-btn:active {
-            transform: scale(0.95);
-        }
-        .quantity-selector .qty-display {
-            flex: 1;
-            text-align: center;
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            min-width: 50px;
-            padding: 4px 0;
-        }
-        .quantity-selector .qty-label {
-            color: rgba(255, 255, 255, 0.3);
+        .qty-option .qty-label {
             font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 0 8px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 400;
         }
 
         .price-display {
@@ -442,24 +399,6 @@
             color: #f9d423;
             font-size: 22px;
             font-weight: 900;
-        }
-
-        .region-display {
-            display: none;
-            padding: 10px 14px;
-            background: rgba(46, 213, 115, 0.05);
-            border: 1px solid rgba(46, 213, 115, 0.06);
-            border-radius: 10px;
-            margin-bottom: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 13px;
-        }
-        .region-display.show {
-            display: block;
-        }
-        .region-display #regionText {
-            color: #2ed573;
-            font-weight: 600;
         }
 
         .btn-next {
@@ -505,24 +444,24 @@
             color: #ff4757;
         }
 
-        /* PRICE LIST */
+        /* PRICE LIST - Next Button ke Neeche */
         .package-section {
-            margin-top: 25px;
-            padding-top: 20px;
+            margin-top: 20px;
+            padding-top: 16px;
             border-top: 1px solid rgba(255, 215, 0, 0.06);
         }
         .package-header {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .package-header .package-icon svg {
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             stroke: #ff4757;
             stroke-width: 2;
         }
         .package-header h3 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
             background: linear-gradient(135deg, #f9d423, #ff4e50);
             -webkit-background-clip: text;
@@ -530,19 +469,19 @@
         }
         .package-header p {
             color: rgba(255, 255, 255, 0.3);
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .package-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 6px;
         }
         .package-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 215, 0, 0.04);
-            border-radius: 10px;
-            padding: 10px 12px;
+            border-radius: 8px;
+            padding: 8px 10px;
             text-align: center;
             transition: 0.3s;
         }
@@ -551,48 +490,29 @@
             transform: translateY(-2px);
         }
         .package-item .pkg-likes {
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 700;
             color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-        .package-item .pkg-likes svg {
-            width: 14px;
-            height: 14px;
-            stroke: #f9d423;
-            stroke-width: 2;
         }
         .package-item .pkg-likes span {
             color: #f9d423;
         }
         .package-item .pkg-price {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 900;
             color: #f9d423;
             display: block;
             margin: 2px 0;
         }
         .package-item .pkg-days {
-            font-size: 10px;
+            font-size: 9px;
             color: rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-        .package-item .pkg-days svg {
-            width: 12px;
-            height: 12px;
-            stroke: rgba(255, 255, 255, 0.3);
         }
         .package-item .pkg-badge {
             display: inline-block;
-            padding: 1px 10px;
+            padding: 1px 8px;
             border-radius: 30px;
-            font-size: 8px;
+            font-size: 7px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -610,25 +530,25 @@
         .package-features {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin-top: 12px;
+            gap: 12px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
         .package-features .feature {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 11px;
+            font-size: 10px;
             display: flex;
             align-items: center;
             gap: 4px;
         }
         .package-features .feature svg {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             stroke: #f9d423;
             stroke-width: 2;
         }
 
-        /* REVIEWS */
+        /* REVIEWS - Price List ke Neeche */
         .reviews-section {
             padding: 30px 0 20px;
         }
@@ -890,17 +810,14 @@
                 grid-template-columns: 1fr;
                 max-height: 400px;
             }
-            .fake-order-float {
-                display: none;
+            .quantity-selector {
+                grid-template-columns: 1fr 1fr;
             }
-            .quantity-selector .qty-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 17px;
-            }
-            .quantity-selector .qty-display {
-                font-size: 17px;
-                min-width: 40px;
+            .new-order-notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                top: 75px;
             }
         }
         @media (max-width: 480px) {
@@ -921,22 +838,21 @@
             }
             .package-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 6px;
+                gap: 4px;
             }
             .package-item .pkg-likes {
-                font-size: 13px;
+                font-size: 11px;
             }
             .package-item .pkg-price {
-                font-size: 15px;
+                font-size: 13px;
             }
-            .quantity-selector .qty-btn {
-                width: 30px;
-                height: 30px;
-                font-size: 15px;
+            .quantity-selector {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
             }
-            .quantity-selector .qty-display {
-                font-size: 15px;
-                min-width: 35px;
+            .qty-option {
+                padding: 8px 6px;
+                font-size: 12px;
             }
         }
     </style>
@@ -948,9 +864,6 @@
         <span class="voice-dot" id="voiceDot"></span>
         <span id="voiceStatus">Voice Active</span>
     </div>
-
-    <!-- FAKE ORDERS FLOATING -->
-    <div id="fakeOrdersContainer"></div>
 
     <!-- HEADER -->
     <header class="navbar">
@@ -999,7 +912,7 @@
             <div class="order-container">
 
                 <h2>Place Your Order</h2>
-                <p class="order-sub">Enter your UID, select quantity & country</p>
+                <p class="order-sub">Enter your UID, select likes & country</p>
 
                 <form id="orderForm">
                     <!-- UID -->
@@ -1011,19 +924,28 @@
                         <input type="text" id="uid" placeholder="Enter your Free Fire UID" />
                     </div>
 
-                    <!-- 🔥 QUANTITY SELECTOR - CUSTOM -->
+                    <!-- 🔥 QUANTITY SELECTOR -->
                     <div class="form-group">
                         <label>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            Select Quantity
+                            Select Likes
                         </label>
                         <div class="quantity-selector">
-                            <button type="button" class="qty-btn" id="qtyMinus">−</button>
-                            <span class="qty-display" id="qtyDisplay">1</span>
-                            <button type="button" class="qty-btn" id="qtyPlus">+</button>
-                            <span class="qty-label">K Likes</span>
+                            <div class="qty-option" data-qty="1" data-price="110">
+                                1,000 <span class="qty-label">Likes</span>
+                            </div>
+                            <div class="qty-option" data-qty="3" data-price="330">
+                                3,000 <span class="qty-label">Likes</span>
+                            </div>
+                            <div class="qty-option active" data-qty="5" data-price="550">
+                                5,000 <span class="qty-label">Likes</span>
+                            </div>
+                            <div class="qty-option" data-qty="10" data-price="1100">
+                                10,000 <span class="qty-label">Likes</span>
+                            </div>
                         </div>
-                        <input type="hidden" id="qtyValue" value="1" />
+                        <input type="hidden" id="qtyValue" value="5" />
+                        <input type="hidden" id="qtyPrice" value="550" />
                     </div>
 
                     <!-- Country -->
@@ -1051,16 +973,10 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
                             Amount
                         </span>
-                        <span class="price-amount" id="priceAmount">₹0</span>
+                        <span class="price-amount" id="priceAmount">₹550</span>
                     </div>
 
-                    <!-- Region -->
-                    <div class="region-display" id="regionDisplay">
-                        <span>Region: </span>
-                        <span id="regionText">—</span>
-                    </div>
-
-                    <!-- PRICE LIST -->
+                    <!-- 🔥 PRICE LIST - Next Button ke Neeche -->
                     <div class="package-section">
                         <div class="package-header">
                             <span class="package-icon">
@@ -1072,72 +988,36 @@
 
                         <div class="package-grid">
                             <div class="package-item">
-                                <span class="pkg-likes">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                                    <span>1,000</span> Likes
-                                </span>
+                                <span class="pkg-likes"><span>1,000</span> Likes</span>
                                 <span class="pkg-price">₹110</span>
-                                <span class="pkg-days">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                    1 Day
-                                </span>
+                                <span class="pkg-days">📅 1 Day</span>
                             </div>
                             <div class="package-item">
-                                <span class="pkg-likes">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                                    <span>7,000</span> Likes
-                                </span>
+                                <span class="pkg-likes"><span>7,000</span> Likes</span>
                                 <span class="pkg-price">₹715</span>
-                                <span class="pkg-days">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                    7 Days
-                                </span>
+                                <span class="pkg-days">📅 7 Days</span>
                                 <span class="pkg-badge popular">Popular</span>
                             </div>
                             <div class="package-item">
-                                <span class="pkg-likes">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                                    <span>15,000</span> Likes
-                                </span>
+                                <span class="pkg-likes"><span>15,000</span> Likes</span>
                                 <span class="pkg-price">₹1,320</span>
-                                <span class="pkg-days">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                    15 Days
-                                </span>
+                                <span class="pkg-days">📅 15 Days</span>
                             </div>
                             <div class="package-item">
-                                <span class="pkg-likes">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                                    <span>30,000</span> Likes
-                                </span>
+                                <span class="pkg-likes"><span>30,000</span> Likes</span>
                                 <span class="pkg-price">₹2,420</span>
-                                <span class="pkg-days">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                    30 Days
-                                </span>
+                                <span class="pkg-days">📅 30 Days</span>
                                 <span class="pkg-badge best">Best</span>
                             </div>
                             <div class="package-item">
-                                <span class="pkg-likes">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                                    <span>60,000</span> Likes
-                                </span>
+                                <span class="pkg-likes"><span>60,000</span> Likes</span>
                                 <span class="pkg-price">₹4,400</span>
-                                <span class="pkg-days">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                    60 Days
-                                </span>
+                                <span class="pkg-days">📅 60 Days</span>
                             </div>
                             <div class="package-item">
-                                <span class="pkg-likes">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                                    <span>90,000</span> Likes
-                                </span>
+                                <span class="pkg-likes"><span>90,000</span> Likes</span>
                                 <span class="pkg-price">₹6,380</span>
-                                <span class="pkg-days">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                    90 Days
-                                </span>
+                                <span class="pkg-days">📅 90 Days</span>
                             </div>
                         </div>
 
@@ -1162,13 +1042,13 @@
                         Next
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
                     </button>
-                    <div id="statusMsg">Select quantity & country, then click Next</div>
+                    <div id="statusMsg">Select likes & country, then click Next</div>
                 </form>
 
             </div>
         </section>
 
-        <!-- REVIEWS SECTION -->
+        <!-- REVIEWS SECTION - Price List ke Neeche -->
         <section class="reviews-section" id="reviews">
             <h2>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1235,7 +1115,7 @@
 
     <script>
         // ============================================================
-        // COMPLETE SCRIPT - WITH VOICE + QUANTITY SELECTOR
+        // COMPLETE SCRIPT
         // ============================================================
 
         // ============================================================
@@ -1332,36 +1212,25 @@
         });
 
         // ============================================================
-        // 🔥 QUANTITY SELECTOR
+        // 🔥 QUANTITY SELECTOR - 1000, 3000, 5000, 10000
         // ============================================================
-        let currentQty = 1;
-        const qtyDisplay = document.getElementById('qtyDisplay');
+        const qtyOptions = document.querySelectorAll('.qty-option');
         const qtyValue = document.getElementById('qtyValue');
-        const qtyMinus = document.getElementById('qtyMinus');
-        const qtyPlus = document.getElementById('qtyPlus');
+        const qtyPrice = document.getElementById('qtyPrice');
         const priceAmount = document.getElementById('priceAmount');
 
-        function updatePrice() {
-            const basePrice = 110;
-            const total = basePrice * currentQty;
-            priceAmount.textContent = '₹' + total;
-            qtyValue.value = currentQty;
-        }
+        qtyOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                qtyOptions.forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
 
-        qtyMinus.addEventListener('click', function() {
-            if (currentQty > 1) {
-                currentQty--;
-                qtyDisplay.textContent = currentQty;
-                updatePrice();
-            }
-        });
+                const qty = parseInt(this.dataset.qty);
+                const price = parseInt(this.dataset.price);
 
-        qtyPlus.addEventListener('click', function() {
-            if (currentQty < 100) {
-                currentQty++;
-                qtyDisplay.textContent = currentQty;
-                updatePrice();
-            }
+                qtyValue.value = qty;
+                qtyPrice.value = price;
+                priceAmount.textContent = '₹' + price;
+            });
         });
 
         // ============================================================
@@ -1380,26 +1249,10 @@
         // ============================================================
         const uidInput = document.getElementById('uid');
         const countrySelect = document.getElementById('country');
-        const regionDisplay = document.getElementById('regionDisplay');
-        const regionText = document.getElementById('regionText');
         const statusMsg = document.getElementById('statusMsg');
         const totalOrdersEl = document.getElementById('totalOrders');
         const liveUsersEl = document.getElementById('liveUsers');
         const reviewsGrid = document.getElementById('reviewsGrid');
-
-        // ============================================================
-        // REGION MAPPING - 8 COUNTRIES
-        // ============================================================
-        const countryRegionMap = {
-            'India': 'Asia Pacific',
-            'Indonesia': 'Asia Pacific',
-            'Brazil': 'Latin America',
-            'Malaysia': 'Asia Pacific',
-            'Bangladesh': 'Asia Pacific',
-            'Nepal': 'Asia Pacific',
-            'UK': 'Europe',
-            'USA': 'North America'
-        };
 
         // ============================================================
         // FAKE REVIEWS - 200+
@@ -1504,6 +1357,48 @@
         const fakeReviews = generateFakeReviews(210);
 
         // ============================================================
+        // 🔥 NEW ORDER NOTIFICATION - "New Order Received"
+        // ============================================================
+        function showNewOrderNotification() {
+            const uid = Math.floor(Math.random() * 9000000000) + 1000000000;
+            const qty = [1, 3, 5, 7, 10, 15, 30][Math.floor(Math.random() * 7)];
+            const amount = qty * 110;
+
+            const messages = [
+                'New Order Received! 🎯',
+                'Order Placed Successfully! ✅',
+                'New Order Confirmed! 🔥',
+                'Order Completed! 🏆',
+                'New Order Arrived! 📦'
+            ];
+
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+
+            const notification = document.createElement('div');
+            notification.className = 'new-order-notification';
+            notification.innerHTML = `
+                <div>
+                    <span class="notif-title">${msg}</span>
+                    <div class="notif-text">
+                        <span class="notif-uid">UID ${uid}</span>
+                        ordered <span class="notif-amount">${qty}K Likes (₹${amount})</span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                if (notification.parentNode) notification.remove();
+            }, 5000);
+
+            // Update counter
+            totalOrders += 1;
+            if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
+            liveUsers = 42 + Math.floor(Math.random() * 20);
+            if (liveUsersEl) liveUsersEl.textContent = liveUsers;
+        }
+
+        // ============================================================
         // VOICE ON FIELDS
         // ============================================================
         uidInput.addEventListener('focus', function() {
@@ -1513,30 +1408,6 @@
         countrySelect.addEventListener('focus', function() {
             playVoice('country');
         });
-
-        // ============================================================
-        // REGION DETECTION
-        // ============================================================
-        function updateRegion() {
-            const uid = uidInput.value.trim();
-            const country = countrySelect.value;
-            let region = '—';
-
-            if (country && countryRegionMap[country]) {
-                region = countryRegionMap[country];
-            }
-
-            if (region !== '—') {
-                regionDisplay.classList.add('show');
-                regionText.textContent = region;
-            } else {
-                regionDisplay.classList.remove('show');
-                regionText.textContent = '—';
-            }
-        }
-
-        uidInput.addEventListener('input', updateRegion);
-        countrySelect.addEventListener('change', updateRegion);
 
         // ============================================================
         // FAKE REVIEWS RENDER
@@ -1556,34 +1427,13 @@
         }
 
         // ============================================================
-        // FAKE ORDERS FLOATING
-        // ============================================================
-        function createFakeOrder() {
-            const container = document.getElementById('fakeOrdersContainer');
-            const uid = Math.floor(Math.random() * 9000000000) + 1000000000;
-            const amount = Math.floor(Math.random() * 2000) + 100;
-            const qty = Math.floor(Math.random() * 10) + 1;
-            const order = document.createElement('div');
-            order.className = 'fake-order-float';
-            order.innerHTML = `
-                <span class="order-uid">🎯 ${uid}</span>
-                <span>ordered</span>
-                <span class="order-amount">${qty}K Likes (₹${amount})</span>
-            `;
-            container.appendChild(order);
-            setTimeout(() => {
-                if (order.parentNode) order.remove();
-            }, 8000);
-        }
-
-        // ============================================================
         // NEXT BUTTON - GO TO PAYMENT
         // ============================================================
         function goToPayment() {
             const uid = uidInput.value.trim();
             const country = countrySelect.value;
-            const qty = currentQty;
-            const amount = 110 * qty;
+            const qty = parseInt(qtyValue.value);
+            const amount = parseInt(qtyPrice.value);
             const serviceName = qty + 'K Free Fire Likes';
 
             if (!uid) {
@@ -1601,7 +1451,6 @@
             }
 
             const orderId = 'ORD' + Date.now().toString(36).toUpperCase();
-            const region = regionText.textContent !== '—' ? regionText.textContent : 'Not detected';
 
             const orderData = {
                 uid: uid,
@@ -1609,8 +1458,7 @@
                 service: serviceName,
                 amount: amount,
                 qty: qty,
-                orderId: orderId,
-                region: region
+                orderId: orderId
             };
             localStorage.setItem('orderData', JSON.stringify(orderData));
 
@@ -1622,7 +1470,6 @@
         // ON LOAD
         // ============================================================
         window.addEventListener('load', function() {
-            updatePrice();
             renderReviews();
             checkVoiceSupport();
 
@@ -1633,12 +1480,14 @@
             if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
             if (liveUsersEl) liveUsersEl.textContent = liveUsers;
 
-            // Fake orders every 3 seconds
-            setInterval(createFakeOrder, 3000);
-            // Initial orders
-            for (let i = 0; i < 3; i++) {
-                setTimeout(createFakeOrder, i * 1000);
-            }
+            // New order notification every 3-5 seconds
+            setInterval(() => {
+                showNewOrderNotification();
+            }, 3000 + Math.random() * 2000);
+
+            // Initial notifications
+            setTimeout(showNewOrderNotification, 1000);
+            setTimeout(showNewOrderNotification, 2500);
 
             console.log('MistalOnline.in Ready!');
         });
