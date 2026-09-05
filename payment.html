@@ -64,18 +64,38 @@
             font-size: 13px;
             margin-top: 4px;
         }
-        .payment-header .order-id {
-            color: #f9d423;
-            font-weight: 600;
+
+        /* 🔥 ORDER DETAILS */
+        .order-details {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.06);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
         }
-        .payment-header .amount-display {
+        .order-details .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .order-details .detail-row:last-child {
+            border-bottom: none;
+        }
+        .order-details .detail-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+        .order-details .detail-value {
             color: #ffffff;
-            font-size: 28px;
-            font-weight: 900;
-            margin-top: 4px;
+            font-weight: 600;
+            font-size: 14px;
         }
-        .payment-header .amount-display span {
+        .order-details .detail-value.gold {
             color: #f9d423;
+        }
+        .order-details .detail-value.green {
+            color: #2ed573;
         }
 
         /* UPI DETAILS */
@@ -128,6 +148,11 @@
             padding: 10px;
             object-fit: contain;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        .qr-container .qr-fallback {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 14px;
+            padding: 30px;
         }
 
         .screenshot-section {
@@ -264,7 +289,7 @@
         }
         .overlay-details {
             margin-top: 16px;
-            padding: 14px 20px;
+            padding: 16px 20px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 12px;
@@ -272,12 +297,15 @@
         }
         .overlay-details p {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-            padding: 3px 0;
+            font-size: 13px;
+            padding: 4px 0;
         }
         .overlay-details p span {
             color: #ffffff;
             font-weight: 600;
+        }
+        .overlay-details p .gold {
+            color: #f9d423;
         }
         .overlay-btn {
             margin-top: 16px;
@@ -311,6 +339,11 @@
             .upi-details-box .upi-id {
                 font-size: 17px;
             }
+            .order-details .detail-row {
+                flex-direction: column;
+                gap: 2px;
+                padding: 8px 0;
+            }
         }
     </style>
 </head>
@@ -324,12 +357,38 @@
         <!-- Payment Header -->
         <div class="payment-header">
             <h2>💳 Complete <span>Payment</span></h2>
-            <p>Order ID: <span class="order-id" id="orderIdDisplay">—</span></p>
-            <div class="amount-display">Amount: <span id="amountDisplay">₹0</span></div>
-            <p style="color:rgba(255,255,255,0.2);font-size:12px;margin-top:4px;">📍 Region: <span id="regionDisplay">—</span></p>
+            <p style="color:rgba(255,255,255,0.2);font-size:12px;">Complete your payment to confirm order</p>
         </div>
 
-        <!-- 🔥 UPI DETAILS - FIXED UPI ID -->
+        <!-- 🔥 ORDER DETAILS - FULL INFO -->
+        <div class="order-details">
+            <div class="detail-row">
+                <span class="detail-label">📦 Order ID</span>
+                <span class="detail-value gold" id="orderIdDisplay">—</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">🎯 UID</span>
+                <span class="detail-value" id="uidDisplay">—</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">🌍 Country</span>
+                <span class="detail-value" id="countryDisplay">—</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">📍 Region</span>
+                <span class="detail-value gold" id="regionDisplay">—</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">🔥 Service</span>
+                <span class="detail-value" id="serviceDisplay">—</span>
+            </div>
+            <div class="detail-row" style="border-bottom: none; padding-top: 8px;">
+                <span class="detail-label">💰 Amount</span>
+                <span class="detail-value gold" style="font-size:22px;" id="amountDisplay">₹0</span>
+            </div>
+        </div>
+
+        <!-- UPI DETAILS -->
         <div class="upi-details-box">
             <div class="upi-label">📱 Pay to UPI ID</div>
             <div class="upi-id">9250150041@ybl</div>
@@ -342,7 +401,11 @@
             <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
                  alt="QR Code" 
                  id="qrImage"
-                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22250%22%3E%3Crect width=%22250%22 height=%22250%22 fill=%22%23ffffff%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23000%22%3E📱 QR%3C/text%3E%3C/svg%3E'" />
+                 onerror="document.getElementById('qrFallback').style.display='block';this.style.display='none';" />
+            <div id="qrFallback" style="display:none;color:rgba(255,255,255,0.3);font-size:14px;padding:30px;">
+                📱 QR Code<br />
+                <span style="font-size:12px;">UPI: 9250150041@ybl</span>
+            </div>
         </div>
 
         <!-- SCREENSHOT UPLOAD -->
@@ -368,8 +431,9 @@
         <div class="overlay-details">
             <p>Order ID: <span id="overlayOrderId">—</span></p>
             <p>Service: <span id="overlayService">—</span></p>
-            <p>Amount: <span id="overlayAmount">₹0</span></p>
+            <p>Amount: <span class="gold" id="overlayAmount">₹0</span></p>
             <p>UID: <span id="overlayUid">—</span></p>
+            <p>Region: <span class="gold" id="overlayRegion">—</span></p>
         </div>
         <button class="overlay-btn" id="closeOverlayBtn">Close</button>
     </div>
@@ -380,7 +444,7 @@
         // ============================================================
 
         const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
-        const UPI_ID = '9250150041@ybl'; // 🔥 FIXED UPI ID
+        const UPI_ID = '9250150041@ybl';
 
         // Get order data from localStorage
         const orderData = JSON.parse(localStorage.getItem('orderData'));
@@ -397,27 +461,78 @@
 
         // DOM REFS
         const orderIdDisplay = document.getElementById('orderIdDisplay');
-        const amountDisplay = document.getElementById('amountDisplay');
+        const uidDisplay = document.getElementById('uidDisplay');
+        const countryDisplay = document.getElementById('countryDisplay');
         const regionDisplay = document.getElementById('regionDisplay');
+        const serviceDisplay = document.getElementById('serviceDisplay');
+        const amountDisplay = document.getElementById('amountDisplay');
         const screenshotInput = document.getElementById('screenshot');
         const screenshotPreview = document.getElementById('screenshotPreview');
         const submitBtn = document.getElementById('submitBtn');
         const statusMsg = document.getElementById('statusMsg');
         const successOverlay = document.getElementById('successOverlay');
 
-        // Display order data
+        // ============================================================
+        // 🔥 VOICE ASSISTANT - Success Voice
+        // ============================================================
+        function playSuccessVoice() {
+            if (!('speechSynthesis' in window)) return;
+
+            const messages = [
+                'हेडशॉट! आपका ऑर्डर सफलतापूर्वक पूरा हो गया है',
+                'आपका पेमेंट कन्फर्म हो गया है, ऑर्डर सक्सेसफुल है'
+            ];
+
+            let index = 0;
+
+            function speakNext() {
+                if (index >= messages.length) return;
+                const utterance = new SpeechSynthesisUtterance(messages[index]);
+                utterance.lang = 'hi-IN';
+                utterance.rate = 0.85;
+                utterance.pitch = 0.9;
+                utterance.volume = 1.0;
+
+                // Try to find Hindi voice
+                const voices = window.speechSynthesis.getVoices();
+                const hindiVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Google')) ||
+                    voices.find(v => v.lang === 'hi-IN') ||
+                    voices.find(v => v.lang.startsWith('hi'));
+                if (hindiVoice) utterance.voice = hindiVoice;
+
+                utterance.onend = function() {
+                    index++;
+                    setTimeout(speakNext, 500);
+                };
+                utterance.onerror = function() {
+                    index++;
+                    setTimeout(speakNext, 500);
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            // Cancel any previous speech
+            window.speechSynthesis.cancel();
+            setTimeout(speakNext, 300);
+        }
+
+        // ============================================================
+        // DISPLAY ORDER DATA
+        // ============================================================
         if (currentOrder.orderId) {
             orderIdDisplay.textContent = currentOrder.orderId;
-            amountDisplay.textContent = '₹' + currentOrder.amount;
+            uidDisplay.textContent = currentOrder.uid || '—';
+            countryDisplay.textContent = currentOrder.country || '—';
             regionDisplay.textContent = currentOrder.region || 'Not detected';
+            serviceDisplay.textContent = currentOrder.service || '—';
+            amountDisplay.textContent = '₹' + currentOrder.amount;
         } else {
-            // If no order data, redirect to home
             window.location.href = 'index.html';
         }
 
         console.log('💳 UPI ID:', UPI_ID);
-        console.log('📦 Order ID:', currentOrder.orderId);
-        console.log('💰 Amount:', currentOrder.amount);
+        console.log('📦 Order:', currentOrder);
 
         // ============================================================
         // SCREENSHOT UPLOAD
@@ -491,18 +606,22 @@
                 const result = await response.json();
 
                 if (result.success) {
+                    // Show overlay with all details
                     document.getElementById('overlayOrderId').textContent = currentOrder.orderId;
                     document.getElementById('overlayService').textContent = currentOrder.service;
                     document.getElementById('overlayAmount').textContent = '₹' + currentOrder.amount;
                     document.getElementById('overlayUid').textContent = currentOrder.uid;
+                    document.getElementById('overlayRegion').textContent = currentOrder.region || 'Not detected';
 
                     successOverlay.classList.add('show');
+
+                    // 🔥 PLAY VOICE
+                    playSuccessVoice();
 
                     statusMsg.textContent = '✅ Order Submitted Successfully!';
                     statusMsg.className = 'success';
                     submitBtn.textContent = '✅ Done';
 
-                    // Clear localStorage
                     localStorage.removeItem('orderData');
 
                 } else {
@@ -537,6 +656,15 @@
         document.getElementById('closeOverlayBtn').addEventListener('click', function() {
             closeOverlay();
         });
+
+        // ============================================================
+        // QR CODE FALLBACK - Check if QR image exists
+        // ============================================================
+        const qrImg = document.getElementById('qrImage');
+        qrImg.onerror = function() {
+            this.style.display = 'none';
+            document.getElementById('qrFallback').style.display = 'block';
+        };
     </script>
 
 </body>
