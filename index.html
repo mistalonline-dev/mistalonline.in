@@ -34,3 +34,309 @@
                 <a href="#instagram">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     Instagram
+                </a>
+                <a href="#telegram">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 4.5L2.5 10.5L9.5 13.5L12.5 20.5L21.5 4.5Z"/><path d="M9.5 13.5L15.5 8.5"/></svg>
+                    Telegram
+                </a>
+                <a href="#video">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="8" y1="2" x2="8" y2="22"/><line x1="16" y1="2" x2="16" y2="22"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="2" y1="16" x2="22" y2="16"/></svg>
+                    Video Growth
+                </a>
+                <a href="#help" class="help-btn">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Help
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="home">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>🚀 Grow Your <span>Free Fire</span> Account</h1>
+                <p>Get instant likes, followers & video views at the best prices</p>
+            </div>
+            <div class="order-counter">
+                <span>📦</span>
+                <span>Total Orders: <strong id="totalOrders">12,847</strong></span>
+                <span>•</span>
+                <span>🟢 Live: <strong id="liveUsers">47</strong></span>
+            </div>
+        </section>
+
+        <!-- LIVE ORDERS TICKER -->
+        <section class="live-orders">
+            <div class="live-orders-container">
+                <span class="live-badge">🔴 LIVE</span>
+                <div class="order-ticker" id="orderTicker">
+                    <span id="orderTickerText">🎯 UID 1234567890 just ordered 5,000 Likes!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDER SECTION -->
+        <section class="order-section" id="orderSection">
+            <div class="order-container">
+
+                <h2>📦 Place Your Order</h2>
+                <p class="order-sub">Enter your UID, select service & complete payment</p>
+
+                <!-- STEP 1: ORDER FORM -->
+                <form id="orderForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="uid">🎯 Free Fire UID</label>
+                        <input type="text" id="uid" placeholder="Enter your Free Fire UID" required onfocus="playVoice('uid')" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">🌍 Country / Server</label>
+                        <select id="country" required onfocus="playVoice('country')">
+                            <option value="">— Select Country —</option>
+                            <option value="India">India</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="France">France</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="UAE">UAE</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Vietnam">Vietnam</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">🔥 Select Service</label>
+                        <select id="service" required onchange="updatePrice()" onfocus="playVoice('service')">
+                            <option value="">— Select Service —</option>
+                            <option value="1000" data-price="139">🔥 1,000 Likes - ₹139</option>
+                            <option value="3000" data-price="399">🔥 3,000 Likes - ₹399</option>
+                            <option value="5000" data-price="649">🔥 5,000 Likes - ₹649</option>
+                            <option value="10000" data-price="1199">🔥 10,000 Likes - ₹1,199</option>
+                        </select>
+                    </div>
+
+                    <div class="price-display">
+                        <span class="price-label">💰 Total Amount</span>
+                        <span class="price-amount" id="priceAmount">₹0</span>
+                    </div>
+
+                    <div class="region-display" id="regionDisplay">
+                        <span class="region-icon">📍</span>
+                        <span>Detected Region: </span>
+                        <span id="regionText">—</span>
+                    </div>
+
+                    <!-- NEXT BUTTON -->
+                    <button type="button" class="btn-next" id="nextBtn" onclick="goToPayment()">
+                        ➡️ Next: Proceed to Payment
+                    </button>
+                    <div id="statusMsg">💰 Select service & click Next</div>
+                </form>
+
+                <!-- STEP 2: PAYMENT SECTION -->
+                <div class="payment-section" id="paymentSection" style="display:none;">
+                    <div class="payment-header">
+                        <h3>💳 Complete Payment</h3>
+                        <p>Order ID: <span id="orderIdDisplay">—</span></p>
+                        <p>Amount: <span id="paymentAmountDisplay">₹0</span></p>
+                    </div>
+
+                    <!-- QR CODE -->
+                    <div class="qr-container">
+                        <span class="qr-label">📱 Scan to Pay via PhonePe/GPay</span>
+                        <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
+                             alt="UPI QR Code" 
+                             id="qrImage"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22250%22%3E%3Crect width=%22250%22 height=%22250%22 fill=%22%23ffffff%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23000%22%3E📱 QR Code%3C/text%3E%3C/svg%3E'" />
+                        <div class="upi-details">
+                            <span class="upi-id">UPI: 9250150041@ybl</span>
+                            <span class="upi-name">Gaurav Pandey</span>
+                            <span class="upi-badge">✅ PhonePe Accepted</span>
+                        </div>
+                    </div>
+
+                    <!-- SCREENSHOT UPLOAD -->
+                    <div class="screenshot-section">
+                        <label for="screenshot">
+                            📸 Upload Payment Screenshot
+                            <span>(After payment, upload screenshot to confirm)</span>
+                        </label>
+                        <input type="file" id="screenshot" accept="image/*" />
+                        <div id="screenshotPreview"></div>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <button class="btn-submit-order" onclick="submitOrder()">
+                        ✅ Submit Order
+                    </button>
+
+                    <button class="btn-back" onclick="goBack()">⬅ Back</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section class="reviews-section">
+            <div class="section-header">
+                <h2>⭐ Customer Reviews</h2>
+                <p>Real feedback from our happy customers</p>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid"></div>
+        </section>
+
+        <!-- INSTAGRAM SERVICES -->
+        <section class="service-section" id="instagram">
+            <div class="section-header">
+                <h2>📸 Instagram Services</h2>
+                <p>Boost your Instagram presence with real followers & engagement</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔥</div>
+                    <h3>Instagram Followers</h3>
+                    <p>Real & active followers</p>
+                    <span class="price-tag">₹149</span>
+                    <button class="btn-service" onclick="selectService('Instagram Followers', 149)">Order Now</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Instagram Likes</h3>
+                    <p>High-quality likes</p>
+                    <span class="price-tag">₹99</span>
+                    <button class="btn-service" onclick="selectService('Instagram Likes', 99)">Order Now</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👁️</div>
+                    <h3>Instagram Views</h3>
+                    <p>Real video views</p>
+                    <span class="price-tag">₹79</span>
+                    <button class="btn-service" onclick="selectService('Instagram Views', 79)">Order Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELEGRAM SERVICES -->
+        <section class="service-section" id="telegram">
+            <div class="section-header">
+                <h2>💬 Telegram Services</h2>
+                <p>Grow your Telegram channel with real members</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Telegram Members</h3>
+                    <p>Real channel members</p>
+                    <span class="price-tag">₹199</span>
+                    <button class="btn-service" onclick="selectService('Telegram Members', 199)">Order Now</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Telegram Views</h3>
+                    <p>Post views & engagement</p>
+                    <span class="price-tag">₹89</span>
+                    <button class="btn-service" onclick="selectService('Telegram Views', 89)">Order Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO GROWTH -->
+        <section class="service-section" id="video">
+            <div class="section-header">
+                <h2>🎬 Video Growth Services</h2>
+                <p>Boost your YouTube & other video platforms</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">▶️</div>
+                    <h3>YouTube Views</h3>
+                    <p>Real video views</p>
+                    <span class="price-tag">₹129</span>
+                    <button class="btn-service" onclick="selectService('YouTube Views', 129)">Order Now</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👍</div>
+                    <h3>YouTube Likes</h3>
+                    <p>High retention likes</p>
+                    <span class="price-tag">₹109</span>
+                    <button class="btn-service" onclick="selectService('YouTube Likes', 109)">Order Now</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>YouTube Subscribers</h3>
+                    <p>Real subscribers</p>
+                    <span class="price-tag">₹249</span>
+                    <button class="btn-service" onclick="selectService('YouTube Subscribers', 249)">Order Now</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-icon">🎯</span>
+                <span>Mistal<span>Online</span></span>
+                <p>Grow your social media presence with us</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#instagram">Instagram</a>
+                    <a href="#telegram">Telegram</a>
+                    <a href="#video">Video Growth</a>
+                    <a href="#help">Help</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="#instagram">Followers</a>
+                    <a href="#instagram">Likes</a>
+                    <a href="#telegram">Members</a>
+                    <a href="#video">Views</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="#help">Help Center</a>
+                    <a href="#help">Contact Us</a>
+                    <a href="#help">Privacy Policy</a>
+                    <a href="#help">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MistalOnline.in. All rights reserved.</p>
+                <p class="footer-tagline">🚀 Powered by Web3 Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SUCCESS OVERLAY -->
+    <div class="overlay" id="successOverlay">
+        <span class="overlay-icon">✅</span>
+        <h2 class="overlay-title">Order Confirmed!</h2>
+        <p class="overlay-sub">🎉 Your order has been placed successfully.</p>
+        <div class="overlay-details">
+            <p>Order ID: <span id="overlayOrderId">—</span></p>
+            <p>Service: <span id="overlayService">—</span></p>
+            <p>Amount: <span id="overlayAmount">₹0</span></p>
+            <p>UID: <span id="overlayUid">—</span></p>
+        </div>
+        <button class="overlay-btn" onclick="closeOverlay()">Close</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
