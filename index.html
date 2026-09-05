@@ -46,8 +46,15 @@
             animation: pulse-dot 0.8s infinite;
         }
         @keyframes pulse-dot {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.3; }
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.3;
+            }
         }
 
         .navbar {
@@ -106,9 +113,16 @@
             border-radius: 4px;
             transition: 0.3s;
         }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
         .nav-menu {
             display: flex;
             align-items: center;
@@ -132,9 +146,19 @@
             stroke: currentColor;
             stroke-width: 2;
         }
-        .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.04); }
-        .nav-menu a.active { color: #f9d423; background: rgba(249, 212, 35, 0.06); }
-        .nav-menu a.help-btn { background: rgba(249, 212, 35, 0.08); color: #f9d423; border: 1px solid rgba(249, 212, 35, 0.1); }
+        .nav-menu a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .nav-menu a.active {
+            color: #f9d423;
+            background: rgba(249, 212, 35, 0.06);
+        }
+        .nav-menu a.help-btn {
+            background: rgba(249, 212, 35, 0.08);
+            color: #f9d423;
+            border: 1px solid rgba(249, 212, 35, 0.1);
+        }
 
         .main-content {
             padding-top: 85px;
@@ -177,11 +201,98 @@
             color: rgba(255, 255, 255, 0.4);
             font-size: 13px;
         }
-        .order-counter strong { color: #f9d423; }
+        .order-counter strong {
+            color: #f9d423;
+        }
         .order-counter svg {
             width: 16px;
             height: 16px;
             stroke: currentColor;
+        }
+
+        /* Fake Orders Floating */
+        .fake-order-float {
+            position: fixed;
+            z-index: 9999;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(249, 212, 35, 0.08);
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: floatUp 8s ease forwards;
+            pointer-events: none;
+            max-width: 300px;
+        }
+        .fake-order-float .order-amount {
+            color: #f9d423;
+            font-weight: 700;
+        }
+        .fake-order-float .order-uid {
+            color: #2ed573;
+            font-weight: 600;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-30px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0.8);
+            }
+        }
+
+        .fake-order-float:nth-child(1) {
+            left: 5%;
+            top: 20%;
+        }
+        .fake-order-float:nth-child(2) {
+            right: 5%;
+            top: 30%;
+        }
+        .fake-order-float:nth-child(3) {
+            left: 10%;
+            top: 50%;
+        }
+        .fake-order-float:nth-child(4) {
+            right: 8%;
+            top: 60%;
+        }
+        .fake-order-float:nth-child(5) {
+            left: 3%;
+            top: 70%;
+        }
+        .fake-order-float:nth-child(6) {
+            right: 3%;
+            top: 40%;
+        }
+        .fake-order-float:nth-child(7) {
+            left: 15%;
+            top: 15%;
+        }
+        .fake-order-float:nth-child(8) {
+            right: 15%;
+            top: 75%;
+        }
+        .fake-order-float:nth-child(9) {
+            left: 5%;
+            top: 85%;
+        }
+        .fake-order-float:nth-child(10) {
+            right: 5%;
+            top: 85%;
         }
 
         .order-section {
@@ -246,8 +357,64 @@
             border-color: #f9d423;
             background: rgba(255, 255, 255, 0.06);
         }
-        .form-group input::placeholder { color: rgba(255, 255, 255, 0.2); }
-        .form-group select option { background: #1a0a2e; color: #fff; }
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .form-group select option {
+            background: #1a0a2e;
+            color: #fff;
+        }
+
+        /* ============================================================
+           🔥 QUANTITY SELECTOR - CUSTOM STYLING
+           ============================================================ */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 215, 0, 0.06);
+            border-radius: 10px;
+            padding: 4px;
+        }
+        .quantity-selector .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity-selector .qty-btn:hover {
+            background: rgba(249, 212, 35, 0.08);
+            color: #f9d423;
+        }
+        .quantity-selector .qty-btn:active {
+            transform: scale(0.95);
+        }
+        .quantity-selector .qty-display {
+            flex: 1;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            min-width: 50px;
+            padding: 4px 0;
+        }
+        .quantity-selector .qty-label {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0 8px;
+        }
 
         .price-display {
             display: flex;
@@ -287,8 +454,13 @@
             color: rgba(255, 255, 255, 0.6);
             font-size: 13px;
         }
-        .region-display.show { display: block; }
-        .region-display #regionText { color: #2ed573; font-weight: 600; }
+        .region-display.show {
+            display: block;
+        }
+        .region-display #regionText {
+            color: #2ed573;
+            font-weight: 600;
+        }
 
         .btn-next {
             width: 100%;
@@ -326,12 +498,14 @@
             font-size: 12px;
             min-height: 25px;
         }
-        #statusMsg.success { color: #2ed573; }
-        #statusMsg.error { color: #ff4757; }
+        #statusMsg.success {
+            color: #2ed573;
+        }
+        #statusMsg.error {
+            color: #ff4757;
+        }
 
-        /* ============================================================
-           PRICE LIST - SVG ICONS
-           ============================================================ */
+        /* PRICE LIST */
         .package-section {
             margin-top: 25px;
             padding-top: 20px;
@@ -391,7 +565,9 @@
             stroke: #f9d423;
             stroke-width: 2;
         }
-        .package-item .pkg-likes span { color: #f9d423; }
+        .package-item .pkg-likes span {
+            color: #f9d423;
+        }
         .package-item .pkg-price {
             font-size: 17px;
             font-weight: 900;
@@ -452,7 +628,7 @@
             stroke-width: 2;
         }
 
-        /* Reviews */
+        /* REVIEWS */
         .reviews-section {
             padding: 30px 0 20px;
         }
@@ -474,14 +650,33 @@
         }
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
+            max-height: 500px;
+            overflow-y: auto;
         }
+        .reviews-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+        .reviews-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .reviews-grid::-webkit-scrollbar-thumb {
+            background: #f9d423;
+            border-radius: 10px;
+        }
+
         .review-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 215, 0, 0.04);
             border-radius: 14px;
-            padding: 16px;
+            padding: 14px 16px;
+            transition: 0.3s;
+            animation: reviewFade 0.5s ease;
+        }
+        .review-card:hover {
+            border-color: rgba(255, 215, 0, 0.12);
+            transform: translateY(-2px);
         }
         .review-card .review-header {
             display: flex;
@@ -491,16 +686,17 @@
         .review-card .review-name {
             font-weight: 700;
             color: #ffffff;
+            font-size: 14px;
         }
         .review-card .review-stars {
             color: #f9d423;
-            letter-spacing: 1px;
-            font-size: 14px;
+            font-size: 13px;
         }
         .review-card .review-text {
             color: rgba(255, 255, 255, 0.5);
             font-size: 13px;
             margin-top: 4px;
+            line-height: 1.5;
         }
         .review-card .review-service {
             display: inline-block;
@@ -510,6 +706,23 @@
             border-radius: 30px;
             color: #f9d423;
             font-size: 11px;
+        }
+        .review-card .review-amount {
+            color: #2ed573;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        @keyframes reviewFade {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Help */
@@ -579,7 +792,10 @@
             padding: 30px 20px 16px;
             margin-top: 30px;
         }
-        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         .footer-brand {
             text-align: center;
             margin-bottom: 20px;
@@ -626,16 +842,23 @@
             padding: 3px 0;
             transition: 0.3s;
         }
-        .footer-col a:hover { color: #f9d423; }
+        .footer-col a:hover {
+            color: #f9d423;
+        }
         .footer-bottom {
             text-align: center;
             padding-top: 14px;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .footer-bottom p { color: rgba(255, 255, 255, 0.1); font-size: 11px; }
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+        }
 
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
+            .hamburger {
+                display: flex;
+            }
             .nav-menu {
                 position: absolute;
                 top: 65px;
@@ -647,21 +870,74 @@
                 gap: 4px;
                 display: none;
             }
-            .nav-menu.open { display: flex; }
-            .nav-menu a { padding: 10px 14px; width: 100%; }
-            .hero h1 { font-size: 24px; }
-            .order-container { padding: 20px 16px; }
-            .package-grid { grid-template-columns: 1fr 1fr; }
-            .reviews-grid { grid-template-columns: 1fr; }
+            .nav-menu.open {
+                display: flex;
+            }
+            .nav-menu a {
+                padding: 10px 14px;
+                width: 100%;
+            }
+            .hero h1 {
+                font-size: 24px;
+            }
+            .order-container {
+                padding: 20px 16px;
+            }
+            .package-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                max-height: 400px;
+            }
+            .fake-order-float {
+                display: none;
+            }
+            .quantity-selector .qty-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 17px;
+            }
+            .quantity-selector .qty-display {
+                font-size: 17px;
+                min-width: 40px;
+            }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 20px; }
-            .order-container h2 { font-size: 20px; }
-            .price-display .price-amount { font-size: 18px; }
-            .voice-indicator { bottom: 10px; right: 10px; padding: 5px 12px; font-size: 10px; }
-            .package-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-            .package-item .pkg-likes { font-size: 13px; }
-            .package-item .pkg-price { font-size: 15px; }
+            .hero h1 {
+                font-size: 20px;
+            }
+            .order-container h2 {
+                font-size: 20px;
+            }
+            .price-display .price-amount {
+                font-size: 18px;
+            }
+            .voice-indicator {
+                bottom: 10px;
+                right: 10px;
+                padding: 5px 12px;
+                font-size: 10px;
+            }
+            .package-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+            .package-item .pkg-likes {
+                font-size: 13px;
+            }
+            .package-item .pkg-price {
+                font-size: 15px;
+            }
+            .quantity-selector .qty-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 15px;
+            }
+            .quantity-selector .qty-display {
+                font-size: 15px;
+                min-width: 35px;
+            }
         }
     </style>
 </head>
@@ -670,8 +946,11 @@
     <!-- VOICE INDICATOR -->
     <div class="voice-indicator">
         <span class="voice-dot" id="voiceDot"></span>
-        <span id="voiceStatus">🎤 Voice Active</span>
+        <span id="voiceStatus">Voice Active</span>
     </div>
+
+    <!-- FAKE ORDERS FLOATING -->
+    <div id="fakeOrdersContainer"></div>
 
     <!-- HEADER -->
     <header class="navbar">
@@ -720,9 +999,10 @@
             <div class="order-container">
 
                 <h2>Place Your Order</h2>
-                <p class="order-sub">Enter your UID, select country & click Next</p>
+                <p class="order-sub">Enter your UID, select quantity & country</p>
 
                 <form id="orderForm">
+                    <!-- UID -->
                     <div class="form-group">
                         <label>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -731,6 +1011,22 @@
                         <input type="text" id="uid" placeholder="Enter your Free Fire UID" />
                     </div>
 
+                    <!-- 🔥 QUANTITY SELECTOR - CUSTOM -->
+                    <div class="form-group">
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            Select Quantity
+                        </label>
+                        <div class="quantity-selector">
+                            <button type="button" class="qty-btn" id="qtyMinus">−</button>
+                            <span class="qty-display" id="qtyDisplay">1</span>
+                            <button type="button" class="qty-btn" id="qtyPlus">+</button>
+                            <span class="qty-label">K Likes</span>
+                        </div>
+                        <input type="hidden" id="qtyValue" value="1" />
+                    </div>
+
+                    <!-- Country -->
                     <div class="form-group">
                         <label>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
@@ -739,14 +1035,17 @@
                         <select id="country">
                             <option value="">— Select Country —</option>
                             <option value="India">India</option>
-                            <option value="USA">USA</option>
-                            <option value="UK">United Kingdom</option>
-                            <option value="Brazil">Brazil</option>
                             <option value="Indonesia">Indonesia</option>
+                            <option value="Brazil">Brazil</option>
                             <option value="Malaysia">Malaysia</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="USA">USA</option>
                         </select>
                     </div>
 
+                    <!-- Price Display -->
                     <div class="price-display">
                         <span class="price-label">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
@@ -755,6 +1054,7 @@
                         <span class="price-amount" id="priceAmount">₹0</span>
                     </div>
 
+                    <!-- Region -->
                     <div class="region-display" id="regionDisplay">
                         <span>Region: </span>
                         <span id="regionText">—</span>
@@ -766,7 +1066,7 @@
                             <span class="package-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             </span>
-                            <h3>FREE FIRE 1K LIKES PACKAGE</h3>
+                            <h3>FREE FIRE LIKES PACKAGES</h3>
                             <p>Daily 1K Likes Packages</p>
                         </div>
 
@@ -862,17 +1162,18 @@
                         Next
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
                     </button>
-                    <div id="statusMsg">Select country & click Next</div>
+                    <div id="statusMsg">Select quantity & country, then click Next</div>
                 </form>
 
             </div>
         </section>
 
-        <!-- REVIEWS -->
+        <!-- REVIEWS SECTION -->
         <section class="reviews-section" id="reviews">
             <h2>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 Customer Reviews
+                <span style="font-size:14px;color:rgba(255,255,255,0.2);font-weight:400;">(200+ reviews)</span>
             </h2>
             <div class="reviews-grid" id="reviewsGrid"></div>
         </section>
@@ -934,7 +1235,7 @@
 
     <script>
         // ============================================================
-        // COMPLETE SCRIPT - WITH VOICE (NO EMOJIS)
+        // COMPLETE SCRIPT - WITH VOICE + QUANTITY SELECTOR
         // ============================================================
 
         // ============================================================
@@ -1031,6 +1332,39 @@
         });
 
         // ============================================================
+        // 🔥 QUANTITY SELECTOR
+        // ============================================================
+        let currentQty = 1;
+        const qtyDisplay = document.getElementById('qtyDisplay');
+        const qtyValue = document.getElementById('qtyValue');
+        const qtyMinus = document.getElementById('qtyMinus');
+        const qtyPlus = document.getElementById('qtyPlus');
+        const priceAmount = document.getElementById('priceAmount');
+
+        function updatePrice() {
+            const basePrice = 110;
+            const total = basePrice * currentQty;
+            priceAmount.textContent = '₹' + total;
+            qtyValue.value = currentQty;
+        }
+
+        qtyMinus.addEventListener('click', function() {
+            if (currentQty > 1) {
+                currentQty--;
+                qtyDisplay.textContent = currentQty;
+                updatePrice();
+            }
+        });
+
+        qtyPlus.addEventListener('click', function() {
+            if (currentQty < 100) {
+                currentQty++;
+                qtyDisplay.textContent = currentQty;
+                updatePrice();
+            }
+        });
+
+        // ============================================================
         // CONFIG
         // ============================================================
         const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
@@ -1046,7 +1380,6 @@
         // ============================================================
         const uidInput = document.getElementById('uid');
         const countrySelect = document.getElementById('country');
-        const priceAmount = document.getElementById('priceAmount');
         const regionDisplay = document.getElementById('regionDisplay');
         const regionText = document.getElementById('regionText');
         const statusMsg = document.getElementById('statusMsg');
@@ -1055,26 +1388,120 @@
         const reviewsGrid = document.getElementById('reviewsGrid');
 
         // ============================================================
-        // REGION MAPPING - ONLY 6 COUNTRIES
+        // REGION MAPPING - 8 COUNTRIES
         // ============================================================
         const countryRegionMap = {
             'India': 'Asia Pacific',
-            'USA': 'North America',
-            'UK': 'Europe',
-            'Brazil': 'Latin America',
             'Indonesia': 'Asia Pacific',
-            'Malaysia': 'Asia Pacific'
+            'Brazil': 'Latin America',
+            'Malaysia': 'Asia Pacific',
+            'Bangladesh': 'Asia Pacific',
+            'Nepal': 'Asia Pacific',
+            'UK': 'Europe',
+            'USA': 'North America'
         };
 
         // ============================================================
-        // FAKE REVIEWS
+        // FAKE REVIEWS - 200+
         // ============================================================
-        const fakeReviews = [
-            { name: 'Rahul Sharma', stars: '⭐', text: 'Best service ever! Got 10K likes in 2 hours!', service: 'Free Fire Likes' },
-            { name: 'Priya Patel', stars: '⭐', text: 'Amazing service! My followers increased instantly.', service: 'Free Fire Likes' },
-            { name: 'Amit Kumar', stars: '⭐', text: 'Good service. Delivery was fast and reliable.', service: 'Free Fire Likes' },
-            { name: 'Neha Singh', stars: '⭐', text: 'Very professional service. Got exactly what I paid for.', service: 'Free Fire Likes' }
+        const reviewNames = [
+            'Rahul Sharma', 'Priya Patel', 'Amit Kumar', 'Neha Singh', 'Vikram Raj',
+            'Sneha Reddy', 'Arjun Mehta', 'Kavya Nair', 'Rohan Verma', 'Pooja Jain',
+            'Ankit Gupta', 'Meera Iyer', 'Suresh Babu', 'Divya Menon', 'Gaurav Singh',
+            'Aditi Rao', 'Manish Shah', 'Swati Desai', 'Rajesh Khanna', 'Deepika Padukone',
+            'Ranveer Singh', 'Alia Bhatt', 'Shah Rukh Khan', 'Salman Khan', 'Akshay Kumar',
+            'Varun Dhawan', 'Samantha Ruth', 'Nayanthara', 'Vijay Deverakonda', 'Allu Arjun',
+            'Ram Charan', 'Jr NTR', 'Mahesh Babu', 'Pawan Kalyan', 'Naga Chaitanya',
+            'Sai Pallavi', 'Keerthy Suresh', 'Anushka Shetty', 'Rashmika Mandanna', 'Pooja Hegde',
+            'Kriti Sanon', 'Shraddha Kapoor', 'Katrina Kaif', 'Kareena Kapoor', 'Priyanka Chopra',
+            'Deepak Kumar', 'Sunil Sharma', 'Vikram Singh', 'Ravi Patel', 'Manoj Tiwari',
+            'Sachin Tendulkar', 'Virat Kohli', 'MS Dhoni', 'Rohit Sharma', 'KL Rahul'
         ];
+
+        const reviewTexts = [
+            'Best service ever! Got my likes in 2 hours.',
+            'Amazing service! Highly recommend.',
+            'Good service. Fast delivery.',
+            'Very professional. Got exactly what I paid for.',
+            'Quick delivery and great support!',
+            'Excellent service! Will order again.',
+            'Nice experience. Smooth process.',
+            'Perfect! Exactly as promised.',
+            'Great quality and fast delivery.',
+            'Highly satisfied with the service.',
+            'Good value for money.',
+            'Reliable and trustworthy service.',
+            'Best in the market!',
+            'Super fast delivery, loved it!',
+            'Professional team, great support.',
+            '100% satisfied with the order.',
+            'Fastest delivery I have ever seen.',
+            'Quality is top notch.',
+            'Great service, will recommend to friends.',
+            'Nice platform for free fire likes.',
+            'वाह! बहुत बढ़िया सर्विस है।',
+            'सबसे अच्छी सर्विस! 2 घंटे में मिल गए।',
+            'शानदार सर्विस! बहुत अच्छा लगा।',
+            'काफी अच्छा काम करते हैं।',
+            'नंबर 1 सर्विस! जबरदस्त।',
+            'फास्ट डिलीवरी और बढ़िया सपोर्ट।',
+            '100% संतुष्ट हूं।',
+            'बहुत ही प्रोफेशनल टीम है।',
+            'दोस्तों को भी बताऊंगा।',
+            'बढ़िया क्वालिटी और फास्ट सर्विस।',
+            'Ek number! Best service ever.',
+            'Maza aa gaya. Super fast delivery.',
+            'Best price and best quality.',
+            'Trusted service. Will order again.',
+            'Awesome! Got 10K likes instantly.',
+            'Fast and reliable. Thanks!',
+            'Good experience. Keep it up.',
+            'Perfect service. No issues.',
+            'Love the service! Highly recommended.',
+            'Best service for Free Fire likes.',
+            'भाई ने पक्का किया! 1 घंटे में मिल गए।',
+            'जबरदस्त सर्विस है। सबको बताऊंगा।',
+            'मस्त माल मिलता है यहाँ।',
+            'फटाफट डिलीवरी। बहुत अच्छा।',
+            'पैसा वसूल सर्विस है।',
+            'Great support and fast delivery.',
+            'Superb! Best service in India.',
+            '100% reliable. Go for it.',
+            'Nice experience. Will order again.',
+            'Fast and trustworthy service.'
+        ];
+
+        const reviewServices = [
+            'Free Fire Likes', 'Free Fire Followers', 'Free Fire Diamond', 'Free Fire Booyah'
+        ];
+
+        function generateFakeReviews(count) {
+            const reviews = [];
+            const usedNames = new Set();
+            for (let i = 0; i < count; i++) {
+                let name;
+                do {
+                    name = reviewNames[Math.floor(Math.random() * reviewNames.length)];
+                } while (usedNames.has(name) && usedNames.size < reviewNames.length);
+                usedNames.add(name);
+
+                const text = reviewTexts[Math.floor(Math.random() * reviewTexts.length)];
+                const service = reviewServices[Math.floor(Math.random() * reviewServices.length)];
+                const stars = Math.random() > 0.8 ? '⭐' : (Math.random() > 0.5 ? '⭐⭐' : '⭐⭐⭐⭐⭐');
+                const amount = Math.floor(Math.random() * 1000) + 100;
+
+                reviews.push({
+                    name: name,
+                    stars: stars,
+                    text: text,
+                    service: service,
+                    amount: amount
+                });
+            }
+            return reviews;
+        }
+
+        const fakeReviews = generateFakeReviews(210);
 
         // ============================================================
         // VOICE ON FIELDS
@@ -1112,13 +1539,6 @@
         countrySelect.addEventListener('change', updateRegion);
 
         // ============================================================
-        // PRICE UPDATE
-        // ============================================================
-        function updatePrice() {
-            priceAmount.textContent = '₹' + 139;
-        }
-
-        // ============================================================
         // FAKE REVIEWS RENDER
         // ============================================================
         function renderReviews() {
@@ -1127,12 +1547,33 @@
                 <div class="review-card">
                     <div class="review-header">
                         <span class="review-name">${r.name}</span>
-                        <span class="review-stars">${r.stars}${r.stars}${r.stars}${r.stars}${r.stars}</span>
+                        <span class="review-stars">${r.stars}</span>
                     </div>
-                    <div class="review-text">${r.text}</div>
+                    <div class="review-text">${r.text} <span class="review-amount">(₹${r.amount})</span></div>
                     <span class="review-service">${r.service}</span>
                 </div>
             `).join('');
+        }
+
+        // ============================================================
+        // FAKE ORDERS FLOATING
+        // ============================================================
+        function createFakeOrder() {
+            const container = document.getElementById('fakeOrdersContainer');
+            const uid = Math.floor(Math.random() * 9000000000) + 1000000000;
+            const amount = Math.floor(Math.random() * 2000) + 100;
+            const qty = Math.floor(Math.random() * 10) + 1;
+            const order = document.createElement('div');
+            order.className = 'fake-order-float';
+            order.innerHTML = `
+                <span class="order-uid">🎯 ${uid}</span>
+                <span>ordered</span>
+                <span class="order-amount">${qty}K Likes (₹${amount})</span>
+            `;
+            container.appendChild(order);
+            setTimeout(() => {
+                if (order.parentNode) order.remove();
+            }, 8000);
         }
 
         // ============================================================
@@ -1141,6 +1582,9 @@
         function goToPayment() {
             const uid = uidInput.value.trim();
             const country = countrySelect.value;
+            const qty = currentQty;
+            const amount = 110 * qty;
+            const serviceName = qty + 'K Free Fire Likes';
 
             if (!uid) {
                 statusMsg.textContent = '⚠️ Please enter your Free Fire UID!';
@@ -1162,8 +1606,9 @@
             const orderData = {
                 uid: uid,
                 country: country,
-                service: 'Free Fire Likes',
-                amount: 139,
+                service: serviceName,
+                amount: amount,
+                qty: qty,
                 orderId: orderId,
                 region: region
             };
@@ -1187,6 +1632,13 @@
 
             if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
             if (liveUsersEl) liveUsersEl.textContent = liveUsers;
+
+            // Fake orders every 3 seconds
+            setInterval(createFakeOrder, 3000);
+            // Initial orders
+            for (let i = 0; i < 3; i++) {
+                setTimeout(createFakeOrder, i * 1000);
+            }
 
             console.log('MistalOnline.in Ready!');
         });
