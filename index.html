@@ -46,15 +46,8 @@
             animation: pulse-dot 0.8s infinite;
         }
         @keyframes pulse-dot {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.5);
-                opacity: 0.3;
-            }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.3; }
         }
 
         .navbar {
@@ -90,6 +83,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            stroke: #f9d423;
+            stroke-width: 2;
+        }
         .hamburger {
             display: none;
             flex-direction: column;
@@ -107,22 +106,18 @@
             border-radius: 4px;
             transition: 0.3s;
         }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         .nav-menu {
             display: flex;
             align-items: center;
             gap: 6px;
         }
         .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
             padding: 8px 16px;
             border-radius: 8px;
             color: rgba(255, 255, 255, 0.5);
@@ -131,19 +126,15 @@
             font-weight: 500;
             transition: 0.3s;
         }
-        .nav-menu a:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.04);
+        .nav-menu a svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
         }
-        .nav-menu a.active {
-            color: #f9d423;
-            background: rgba(249, 212, 35, 0.06);
-        }
-        .nav-menu a.help-btn {
-            background: rgba(249, 212, 35, 0.08);
-            color: #f9d423;
-            border: 1px solid rgba(249, 212, 35, 0.1);
-        }
+        .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.04); }
+        .nav-menu a.active { color: #f9d423; background: rgba(249, 212, 35, 0.06); }
+        .nav-menu a.help-btn { background: rgba(249, 212, 35, 0.08); color: #f9d423; border: 1px solid rgba(249, 212, 35, 0.1); }
 
         .main-content {
             padding-top: 85px;
@@ -186,8 +177,11 @@
             color: rgba(255, 255, 255, 0.4);
             font-size: 13px;
         }
-        .order-counter strong {
-            color: #f9d423;
+        .order-counter strong { color: #f9d423; }
+        .order-counter svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
         }
 
         .order-section {
@@ -218,13 +212,21 @@
             margin-bottom: 14px;
         }
         .form-group label {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             color: rgba(255, 255, 255, 0.5);
             font-size: 11px;
             font-weight: 600;
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+        .form-group label svg {
+            width: 16px;
+            height: 16px;
+            stroke: rgba(255, 215, 0, 0.4);
+            stroke-width: 2;
         }
         .form-group input,
         .form-group select {
@@ -244,13 +246,8 @@
             border-color: #f9d423;
             background: rgba(255, 255, 255, 0.06);
         }
-        .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.2);
-        }
-        .form-group select option {
-            background: #1a0a2e;
-            color: #fff;
-        }
+        .form-group input::placeholder { color: rgba(255, 255, 255, 0.2); }
+        .form-group select option { background: #1a0a2e; color: #fff; }
 
         .price-display {
             display: flex;
@@ -265,6 +262,14 @@
         .price-display .price-label {
             color: rgba(255, 255, 255, 0.4);
             font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .price-display .price-label svg {
+            width: 16px;
+            height: 16px;
+            stroke: rgba(255, 215, 0, 0.4);
         }
         .price-display .price-amount {
             color: #f9d423;
@@ -282,13 +287,8 @@
             color: rgba(255, 255, 255, 0.6);
             font-size: 13px;
         }
-        .region-display.show {
-            display: block;
-        }
-        .region-display #regionText {
-            color: #2ed573;
-            font-weight: 600;
-        }
+        .region-display.show { display: block; }
+        .region-display #regionText { color: #2ed573; font-weight: 600; }
 
         .btn-next {
             width: 100%;
@@ -303,8 +303,16 @@
             transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            display: block;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-next svg {
+            width: 20px;
+            height: 20px;
+            stroke: #0a0a0a;
+            stroke-width: 2;
         }
         .btn-next:hover {
             transform: translateY(-2px);
@@ -318,43 +326,130 @@
             font-size: 12px;
             min-height: 25px;
         }
-        #statusMsg.success {
+        #statusMsg.success { color: #2ed573; }
+        #statusMsg.error { color: #ff4757; }
+
+        /* ============================================================
+           PRICE LIST - SVG ICONS
+           ============================================================ */
+        .package-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.06);
+        }
+        .package-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .package-header .package-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: #ff4757;
+            stroke-width: 2;
+        }
+        .package-header h3 {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .package-header p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .package-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            border-radius: 10px;
+            padding: 10px 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .package-item:hover {
+            border-color: rgba(255, 215, 0, 0.12);
+            transform: translateY(-2px);
+        }
+        .package-item .pkg-likes {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .package-item .pkg-likes svg {
+            width: 14px;
+            height: 14px;
+            stroke: #f9d423;
+            stroke-width: 2;
+        }
+        .package-item .pkg-likes span { color: #f9d423; }
+        .package-item .pkg-price {
+            font-size: 17px;
+            font-weight: 900;
+            color: #f9d423;
+            display: block;
+            margin: 2px 0;
+        }
+        .package-item .pkg-days {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .package-item .pkg-days svg {
+            width: 12px;
+            height: 12px;
+            stroke: rgba(255, 255, 255, 0.3);
+        }
+        .package-item .pkg-badge {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 30px;
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+        .package-item .pkg-badge.popular {
+            background: rgba(46, 213, 115, 0.08);
             color: #2ed573;
         }
-        #statusMsg.error {
+        .package-item .pkg-badge.best {
+            background: rgba(255, 71, 87, 0.08);
             color: #ff4757;
         }
 
-        /* Price List */
-        .price-list-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-        }
-        .price-list-section h3 {
-            color: #f9d423;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .price-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-        .price-item {
+        .package-features {
             display: flex;
-            justify-content: space-between;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
+            justify-content: center;
+            gap: 16px;
+            margin-top: 12px;
+            flex-wrap: wrap;
         }
-        .price-item .price-amount {
-            color: #f9d423;
-            font-weight: 700;
+        .package-features .feature {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .package-features .feature svg {
+            width: 14px;
+            height: 14px;
+            stroke: #f9d423;
+            stroke-width: 2;
         }
 
         /* Reviews */
@@ -366,6 +461,16 @@
             font-size: 24px;
             font-weight: 800;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .reviews-section h2 svg {
+            width: 24px;
+            height: 24px;
+            stroke: #f9d423;
+            stroke-width: 2;
         }
         .reviews-grid {
             display: grid;
@@ -378,6 +483,11 @@
             border-radius: 14px;
             padding: 16px;
         }
+        .review-card .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
         .review-card .review-name {
             font-weight: 700;
             color: #ffffff;
@@ -385,6 +495,7 @@
         .review-card .review-stars {
             color: #f9d423;
             letter-spacing: 1px;
+            font-size: 14px;
         }
         .review-card .review-text {
             color: rgba(255, 255, 255, 0.5);
@@ -401,69 +512,6 @@
             font-size: 11px;
         }
 
-        /* Services */
-        .service-section {
-            padding: 30px 0 10px;
-        }
-        .service-section h2 {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
-        }
-        .service-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 14px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .service-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(255, 215, 0, 0.08);
-        }
-        .service-card .service-icon {
-            font-size: 32px;
-            margin-bottom: 6px;
-        }
-        .service-card h3 {
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 700;
-        }
-        .service-card .price-tag {
-            display: inline-block;
-            margin: 8px 0;
-            padding: 3px 14px;
-            background: rgba(249, 212, 35, 0.08);
-            border-radius: 30px;
-            color: #f9d423;
-            font-weight: 700;
-            font-size: 15px;
-        }
-        .btn-service {
-            width: 100%;
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-service:hover {
-            background: rgba(249, 212, 35, 0.06);
-            color: #ffffff;
-        }
-
         /* Help */
         .help-section {
             padding: 30px 0 20px;
@@ -478,6 +526,16 @@
         .help-container h2 {
             font-size: 22px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .help-container h2 svg {
+            width: 24px;
+            height: 24px;
+            stroke: #f9d423;
+            stroke-width: 2;
         }
         .help-container p {
             color: rgba(255, 255, 255, 0.3);
@@ -491,6 +549,9 @@
             gap: 10px;
         }
         .help-btn-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
             padding: 8px 20px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -500,6 +561,12 @@
             font-size: 13px;
             font-weight: 500;
             transition: 0.3s;
+        }
+        .help-btn-link svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
         }
         .help-btn-link:hover {
             background: rgba(255, 255, 255, 0.06);
@@ -512,13 +579,16 @@
             padding: 30px 20px 16px;
             margin-top: 30px;
         }
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
         .footer-brand {
             text-align: center;
             margin-bottom: 20px;
+        }
+        .footer-brand .logo-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: #f9d423;
+            stroke-width: 2;
         }
         .footer-brand span {
             font-size: 20px;
@@ -556,23 +626,16 @@
             padding: 3px 0;
             transition: 0.3s;
         }
-        .footer-col a:hover {
-            color: #f9d423;
-        }
+        .footer-col a:hover { color: #f9d423; }
         .footer-bottom {
             text-align: center;
             padding-top: 14px;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 11px;
-        }
+        .footer-bottom p { color: rgba(255, 255, 255, 0.1); font-size: 11px; }
 
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
+            .hamburger { display: flex; }
             .nav-menu {
                 position: absolute;
                 top: 65px;
@@ -584,45 +647,21 @@
                 gap: 4px;
                 display: none;
             }
-            .nav-menu.open {
-                display: flex;
-            }
-            .nav-menu a {
-                padding: 10px 14px;
-                width: 100%;
-            }
-            .hero h1 {
-                font-size: 24px;
-            }
-            .order-container {
-                padding: 20px 16px;
-            }
-            .price-list {
-                grid-template-columns: 1fr;
-            }
-            .reviews-grid {
-                grid-template-columns: 1fr;
-            }
-            .service-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            }
+            .nav-menu.open { display: flex; }
+            .nav-menu a { padding: 10px 14px; width: 100%; }
+            .hero h1 { font-size: 24px; }
+            .order-container { padding: 20px 16px; }
+            .package-grid { grid-template-columns: 1fr 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 20px;
-            }
-            .order-container h2 {
-                font-size: 20px;
-            }
-            .price-display .price-amount {
-                font-size: 18px;
-            }
-            .voice-indicator {
-                bottom: 10px;
-                right: 10px;
-                padding: 5px 12px;
-                font-size: 10px;
-            }
+            .hero h1 { font-size: 20px; }
+            .order-container h2 { font-size: 20px; }
+            .price-display .price-amount { font-size: 18px; }
+            .voice-indicator { bottom: 10px; right: 10px; padding: 5px 12px; font-size: 10px; }
+            .package-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .package-item .pkg-likes { font-size: 13px; }
+            .package-item .pkg-price { font-size: 15px; }
         }
     </style>
 </head>
@@ -638,18 +677,25 @@
     <header class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <span class="logo-icon">🎯</span>
-                <span class="logo-text">Mistal<span>Online</span></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <span>Mistal<span>Online</span></span>
             </a>
             <button class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
             </button>
             <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="active">🏠 Home</a>
-                <a href="#instagram">📸 Instagram</a>
-                <a href="#telegram">💬 Telegram</a>
-                <a href="#video">🎬 Video Growth</a>
-                <a href="help.html" class="help-btn">❓ Help</a>
+                <a href="index.html" class="active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+                    Home
+                </a>
+                <a href="#reviews">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Reviews
+                </a>
+                <a href="#help" class="help-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Help
+                </a>
             </nav>
         </div>
     </header>
@@ -659,12 +705,13 @@
 
         <!-- HERO -->
         <section class="hero">
-            <h1>🚀 Grow Your <span>Free Fire</span> Account</h1>
-            <p>Get instant likes, followers & video views at the best prices</p>
+            <h1>Grow Your <span>Free Fire</span> Account</h1>
+            <p>Get instant likes at the best prices</p>
             <div class="order-counter">
-                <span>📦 Total Orders: <strong id="totalOrders">12,847</strong></span>
-                <span>•</span>
-                <span>🟢 Live: <strong id="liveUsers">47</strong></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>Total Orders: <strong id="totalOrders">12,847</strong></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                <span>Live: <strong id="liveUsers">47</strong></span>
             </div>
         </section>
 
@@ -672,160 +719,185 @@
         <section class="order-section" id="orderSection">
             <div class="order-container">
 
-                <h2>📦 Place Your Order</h2>
-                <p class="order-sub">Enter your UID, select service & click Next</p>
+                <h2>Place Your Order</h2>
+                <p class="order-sub">Enter your UID, select country & click Next</p>
 
                 <form id="orderForm">
                     <div class="form-group">
-                        <label>🎯 Free Fire UID</label>
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            Free Fire UID
+                        </label>
                         <input type="text" id="uid" placeholder="Enter your Free Fire UID" />
                     </div>
 
                     <div class="form-group">
-                        <label>🌍 Country / Server</label>
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                            Country
+                        </label>
                         <select id="country">
                             <option value="">— Select Country —</option>
                             <option value="India">India</option>
                             <option value="USA">USA</option>
                             <option value="UK">United Kingdom</option>
-                            <option value="Canada">Canada</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Germany">Germany</option>
-                            <option value="France">France</option>
-                            <option value="Japan">Japan</option>
                             <option value="Brazil">Brazil</option>
-                            <option value="UAE">UAE</option>
-                            <option value="Singapore">Singapore</option>
                             <option value="Indonesia">Indonesia</option>
                             <option value="Malaysia">Malaysia</option>
-                            <option value="Thailand">Thailand</option>
-                            <option value="Vietnam">Vietnam</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>🔥 Select Service</label>
-                        <select id="service">
-                            <option value="">— Select Service —</option>
-                            <option value="1000" data-price="139">🔥 1,000 Likes - ₹139</option>
-                            <option value="3000" data-price="399">🔥 3,000 Likes - ₹399</option>
-                            <option value="5000" data-price="649">🔥 5,000 Likes - ₹649</option>
-                            <option value="10000" data-price="1199">🔥 10,000 Likes - ₹1,199</option>
                         </select>
                     </div>
 
                     <div class="price-display">
-                        <span class="price-label">💰 Total Amount</span>
+                        <span class="price-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                            Amount
+                        </span>
                         <span class="price-amount" id="priceAmount">₹0</span>
                     </div>
 
                     <div class="region-display" id="regionDisplay">
-                        <span>📍 Region: </span>
+                        <span>Region: </span>
                         <span id="regionText">—</span>
                     </div>
 
-                    <!-- 🔥 Price List -->
-                    <div class="price-list-section">
-                        <h3>📊 Price List</h3>
-                        <div class="price-list">
-                            <div class="price-item"><span>🔥 1,000 Likes</span><span class="price-amount">₹139</span></div>
-                            <div class="price-item"><span>🔥 3,000 Likes</span><span class="price-amount">₹399</span></div>
-                            <div class="price-item"><span>🔥 5,000 Likes</span><span class="price-amount">₹649</span></div>
-                            <div class="price-item"><span>🔥 10,000 Likes</span><span class="price-amount">₹1,199</span></div>
+                    <!-- PRICE LIST -->
+                    <div class="package-section">
+                        <div class="package-header">
+                            <span class="package-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </span>
+                            <h3>FREE FIRE 1K LIKES PACKAGE</h3>
+                            <p>Daily 1K Likes Packages</p>
+                        </div>
+
+                        <div class="package-grid">
+                            <div class="package-item">
+                                <span class="pkg-likes">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                                    <span>1,000</span> Likes
+                                </span>
+                                <span class="pkg-price">₹110</span>
+                                <span class="pkg-days">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    1 Day
+                                </span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                                    <span>7,000</span> Likes
+                                </span>
+                                <span class="pkg-price">₹715</span>
+                                <span class="pkg-days">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    7 Days
+                                </span>
+                                <span class="pkg-badge popular">Popular</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                                    <span>15,000</span> Likes
+                                </span>
+                                <span class="pkg-price">₹1,320</span>
+                                <span class="pkg-days">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    15 Days
+                                </span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                                    <span>30,000</span> Likes
+                                </span>
+                                <span class="pkg-price">₹2,420</span>
+                                <span class="pkg-days">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    30 Days
+                                </span>
+                                <span class="pkg-badge best">Best</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                                    <span>60,000</span> Likes
+                                </span>
+                                <span class="pkg-price">₹4,400</span>
+                                <span class="pkg-days">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    60 Days
+                                </span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                                    <span>90,000</span> Likes
+                                </span>
+                                <span class="pkg-price">₹6,380</span>
+                                <span class="pkg-days">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    90 Days
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="package-features">
+                            <span class="feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                                FAST DELIVERY
+                            </span>
+                            <span class="feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                FREE FIRE LIKES
+                            </span>
+                            <span class="feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                1K LIKES DAILY
+                            </span>
                         </div>
                     </div>
 
-                    <!-- 🔥 NEXT BUTTON - Redirect to payment.html -->
-                    <button type="button" class="btn-next" id="nextBtn">➡️ Next</button>
-                    <div id="statusMsg">💰 Select service & click Next</div>
+                    <!-- NEXT BUTTON -->
+                    <button type="button" class="btn-next" id="nextBtn">
+                        Next
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <div id="statusMsg">Select country & click Next</div>
                 </form>
 
             </div>
         </section>
 
         <!-- REVIEWS -->
-        <section class="reviews-section">
-            <h2>⭐ Customer Reviews</h2>
+        <section class="reviews-section" id="reviews">
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Customer Reviews
+            </h2>
             <div class="reviews-grid" id="reviewsGrid"></div>
-        </section>
-
-        <!-- SERVICES -->
-        <section class="service-section" id="instagram">
-            <h2>📸 Instagram Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">🔥</div>
-                    <h3>Instagram Followers</h3>
-                    <span class="price-tag">₹149</span>
-                    <button class="btn-service" onclick="selectService('Instagram Followers', 149)">Order Now</button>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">❤️</div>
-                    <h3>Instagram Likes</h3>
-                    <span class="price-tag">₹99</span>
-                    <button class="btn-service" onclick="selectService('Instagram Likes', 99)">Order Now</button>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👁️</div>
-                    <h3>Instagram Views</h3>
-                    <span class="price-tag">₹79</span>
-                    <button class="btn-service" onclick="selectService('Instagram Views', 79)">Order Now</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="service-section" id="telegram">
-            <h2>💬 Telegram Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">👥</div>
-                    <h3>Telegram Members</h3>
-                    <span class="price-tag">₹199</span>
-                    <button class="btn-service" onclick="selectService('Telegram Members', 199)">Order Now</button>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Telegram Views</h3>
-                    <span class="price-tag">₹89</span>
-                    <button class="btn-service" onclick="selectService('Telegram Views', 89)">Order Now</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="service-section" id="video">
-            <h2>🎬 Video Growth Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">▶️</div>
-                    <h3>YouTube Views</h3>
-                    <span class="price-tag">₹129</span>
-                    <button class="btn-service" onclick="selectService('YouTube Views', 129)">Order Now</button>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👍</div>
-                    <h3>YouTube Likes</h3>
-                    <span class="price-tag">₹109</span>
-                    <button class="btn-service" onclick="selectService('YouTube Likes', 109)">Order Now</button>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>YouTube Subscribers</h3>
-                    <span class="price-tag">₹249</span>
-                    <button class="btn-service" onclick="selectService('YouTube Subscribers', 249)">Order Now</button>
-                </div>
-            </div>
         </section>
 
         <!-- HELP -->
         <section class="help-section" id="help">
             <div class="help-container">
-                <h2>❓ Need Help?</h2>
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Need Help?
+                </h2>
                 <p>Contact us for any queries or support</p>
                 <div class="help-links">
-                    <a href="help.html" class="help-btn-link">💬 Help Center</a>
-                    <a href="help.html" class="help-btn-link">📸 Contact Us</a>
-                    <a href="help.html" class="help-btn-link">📧 Support</a>
+                    <a href="#" class="help-btn-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 4.5L2.5 10.5L9.5 13.5L12.5 20.5L21.5 4.5Z"/><path d="M9.5 13.5L15.5 8.5"/></svg>
+                        Telegram
+                    </a>
+                    <a href="#" class="help-btn-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        Instagram
+                    </a>
+                    <a href="#" class="help-btn-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Email
+                    </a>
                 </div>
             </div>
         </section>
@@ -836,21 +908,22 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <span>🎯 Mistal<span>Online</span></span>
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </span>
+                <span>Mistal<span>Online</span></span>
                 <p>Grow your social media presence with us</p>
             </div>
             <div class="footer-links">
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <a href="index.html">Home</a>
-                    <a href="#instagram">Instagram</a>
-                    <a href="#telegram">Telegram</a>
-                    <a href="#video">Video Growth</a>
+                    <a href="#reviews">Reviews</a>
                 </div>
                 <div class="footer-col">
                     <h4>Support</h4>
-                    <a href="help.html">Help Center</a>
-                    <a href="help.html">Contact Us</a>
+                    <a href="#help">Help Center</a>
+                    <a href="#help">Contact Us</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -861,77 +934,8 @@
 
     <script>
         // ============================================================
-        // COMPLETE SCRIPT
+        // COMPLETE SCRIPT - WITH VOICE (NO EMOJIS)
         // ============================================================
-
-        // CONFIG
-        const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
-
-        // STATE
-        let currentOrder = {
-            uid: '',
-            country: '',
-            service: '',
-            amount: 0,
-            orderId: '',
-            screenshot: null
-        };
-
-        let totalOrders = 12847;
-        let liveUsers = 47;
-
-        // DOM REFS
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const uidInput = document.getElementById('uid');
-        const countrySelect = document.getElementById('country');
-        const serviceSelect = document.getElementById('service');
-        const priceAmount = document.getElementById('priceAmount');
-        const regionDisplay = document.getElementById('regionDisplay');
-        const regionText = document.getElementById('regionText');
-        const statusMsg = document.getElementById('statusMsg');
-        const totalOrdersEl = document.getElementById('totalOrders');
-        const liveUsersEl = document.getElementById('liveUsers');
-        const reviewsGrid = document.getElementById('reviewsGrid');
-
-        // REGION MAPPING
-        const countryRegionMap = {
-            'India': 'Asia Pacific',
-            'USA': 'North America',
-            'UK': 'Europe',
-            'Canada': 'North America',
-            'Australia': 'Oceania',
-            'Germany': 'Europe',
-            'France': 'Europe',
-            'Japan': 'Asia Pacific',
-            'Brazil': 'Latin America',
-            'UAE': 'Middle East',
-            'Singapore': 'Asia Pacific',
-            'Indonesia': 'Asia Pacific',
-            'Malaysia': 'Asia Pacific',
-            'Thailand': 'Asia Pacific',
-            'Vietnam': 'Asia Pacific'
-        };
-        const uidRegionMap = {
-            '1': 'Asia Pacific',
-            '2': 'Asia Pacific',
-            '3': 'Europe',
-            '4': 'North America',
-            '5': 'Latin America',
-            '6': 'Middle East',
-            '7': 'Africa',
-            '8': 'Oceania',
-            '9': 'Europe'
-        };
-
-        // FAKE REVIEWS
-        const fakeReviews = [
-            { name: 'Rahul Sharma', stars: '⭐⭐⭐⭐⭐', text: 'Best service ever! Got 10K likes in 2 hours!', service: 'Free Fire Likes' },
-            { name: 'Priya Patel', stars: '⭐⭐⭐⭐⭐', text: 'Amazing service! My followers increased instantly.', service: 'Instagram Followers' },
-            { name: 'Amit Kumar', stars: '⭐⭐⭐⭐', text: 'Good service. Delivery was fast and reliable.', service: 'Telegram Members' },
-            { name: 'Neha Singh', stars: '⭐⭐⭐⭐⭐', text: 'Very professional service. Got exactly what I paid for.', service: 'YouTube Views' },
-            { name: 'Vikram Raj', stars: '⭐⭐⭐⭐⭐', text: 'Quick delivery and great support team. 5 stars!', service: 'Free Fire Likes' }
-        ];
 
         // ============================================================
         // VOICE ASSISTANT
@@ -940,8 +944,7 @@
             welcome: 'मिस्टल ऑनलाइन में आपका स्वागत है',
             uid: 'कृपया अपना फ्री फायर यूजर आईडी दर्ज करें',
             country: 'कृपया अपना देश चुनें',
-            service: 'कृपया अपनी सेवा चुनें',
-            order_placed: 'आपका ऑर्डर बन गया है',
+            next: 'अगले चरण पर जाएं',
             error: 'कृपया सभी फील्ड भरें'
         };
 
@@ -952,7 +955,7 @@
         function checkVoiceSupport() {
             voiceSupported = 'speechSynthesis' in window;
             if (!voiceSupported) {
-                document.getElementById('voiceStatus').textContent = '🔇 Voice Not Supported';
+                document.getElementById('voiceStatus').textContent = 'Voice Not Supported';
             }
             return voiceSupported;
         }
@@ -998,12 +1001,12 @@
             utterance.onend = function() {
                 isVoiceSpeaking = false;
                 if (dot) dot.className = 'voice-dot';
-                if (status) status.textContent = '🎤 Voice Active';
+                if (status) status.textContent = 'Voice Active';
             };
             utterance.onerror = function() {
                 isVoiceSpeaking = false;
                 if (dot) dot.className = 'voice-dot';
-                if (status) status.textContent = '🎤 Voice Active';
+                if (status) status.textContent = 'Voice Active';
             };
 
             window.speechSynthesis.speak(utterance);
@@ -1012,6 +1015,9 @@
         // ============================================================
         // HAMBURGER MENU
         // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
         hamburger.addEventListener('click', function() {
             this.classList.toggle('active');
             navMenu.classList.toggle('open');
@@ -1025,6 +1031,63 @@
         });
 
         // ============================================================
+        // CONFIG
+        // ============================================================
+        const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        let totalOrders = 12847;
+        let liveUsers = 47;
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const uidInput = document.getElementById('uid');
+        const countrySelect = document.getElementById('country');
+        const priceAmount = document.getElementById('priceAmount');
+        const regionDisplay = document.getElementById('regionDisplay');
+        const regionText = document.getElementById('regionText');
+        const statusMsg = document.getElementById('statusMsg');
+        const totalOrdersEl = document.getElementById('totalOrders');
+        const liveUsersEl = document.getElementById('liveUsers');
+        const reviewsGrid = document.getElementById('reviewsGrid');
+
+        // ============================================================
+        // REGION MAPPING - ONLY 6 COUNTRIES
+        // ============================================================
+        const countryRegionMap = {
+            'India': 'Asia Pacific',
+            'USA': 'North America',
+            'UK': 'Europe',
+            'Brazil': 'Latin America',
+            'Indonesia': 'Asia Pacific',
+            'Malaysia': 'Asia Pacific'
+        };
+
+        // ============================================================
+        // FAKE REVIEWS
+        // ============================================================
+        const fakeReviews = [
+            { name: 'Rahul Sharma', stars: '⭐', text: 'Best service ever! Got 10K likes in 2 hours!', service: 'Free Fire Likes' },
+            { name: 'Priya Patel', stars: '⭐', text: 'Amazing service! My followers increased instantly.', service: 'Free Fire Likes' },
+            { name: 'Amit Kumar', stars: '⭐', text: 'Good service. Delivery was fast and reliable.', service: 'Free Fire Likes' },
+            { name: 'Neha Singh', stars: '⭐', text: 'Very professional service. Got exactly what I paid for.', service: 'Free Fire Likes' }
+        ];
+
+        // ============================================================
+        // VOICE ON FIELDS
+        // ============================================================
+        uidInput.addEventListener('focus', function() {
+            playVoice('uid');
+        });
+
+        countrySelect.addEventListener('focus', function() {
+            playVoice('country');
+        });
+
+        // ============================================================
         // REGION DETECTION
         // ============================================================
         function updateRegion() {
@@ -1034,13 +1097,6 @@
 
             if (country && countryRegionMap[country]) {
                 region = countryRegionMap[country];
-            } else if (uid && uid.length > 0) {
-                const firstDigit = uid.charAt(0);
-                if (uidRegionMap[firstDigit]) {
-                    region = uidRegionMap[firstDigit];
-                } else {
-                    region = 'Global';
-                }
             }
 
             if (region !== '—') {
@@ -1059,33 +1115,11 @@
         // PRICE UPDATE
         // ============================================================
         function updatePrice() {
-            const selected = serviceSelect.options[serviceSelect.selectedIndex];
-            const price = selected.dataset.price || 0;
-            priceAmount.textContent = '₹' + parseInt(price);
-        }
-
-        serviceSelect.addEventListener('change', updatePrice);
-
-        // ============================================================
-        // SERVICE BUTTONS
-        // ============================================================
-        function selectService(name, price) {
-            const options = serviceSelect.options;
-            for (let i = 0; i < options.length; i++) {
-                if (options[i].text.includes(name.replace('Followers', 'Likes')) ||
-                    options[i].text.includes(name.replace('Members', 'Likes'))) {
-                    serviceSelect.selectedIndex = i;
-                    updatePrice();
-                    break;
-                }
-            }
-            document.getElementById('orderSection').scrollIntoView({ behavior: 'smooth' });
-            statusMsg.textContent = '📦 ' + name + ' selected - ₹' + price;
-            statusMsg.className = 'success';
+            priceAmount.textContent = '₹' + 139;
         }
 
         // ============================================================
-        // FAKE REVIEWS
+        // FAKE REVIEWS RENDER
         // ============================================================
         function renderReviews() {
             if (!reviewsGrid) return;
@@ -1093,7 +1127,7 @@
                 <div class="review-card">
                     <div class="review-header">
                         <span class="review-name">${r.name}</span>
-                        <span class="review-stars">${r.stars}</span>
+                        <span class="review-stars">${r.stars}${r.stars}${r.stars}${r.stars}${r.stars}</span>
                     </div>
                     <div class="review-text">${r.text}</div>
                     <span class="review-service">${r.service}</span>
@@ -1102,13 +1136,11 @@
         }
 
         // ============================================================
-        // 🔥 GO TO PAYMENT PAGE
+        // NEXT BUTTON - GO TO PAYMENT
         // ============================================================
         function goToPayment() {
             const uid = uidInput.value.trim();
             const country = countrySelect.value;
-            const service = serviceSelect.value;
-            const amount = parseInt(serviceSelect.options[serviceSelect.selectedIndex]?.dataset?.price || 0);
 
             if (!uid) {
                 statusMsg.textContent = '⚠️ Please enter your Free Fire UID!';
@@ -1124,51 +1156,28 @@
                 return;
             }
 
-            if (!service || amount <= 0) {
-                statusMsg.textContent = '⚠️ Please select a valid service!';
-                statusMsg.className = 'error';
-                playVoice('error');
-                return;
-            }
-
             const orderId = 'ORD' + Date.now().toString(36).toUpperCase();
             const region = regionText.textContent !== '—' ? regionText.textContent : 'Not detected';
 
-            // Save data to localStorage for payment page
             const orderData = {
                 uid: uid,
                 country: country,
-                service: service,
-                amount: amount,
+                service: 'Free Fire Likes',
+                amount: 139,
                 orderId: orderId,
                 region: region
             };
             localStorage.setItem('orderData', JSON.stringify(orderData));
 
-            // 🔥 Redirect to payment page
+            playVoice('next');
             window.location.href = 'payment.html';
         }
-
-        // ============================================================
-        // EVENT LISTENERS
-        // ============================================================
-        document.addEventListener('DOMContentLoaded', function() {
-            // Next Button
-            const nextBtn = document.getElementById('nextBtn');
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    goToPayment();
-                });
-            }
-        });
 
         // ============================================================
         // ON LOAD
         // ============================================================
         window.addEventListener('load', function() {
             updatePrice();
-            updateRegion();
             renderReviews();
             checkVoiceSupport();
 
@@ -1179,17 +1188,22 @@
             if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
             if (liveUsersEl) liveUsersEl.textContent = liveUsers;
 
-            console.log('🎮 MistalOnline.in Ready!');
+            console.log('MistalOnline.in Ready!');
+        });
+
+        // ============================================================
+        // EVENT LISTENERS
+        // ============================================================
+        document.getElementById('nextBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            goToPayment();
         });
 
         // ============================================================
         // MAKE FUNCTIONS GLOBAL
         // ============================================================
-        window.goToPayment = goToPayment;
-        window.selectService = selectService;
         window.playVoice = playVoice;
-        window.updatePrice = updatePrice;
-        window.updateRegion = updateRegion;
+        window.goToPayment = goToPayment;
     </script>
 
 </body>
