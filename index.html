@@ -210,64 +210,104 @@
             stroke: currentColor;
         }
 
-        /* 🔥 NEW ORDER NOTIFICATION - POPUP STYLE */
-        .new-order-notification {
+        /* 🔥 FAKE ORDERS - FLOATING GREEN */
+        .fake-order-float {
             position: fixed;
-            top: 80px;
-            right: 20px;
             z-index: 99999;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(46, 213, 115, 0.15);
-            border-radius: 14px;
-            padding: 14px 20px;
-            max-width: 320px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
-            animation: slideInRight 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
+            border-radius: 12px;
+            padding: 10px 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: floatOrder 8s ease forwards;
             pointer-events: none;
+            max-width: 280px;
+            min-width: 200px;
         }
-        .new-order-notification .notif-icon {
-            font-size: 20px;
-            margin-right: 8px;
-        }
-        .new-order-notification .notif-title {
+        .fake-order-float .order-uid {
             color: #2ed573;
             font-weight: 700;
             font-size: 14px;
         }
-        .new-order-notification .notif-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 13px;
-            margin-top: 2px;
-        }
-        .new-order-notification .notif-amount {
+        .fake-order-float .order-amount {
             color: #f9d423;
             font-weight: 700;
         }
-        .new-order-notification .notif-uid {
+        .fake-order-float .order-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+        }
+        .fake-order-float .order-badge {
+            display: inline-block;
+            padding: 1px 10px;
+            background: rgba(46, 213, 115, 0.08);
+            border-radius: 30px;
             color: #2ed573;
+            font-size: 10px;
             font-weight: 600;
+            margin-top: 2px;
         }
 
-        @keyframes slideInRight {
+        @keyframes floatOrder {
             0% {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateY(20px) scale(0.9);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1);
             }
             100% {
-                opacity: 1;
-                transform: translateX(0);
+                opacity: 0;
+                transform: translateY(-40px) scale(0.9);
             }
         }
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(30px);
-            }
+
+        /* Random positions for fake orders */
+        .fake-order-float:nth-child(1) {
+            left: 5%;
+            top: 15%;
+        }
+        .fake-order-float:nth-child(2) {
+            right: 5%;
+            top: 25%;
+        }
+        .fake-order-float:nth-child(3) {
+            left: 8%;
+            top: 45%;
+        }
+        .fake-order-float:nth-child(4) {
+            right: 8%;
+            top: 55%;
+        }
+        .fake-order-float:nth-child(5) {
+            left: 3%;
+            top: 65%;
+        }
+        .fake-order-float:nth-child(6) {
+            right: 3%;
+            top: 35%;
+        }
+        .fake-order-float:nth-child(7) {
+            left: 12%;
+            top: 10%;
+        }
+        .fake-order-float:nth-child(8) {
+            right: 12%;
+            top: 70%;
+        }
+        .fake-order-float:nth-child(9) {
+            left: 5%;
+            top: 80%;
+        }
+        .fake-order-float:nth-child(10) {
+            right: 5%;
+            top: 80%;
         }
 
         .order-section {
@@ -338,39 +378,6 @@
         .form-group select option {
             background: #1a0a2e;
             color: #fff;
-        }
-
-        /* 🔥 QUANTITY SELECTOR - 1000, 3000, 5000, 10000 */
-        .quantity-selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-        .qty-option {
-            padding: 10px 8px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1.5px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            text-align: center;
-        }
-        .qty-option:hover {
-            border-color: rgba(249, 212, 35, 0.2);
-            background: rgba(255, 255, 255, 0.06);
-        }
-        .qty-option.active {
-            border-color: #f9d423;
-            background: rgba(249, 212, 35, 0.08);
-            color: #f9d423;
-        }
-        .qty-option .qty-label {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.3);
-            font-weight: 400;
         }
 
         .price-display {
@@ -548,7 +555,7 @@
             stroke-width: 2;
         }
 
-        /* REVIEWS - Price List ke Neeche */
+        /* REVIEWS */
         .reviews-section {
             padding: 30px 0 20px;
         }
@@ -810,14 +817,8 @@
                 grid-template-columns: 1fr;
                 max-height: 400px;
             }
-            .quantity-selector {
-                grid-template-columns: 1fr 1fr;
-            }
-            .new-order-notification {
-                right: 10px;
-                left: 10px;
-                max-width: none;
-                top: 75px;
+            .fake-order-float {
+                display: none;
             }
         }
         @media (max-width: 480px) {
@@ -845,14 +846,6 @@
             }
             .package-item .pkg-price {
                 font-size: 13px;
-            }
-            .quantity-selector {
-                grid-template-columns: 1fr 1fr;
-                gap: 6px;
-            }
-            .qty-option {
-                padding: 8px 6px;
-                font-size: 12px;
             }
         }
     </style>
@@ -924,28 +917,18 @@
                         <input type="text" id="uid" placeholder="Enter your Free Fire UID" />
                     </div>
 
-                    <!-- 🔥 QUANTITY SELECTOR -->
+                    <!-- 🔥 LIKES SELECT - DROPDOWN (Like Country) -->
                     <div class="form-group">
                         <label>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             Select Likes
                         </label>
-                        <div class="quantity-selector">
-                            <div class="qty-option" data-qty="1" data-price="110">
-                                1,000 <span class="qty-label">Likes</span>
-                            </div>
-                            <div class="qty-option" data-qty="3" data-price="330">
-                                3,000 <span class="qty-label">Likes</span>
-                            </div>
-                            <div class="qty-option active" data-qty="5" data-price="550">
-                                5,000 <span class="qty-label">Likes</span>
-                            </div>
-                            <div class="qty-option" data-qty="10" data-price="1100">
-                                10,000 <span class="qty-label">Likes</span>
-                            </div>
-                        </div>
-                        <input type="hidden" id="qtyValue" value="5" />
-                        <input type="hidden" id="qtyPrice" value="550" />
+                        <select id="likesSelect">
+                            <option value="1" data-price="139">🔥 1,000 Likes - ₹139</option>
+                            <option value="3" data-price="399" selected>🔥 3,000 Likes - ₹399</option>
+                            <option value="5" data-price="649">🔥 5,000 Likes - ₹649</option>
+                            <option value="10" data-price="1199">🔥 10,000 Likes - ₹1,199</option>
+                        </select>
                     </div>
 
                     <!-- Country -->
@@ -973,7 +956,7 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
                             Amount
                         </span>
-                        <span class="price-amount" id="priceAmount">₹550</span>
+                        <span class="price-amount" id="priceAmount">₹399</span>
                     </div>
 
                     <!-- 🔥 PRICE LIST - Next Button ke Neeche -->
@@ -989,7 +972,7 @@
                         <div class="package-grid">
                             <div class="package-item">
                                 <span class="pkg-likes"><span>1,000</span> Likes</span>
-                                <span class="pkg-price">₹110</span>
+                                <span class="pkg-price">₹139</span>
                                 <span class="pkg-days">📅 1 Day</span>
                             </div>
                             <div class="package-item">
@@ -1048,7 +1031,7 @@
             </div>
         </section>
 
-        <!-- REVIEWS SECTION - Price List ke Neeche -->
+        <!-- REVIEWS SECTION -->
         <section class="reviews-section" id="reviews">
             <h2>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1124,6 +1107,7 @@
         const voiceMessages = {
             welcome: 'मिस्टल ऑनलाइन में आपका स्वागत है',
             uid: 'कृपया अपना फ्री फायर यूजर आईडी दर्ज करें',
+            likes: 'कृपया लाइक्स चुनें',
             country: 'कृपया अपना देश चुनें',
             next: 'अगले चरण पर जाएं',
             error: 'कृपया सभी फील्ड भरें'
@@ -1212,26 +1196,41 @@
         });
 
         // ============================================================
-        // 🔥 QUANTITY SELECTOR - 1000, 3000, 5000, 10000
+        // LIKES SELECTOR - UPDATE PRICE
         // ============================================================
-        const qtyOptions = document.querySelectorAll('.qty-option');
-        const qtyValue = document.getElementById('qtyValue');
-        const qtyPrice = document.getElementById('qtyPrice');
+        const likesSelect = document.getElementById('likesSelect');
         const priceAmount = document.getElementById('priceAmount');
 
-        qtyOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                qtyOptions.forEach(o => o.classList.remove('active'));
-                this.classList.add('active');
-
-                const qty = parseInt(this.dataset.qty);
-                const price = parseInt(this.dataset.price);
-
-                qtyValue.value = qty;
-                qtyPrice.value = price;
-                priceAmount.textContent = '₹' + price;
-            });
+        likesSelect.addEventListener('change', function() {
+            const price = this.options[this.selectedIndex].dataset.price;
+            priceAmount.textContent = '₹' + price;
         });
+
+        // ============================================================
+        // FAKE ORDERS - GREEN FLOATING
+        // ============================================================
+        function createFakeOrder() {
+            const container = document.getElementById('fakeOrdersContainer');
+            if (!container) return;
+
+            const uid = Math.floor(Math.random() * 9000000000) + 1000000000;
+            const qty = [1, 3, 5, 7, 10, 15][Math.floor(Math.random() * 6)];
+            const amount = qty * 139;
+
+            const order = document.createElement('div');
+            order.className = 'fake-order-float';
+            order.innerHTML = `
+                <div class="order-text">🎯 <span class="order-uid">${uid}</span></div>
+                <div class="order-text">Ordered <span class="order-amount">${qty}K Likes</span></div>
+                <div class="order-text" style="font-size:12px;color:rgba(255,255,255,0.3);">₹${amount}</div>
+                <span class="order-badge">✅ Order Placed</span>
+            `;
+            container.appendChild(order);
+
+            setTimeout(() => {
+                if (order.parentNode) order.remove();
+            }, 8000);
+        }
 
         // ============================================================
         // CONFIG
@@ -1357,52 +1356,14 @@
         const fakeReviews = generateFakeReviews(210);
 
         // ============================================================
-        // 🔥 NEW ORDER NOTIFICATION - "New Order Received"
-        // ============================================================
-        function showNewOrderNotification() {
-            const uid = Math.floor(Math.random() * 9000000000) + 1000000000;
-            const qty = [1, 3, 5, 7, 10, 15, 30][Math.floor(Math.random() * 7)];
-            const amount = qty * 110;
-
-            const messages = [
-                'New Order Received! 🎯',
-                'Order Placed Successfully! ✅',
-                'New Order Confirmed! 🔥',
-                'Order Completed! 🏆',
-                'New Order Arrived! 📦'
-            ];
-
-            const msg = messages[Math.floor(Math.random() * messages.length)];
-
-            const notification = document.createElement('div');
-            notification.className = 'new-order-notification';
-            notification.innerHTML = `
-                <div>
-                    <span class="notif-title">${msg}</span>
-                    <div class="notif-text">
-                        <span class="notif-uid">UID ${uid}</span>
-                        ordered <span class="notif-amount">${qty}K Likes (₹${amount})</span>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                if (notification.parentNode) notification.remove();
-            }, 5000);
-
-            // Update counter
-            totalOrders += 1;
-            if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
-            liveUsers = 42 + Math.floor(Math.random() * 20);
-            if (liveUsersEl) liveUsersEl.textContent = liveUsers;
-        }
-
-        // ============================================================
         // VOICE ON FIELDS
         // ============================================================
         uidInput.addEventListener('focus', function() {
             playVoice('uid');
+        });
+
+        likesSelect.addEventListener('focus', function() {
+            playVoice('likes');
         });
 
         countrySelect.addEventListener('focus', function() {
@@ -1432,8 +1393,9 @@
         function goToPayment() {
             const uid = uidInput.value.trim();
             const country = countrySelect.value;
-            const qty = parseInt(qtyValue.value);
-            const amount = parseInt(qtyPrice.value);
+            const selectedOption = likesSelect.options[likesSelect.selectedIndex];
+            const qty = parseInt(selectedOption.value);
+            const amount = parseInt(selectedOption.dataset.price);
             const serviceName = qty + 'K Free Fire Likes';
 
             if (!uid) {
@@ -1473,6 +1435,11 @@
             renderReviews();
             checkVoiceSupport();
 
+            // Create container for fake orders
+            const container = document.createElement('div');
+            container.id = 'fakeOrdersContainer';
+            document.body.appendChild(container);
+
             setTimeout(() => {
                 playVoice('welcome');
             }, 1500);
@@ -1480,14 +1447,15 @@
             if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
             if (liveUsersEl) liveUsersEl.textContent = liveUsers;
 
-            // New order notification every 3-5 seconds
+            // Fake orders every 3-5 seconds
             setInterval(() => {
-                showNewOrderNotification();
+                createFakeOrder();
             }, 3000 + Math.random() * 2000);
 
-            // Initial notifications
-            setTimeout(showNewOrderNotification, 1000);
-            setTimeout(showNewOrderNotification, 2500);
+            // Initial orders
+            setTimeout(createFakeOrder, 1000);
+            setTimeout(createFakeOrder, 2500);
+            setTimeout(createFakeOrder, 4000);
 
             console.log('MistalOnline.in Ready!');
         });
