@@ -36,7 +36,6 @@
             overflow: hidden;
         }
 
-        /* Success Glow */
         .payment-container.success-mode {
             border-color: rgba(46, 213, 115, 0.3);
             box-shadow: 0 0 60px rgba(46, 213, 115, 0.1), 0 25px 60px rgba(0, 0, 0, 0.5);
@@ -109,8 +108,8 @@
             z-index: 1;
         }
         .payment-header h2 {
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 900;
             color: #ffffff;
         }
         .payment-header h2 span {
@@ -152,7 +151,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         .confirm-details .detail-card .detail-row:last-child {
@@ -160,31 +159,32 @@
         }
         .confirm-details .detail-card .detail-label {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         .confirm-details .detail-card .detail-label svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             stroke: rgba(255, 215, 0, 0.4);
         }
         .confirm-details .detail-card .detail-value {
             color: #ffffff;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 16px;
         }
         .confirm-details .detail-card .detail-value.gold {
             color: #f9d423;
         }
         .confirm-details .detail-card .amount-row {
-            padding-top: 10px;
-            margin-top: 6px;
+            padding-top: 12px;
+            margin-top: 8px;
             border-top: 1px solid rgba(255, 215, 0, 0.08);
         }
         .confirm-details .detail-card .amount-row .detail-value {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 900;
         }
 
@@ -233,7 +233,7 @@
         }
 
         /* ============================================================
-           PAYMENT PAGE
+           PAYMENT PAGE - BIG BOLD FONTS
            ============================================================ */
         .payment-page {
             display: none;
@@ -254,7 +254,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         .payment-page .order-summary .summary-row:last-child {
@@ -262,24 +262,79 @@
         }
         .payment-page .order-summary .summary-label {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .payment-page .order-summary .summary-label svg {
+            width: 22px;
+            height: 22px;
+            stroke: rgba(255, 215, 0, 0.4);
         }
         .payment-page .order-summary .summary-value {
             color: #ffffff;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 17px;
         }
         .payment-page .order-summary .summary-value.gold {
             color: #f9d423;
         }
         .payment-page .order-summary .summary-amount {
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 900;
+        }
+
+        /* 🔥 BIG INSTRUCTIONS */
+        .payment-page .instructions {
+            background: rgba(46, 213, 115, 0.04);
+            border: 1px solid rgba(46, 213, 115, 0.06);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+        }
+        .payment-page .instructions .inst-title {
+            color: #2ed573;
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .payment-page .instructions .inst-title svg {
+            width: 22px;
+            height: 22px;
+            stroke: #2ed573;
+        }
+        .payment-page .instructions .inst-step {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 5px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+        .payment-page .instructions .inst-step::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 12px;
+            width: 8px;
+            height: 8px;
+            background: #f9d423;
+            border-radius: 50%;
+        }
+        .payment-page .instructions .inst-step strong {
+            color: #f9d423;
+            font-weight: 800;
+            font-size: 18px;
         }
 
         .payment-page .upi-details-box {
             text-align: center;
-            padding: 12px;
+            padding: 14px;
             background: rgba(249, 212, 35, 0.05);
             border: 1px solid rgba(249, 212, 35, 0.06);
             border-radius: 12px;
@@ -287,58 +342,21 @@
         }
         .payment-page .upi-details-box .upi-label {
             color: rgba(255, 255, 255, 0.3);
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 600;
         }
         .payment-page .upi-details-box .upi-id {
             color: #f9d423;
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             letter-spacing: 1px;
         }
         .payment-page .upi-details-box .upi-name {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
-        }
-
-        .payment-page .instructions {
-            background: rgba(46, 213, 115, 0.04);
-            border: 1px solid rgba(46, 213, 115, 0.06);
-            border-radius: 12px;
-            padding: 14px 16px;
-            margin-bottom: 16px;
-        }
-        .payment-page .instructions .inst-title {
-            color: #2ed573;
-            font-weight: 700;
-            font-size: 13px;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .payment-page .instructions .inst-title svg {
-            width: 18px;
-            height: 18px;
-            stroke: #2ed573;
-        }
-        .payment-page .instructions .inst-step {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 13px;
-            padding: 3px 0;
-            padding-left: 24px;
-            position: relative;
-        }
-        .payment-page .instructions .inst-step::before {
-            content: '';
-            position: absolute;
-            left: 4px;
-            top: 10px;
-            width: 6px;
-            height: 6px;
-            background: #f9d423;
-            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 500;
         }
 
         .payment-page .qr-container {
@@ -355,14 +373,15 @@
             justify-content: center;
             gap: 8px;
             color: rgba(255, 255, 255, 0.3);
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 600;
             margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .payment-page .qr-container .qr-label svg {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             stroke: rgba(255, 255, 255, 0.3);
         }
         .payment-page .qr-container img {
@@ -382,12 +401,12 @@
 
         .btn-confirm {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(135deg, #2ed573, #26de81);
             border: none;
             border-radius: 14px;
             color: #0a0a0a;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 900;
             cursor: pointer;
             transition: 0.3s;
@@ -398,9 +417,10 @@
             gap: 10px;
         }
         .btn-confirm svg {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             stroke: #0a0a0a;
+            stroke-width: 2.5;
         }
         .btn-confirm:hover {
             transform: translateY(-3px);
@@ -420,7 +440,7 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
             color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
@@ -432,8 +452,8 @@
             gap: 8px;
         }
         .btn-back-payment svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             stroke: currentColor;
         }
         .btn-back-payment:hover {
@@ -445,7 +465,8 @@
             text-align: center;
             margin-top: 14px;
             color: rgba(255, 255, 255, 0.3);
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 500;
             min-height: 30px;
         }
         #statusMsg.success {
@@ -537,7 +558,7 @@
         }
 
         .result-container .result-title {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
             margin-top: 4px;
             letter-spacing: 0.5px;
@@ -552,7 +573,7 @@
 
         .result-container .result-sub {
             color: rgba(255, 255, 255, 0.3);
-            font-size: 14px;
+            font-size: 15px;
             margin-top: 2px;
             animation: fadeUp 0.5s ease 0.3s both;
         }
@@ -579,12 +600,13 @@
         }
         .result-container .result-details p {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 500;
             padding: 4px 0;
         }
         .result-container .result-details p span {
             color: #ffffff;
-            font-weight: 600;
+            font-weight: 700;
         }
         .result-container .result-details p .gold {
             color: #f9d423;
@@ -593,12 +615,12 @@
 
         .result-container .btn-home {
             margin-top: 18px;
-            padding: 12px 40px;
+            padding: 14px 40px;
             background: rgba(255, 255, 255, 0.06);
             border: 1.5px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             color: rgba(255, 255, 255, 0.5);
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
@@ -636,7 +658,19 @@
                 height: 40px;
             }
             .result-container .result-title {
-                font-size: 20px;
+                font-size: 22px;
+            }
+            .payment-page .order-summary .summary-amount {
+                font-size: 24px;
+            }
+            .payment-page .order-summary .summary-value {
+                font-size: 15px;
+            }
+            .payment-page .instructions .inst-step {
+                font-size: 14px;
+            }
+            .payment-page .upi-details-box .upi-id {
+                font-size: 19px;
             }
         }
     </style>
@@ -657,7 +691,7 @@
         <div class="confirm-details" id="confirmDetails">
             <div class="payment-header">
                 <h2>Confirm <span>Details</span></h2>
-                <p style="color:rgba(255,255,255,0.2);font-size:12px;margin-top:4px;">Please verify your order details</p>
+                <p style="color:rgba(255,255,255,0.2);font-size:13px;margin-top:4px;">Please verify your order details</p>
             </div>
 
             <div class="detail-card">
@@ -704,53 +738,65 @@
         </div>
 
         <!-- ============================================================
-        PAGE 2: PAYMENT PAGE
+        PAGE 2: PAYMENT PAGE - BIG FONTS
         ============================================================ -->
         <div class="payment-page" id="paymentPage">
             <div class="payment-header">
                 <h2>Complete <span>Payment</span></h2>
             </div>
 
-            <!-- Order Summary -->
+            <!-- 🔥 ORDER SUMMARY - BIG BOLD -->
             <div class="order-summary">
                 <div class="summary-row">
-                    <span class="summary-label">🎯 UID</span>
+                    <span class="summary-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        UID
+                    </span>
                     <span class="summary-value" id="payUid">—</span>
                 </div>
                 <div class="summary-row">
-                    <span class="summary-label">🌍 Country</span>
+                    <span class="summary-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                        Country
+                    </span>
                     <span class="summary-value" id="payCountry">—</span>
                 </div>
                 <div class="summary-row">
-                    <span class="summary-label">🔥 Service</span>
+                    <span class="summary-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Service
+                    </span>
                     <span class="summary-value gold" id="payService">—</span>
                 </div>
-                <div class="summary-row" style="border-bottom:none;padding-top:8px;border-top:1px solid rgba(255,215,0,0.06);">
-                    <span class="summary-label">💰 Amount</span>
+                <div class="summary-row" style="border-bottom:none;padding-top:12px;border-top:1px solid rgba(255,215,0,0.06);">
+                    <span class="summary-label" style="font-size:17px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                        Amount
+                    </span>
                     <span class="summary-value gold summary-amount" id="payAmount">₹0</span>
                 </div>
             </div>
 
-            <!-- UPI Details -->
+            <!-- 🔥 UPI DETAILS -->
             <div class="upi-details-box">
                 <div class="upi-label">Pay to UPI ID</div>
                 <div class="upi-id">9250150041@ybl</div>
                 <div class="upi-name">Gaurav Pandey</div>
             </div>
 
-            <!-- Instructions -->
+            <!-- 🔥 BIG INSTRUCTIONS -->
             <div class="instructions">
                 <div class="inst-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     Payment Instructions
                 </div>
-                <div class="inst-step">QR Code को PhonePe / GPay / Paytm से Scan करें</div>
-                <div class="inst-step">Amount ₹<span id="payInstAmount">0</span> Pay करें</div>
-                <div class="inst-step">Payment Complete होने के बाद "Confirm Payment" Click करें</div>
-                <div class="inst-step">आपका Order Automatic Confirm हो जाएगा</div>
+                <div class="inst-step">📱 QR Code को PhonePe / GPay / Paytm से Scan करें</div>
+                <div class="inst-step">💰 Amount <strong>₹<span id="payInstAmount">0</span></strong> Pay करें</div>
+                <div class="inst-step">✅ Payment Complete होने के बाद <strong>"Confirm Payment"</strong> Click करें</div>
+                <div class="inst-step">🎯 आपका Order Automatic Confirm हो जाएगा</div>
             </div>
 
-            <!-- QR Code -->
+            <!-- 🔥 QR CODE -->
             <div class="qr-container">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -766,7 +812,7 @@
                 </div>
             </div>
 
-            <!-- Confirm Button -->
+            <!-- 🔥 CONFIRM BUTTON -->
             <button class="btn-confirm" id="confirmBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                 Confirm Payment
@@ -833,7 +879,7 @@
         const paymentContainer = document.getElementById('paymentContainer');
         const backLink = document.getElementById('backLink');
 
-        // Confirm Details Page
+        // Confirm Details
         const confirmDetails = document.getElementById('confirmDetails');
         const confirmUid = document.getElementById('confirmUid');
         const confirmCountry = document.getElementById('confirmCountry');
@@ -878,18 +924,15 @@
         // GO TO PAYMENT PAGE
         // ============================================================
         function goToPayment() {
-            // Fill payment page data
             payUid.textContent = currentOrder.uid || '—';
             payCountry.textContent = currentOrder.country || '—';
             payService.textContent = currentOrder.service || '—';
             payAmount.textContent = '₹' + currentOrder.amount;
             payInstAmount.textContent = currentOrder.amount;
 
-            // Switch pages
             confirmDetails.classList.add('hidden');
             paymentPage.classList.add('show');
 
-            // Start timer only once
             if (!timerStarted) {
                 startTimer();
                 timerStarted = true;
@@ -905,14 +948,14 @@
         }
 
         // ============================================================
-        // GO BACK TO EDIT (Home page)
+        // GO BACK TO EDIT
         // ============================================================
         function goBackToEdit() {
             window.location.href = 'index.html';
         }
 
         // ============================================================
-        // TIMER - 10 MINUTES (Background)
+        // TIMER - 10 MINUTES
         // ============================================================
         function startTimer() {
             console.log('⏱️ Timer Started: 10 minutes');
@@ -1034,7 +1077,6 @@
                 return;
             }
 
-            // Check if timer expired
             if (timeLeft <= 0) {
                 cancelOrder();
                 return;
@@ -1092,7 +1134,6 @@
             confirmPayment();
         });
 
-        // QR CODE FALLBACK
         const qrImg = document.getElementById('qrImage');
         qrImg.onerror = function() {
             this.style.display = 'none';
@@ -1100,8 +1141,7 @@
         };
 
         console.log('⏱️ 10 Minute Timer Ready');
-        console.log('📌 Timer starts when user clicks Next');
-        console.log('📌 Order auto-cancels after 10 minutes');
+        console.log('📌 Big bold fonts on payment page');
     </script>
 
 </body>
