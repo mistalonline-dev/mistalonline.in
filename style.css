@@ -1,5 +1,5 @@
 /* ============================================================
-   MISTALONLINE.IN - Complete Styles (Fixed)
+   MISTALONLINE.IN - Complete Styles
    ============================================================ */
 
 * {
@@ -32,9 +32,7 @@ body {
     border-radius: 10px;
 }
 
-/* ============================================================
-   VOICE INDICATOR
-   ============================================================ */
+/* VOICE INDICATOR */
 .voice-indicator {
     position: fixed;
     bottom: 20px;
@@ -78,9 +76,7 @@ body {
     }
 }
 
-/* ============================================================
-   HEADER / NAVBAR
-   ============================================================ */
+/* HEADER / NAVBAR */
 .navbar {
     position: fixed;
     top: 0;
@@ -205,9 +201,7 @@ body {
     background: rgba(249, 212, 35, 0.15);
 }
 
-/* ============================================================
-   MAIN CONTENT
-   ============================================================ */
+/* MAIN CONTENT */
 .main-content {
     padding-top: 90px;
     max-width: 1200px;
@@ -216,9 +210,7 @@ body {
     padding-right: 20px;
 }
 
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
+/* HERO */
 .hero {
     text-align: center;
     padding: 40px 20px 30px;
@@ -262,9 +254,7 @@ body {
     font-weight: 700;
 }
 
-/* ============================================================
-   LIVE ORDERS TICKER
-   ============================================================ */
+/* LIVE ORDERS */
 .live-orders {
     background: rgba(255, 71, 87, 0.06);
     border: 1px solid rgba(255, 71, 87, 0.08);
@@ -332,9 +322,7 @@ body {
     }
 }
 
-/* ============================================================
-   ORDER SECTION
-   ============================================================ */
+/* ORDER SECTION */
 .order-section {
     padding: 20px 0 40px;
 }
@@ -477,9 +465,7 @@ body {
     color: #ff4757;
 }
 
-/* ============================================================
-   PAYMENT SECTION
-   ============================================================ */
+/* PAYMENT SECTION */
 .payment-section {
     margin-top: 25px;
     padding-top: 25px;
@@ -640,9 +626,7 @@ body {
     color: #ffffff;
 }
 
-/* ============================================================
-   REVIEWS SECTION
-   ============================================================ */
+/* REVIEWS */
 .reviews-section {
     padding: 40px 0 20px;
 }
@@ -707,9 +691,7 @@ body {
     font-size: 12px;
 }
 
-/* ============================================================
-   SERVICE SECTIONS
-   ============================================================ */
+/* SERVICES */
 .service-section {
     padding: 40px 0 20px;
 }
@@ -776,9 +758,7 @@ body {
     color: #ffffff;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+/* FOOTER */
 .footer {
     background: rgba(10, 10, 10, 0.9);
     border-top: 1px solid rgba(255, 215, 0, 0.04);
@@ -855,9 +835,7 @@ body {
     font-size: 11px;
 }
 
-/* ============================================================
-   OVERLAY
-   ============================================================ */
+/* OVERLAY */
 .overlay {
     position: fixed;
     top: 0;
@@ -943,242 +921,7 @@ body {
     color: #ffffff;
 }
 
-/* ============================================================
-   HELP PAGE OVERRIDES (for help.html)
-   ============================================================ */
-.help-header {
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 215, 0, 0.06);
-    padding: 0 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.help-header-container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 65px;
-}
-
-.help-header .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 800;
-    color: #ffffff;
-}
-
-.help-header .logo .logo-icon {
-    font-size: 26px;
-}
-.help-header .logo span {
-    background: linear-gradient(135deg, #f9d423, #ff4e50);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.help-header .back-btn {
-    padding: 8px 18px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.help-header .back-btn:hover {
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
-}
-
-.help-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 30px 20px 60px;
-}
-
-.help-container h1 {
-    font-size: 32px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 4px;
-}
-.help-container .help-sub {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 14px;
-    margin-bottom: 30px;
-}
-
-.faq-section h2 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #f9d423;
-}
-
-.faq-item {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    transition: 0.3s;
-}
-
-.faq-item:hover {
-    border-color: rgba(255, 215, 0, 0.08);
-}
-
-.faq-question {
-    width: 100%;
-    padding: 16px 20px;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-    font-family: 'Segoe UI', sans-serif;
-    transition: 0.3s;
-}
-
-.faq-question:hover {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-.faq-question .faq-arrow {
-    color: rgba(255, 255, 255, 0.3);
-    transition: 0.3s;
-    font-size: 14px;
-}
-
-.faq-question.active .faq-arrow {
-    transform: rotate(180deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0 20px;
-}
-
-.faq-answer.open {
-    max-height: 500px;
-    padding: 0 20px 20px;
-}
-
-.faq-answer p {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 14px;
-    line-height: 1.8;
-    padding: 2px 0;
-}
-
-.faq-answer a {
-    color: #f9d423;
-    text-decoration: none;
-}
-
-.contact-section {
-    margin-top: 40px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 215, 0, 0.04);
-    border-radius: 16px;
-    text-align: center;
-}
-
-.contact-section h2 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-.contact-section p {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.contact-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.3s;
-    border: 1px solid transparent;
-}
-
-.contact-btn span {
-    font-size: 20px;
-}
-
-.contact-btn.telegram {
-    background: rgba(0, 136, 204, 0.08);
-    color: #0088cc;
-    border-color: rgba(0, 136, 204, 0.15);
-}
-.contact-btn.telegram:hover {
-    background: rgba(0, 136, 204, 0.15);
-    transform: translateY(-2px);
-}
-
-.contact-btn.instagram {
-    background: rgba(225, 48, 108, 0.08);
-    color: #e1306c;
-    border-color: rgba(225, 48, 108, 0.15);
-}
-.contact-btn.instagram:hover {
-    background: rgba(225, 48, 108, 0.15);
-    transform: translateY(-2px);
-}
-
-.contact-btn.email {
-    background: rgba(249, 212, 35, 0.08);
-    color: #f9d423;
-    border-color: rgba(249, 212, 35, 0.15);
-}
-.contact-btn.email:hover {
-    background: rgba(249, 212, 35, 0.15);
-    transform: translateY(-2px);
-}
-
-.help-footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    color: rgba(255, 255, 255, 0.1);
-    font-size: 12px;
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .navbar {
         padding: 0 16px;
@@ -1240,34 +983,6 @@ body {
     .qr-container img {
         width: 170px;
         height: 170px;
-    }
-    .help-header-container {
-        height: 55px;
-    }
-    .help-header .logo {
-        font-size: 17px;
-    }
-    .help-header .logo .logo-icon {
-        font-size: 22px;
-    }
-    .help-header .back-btn {
-        font-size: 12px;
-        padding: 6px 14px;
-    }
-    .help-container h1 {
-        font-size: 24px;
-    }
-    .faq-question {
-        font-size: 14px;
-        padding: 14px 16px;
-    }
-    .contact-btn {
-        padding: 10px 18px;
-        font-size: 13px;
-    }
-    .contact-links {
-        flex-direction: column;
-        align-items: center;
     }
 }
 
