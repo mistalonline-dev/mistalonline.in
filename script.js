@@ -10,14 +10,6 @@ const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
 // ============================================================
 // FAKE DATA
 // ============================================================
-const fakeOrders = [
-    '🎯 UID 1234567890 just ordered 5,000 Likes!',
-    '🔥 UID 9876543210 ordered 10,000 Likes!',
-    '⭐ UID 1122334455 ordered Instagram Followers!',
-    '📸 UID 9988776655 ordered Video Growth!',
-    '💬 UID 5544332211 ordered Telegram Members!'
-];
-
 const fakeReviews = [
     { name: 'Rahul Sharma', stars: '⭐⭐⭐⭐⭐', text: 'Best service ever! Got 10K likes in 2 hours!', service: 'Free Fire Likes' },
     { name: 'Priya Patel', stars: '⭐⭐⭐⭐⭐', text: 'Amazing service! My followers increased instantly.', service: 'Instagram Followers' },
@@ -38,7 +30,6 @@ let currentOrder = {
     screenshot: null
 };
 
-let orderTickerIndex = 0;
 let totalOrders = 12847;
 let liveUsers = 47;
 
@@ -62,34 +53,17 @@ const screenshotPreview = document.getElementById('screenshotPreview');
 const successOverlay = document.getElementById('successOverlay');
 const totalOrdersEl = document.getElementById('totalOrders');
 const liveUsersEl = document.getElementById('liveUsers');
-const orderTickerText = document.getElementById('orderTickerText');
 const reviewsGrid = document.getElementById('reviewsGrid');
 
 // ============================================================
 // REGION MAPPING
 // ============================================================
 const countryRegionMap = {
-    'India': 'Asia Pacific',
-    'USA': 'North America',
-    'UK': 'Europe',
-    'Canada': 'North America',
-    'Australia': 'Oceania',
-    'Germany': 'Europe',
-    'France': 'Europe',
-    'Japan': 'Asia Pacific',
-    'Brazil': 'Latin America',
-    'UAE': 'Middle East',
-    'Singapore': 'Asia Pacific',
-    'Indonesia': 'Asia Pacific',
-    'Malaysia': 'Asia Pacific',
-    'Thailand': 'Asia Pacific',
-    'Vietnam': 'Asia Pacific'
-};
-
-const uidRegionMap = {
-    '1': 'Asia Pacific', '2': 'Asia Pacific', '3': 'Europe',
-    '4': 'North America', '5': 'Latin America', '6': 'Middle East',
-    '7': 'Africa', '8': 'Oceania', '9': 'Europe'
+    'India': 'Asia Pacific', 'USA': 'North America', 'UK': 'Europe',
+    'Canada': 'North America', 'Australia': 'Oceania', 'Germany': 'Europe',
+    'France': 'Europe', 'Japan': 'Asia Pacific', 'Brazil': 'Latin America',
+    'UAE': 'Middle East', 'Singapore': 'Asia Pacific', 'Indonesia': 'Asia Pacific',
+    'Malaysia': 'Asia Pacific', 'Thailand': 'Asia Pacific', 'Vietnam': 'Asia Pacific'
 };
 
 // ============================================================
@@ -100,17 +74,27 @@ const voiceMessages = {
     uid: 'कृपया अपना फ्री फायर यूजर आईडी दर्ज करें',
     country: 'कृपया अपना देश चुनें',
     service: 'कृपया अपनी सेवा चुनें',
-    order_placed: 'आपका ऑर्डर सफलतापूर्वक बन गया है',
+    order_placed: 'आपका ऑर्डर बन गया है, कृपया पेमेंट करें',
     payment_confirm: 'आपका पेमेंट कन्फर्म हो गया है',
     error: 'कृपया सभी फील्ड भरें',
-    thank_you: 'धन्यवाद, आपका ऑर्डर कन्फर्म हो गया है'
+    thank_you: 'धन्यवाद, आपका ऑर्डर कन्फर्म हो गया है',
+    headshot: 'हेडशॉट! आपका ऑर्डर सफलतापूर्वक पूरा हो गया है'
 };
 
 let isVoiceSpeaking = false;
 let selectedVoice = null;
+let voiceSupported = false;
+
+function checkVoiceSupport() {
+    voiceSupported = 'speechSynthesis' in window;
+    if (!voiceSupported) {
+        document.getElementById('voiceStatus').textContent = '🔇 Voice Not Supported';
+    }
+    return voiceSupported;
+}
 
 function findHindiVoice() {
-    if (!('speechSynthesis' in window)) return null;
+    if (!voiceSupported) return null;
     const voices = window.speechSynthesis.getVoices();
     let hindiVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Google'));
     if (!hindiVoice) hindiVoice = voices.find(v => v.lang === 'hi-IN');
@@ -119,18 +103,24 @@ function findHindiVoice() {
 }
 
 function playVoice(type) {
-    if (!('speechSynthesis' in window)) return;
+    if (!voiceSupported) return;
     const message = voiceMessages[type];
     if (!message) return;
     if (isVoiceSpeaking) window.speechSynthesis.cancel();
+
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length === 0) {
+        window.speechSynthesis.onvoiceschanged = function() { playVoice(type); };
+        return;
+    }
+
+    if (!selectedVoice) selectedVoice = findHindiVoice();
 
     const utterance = new SpeechSynthesisUtterance(message);
     utterance.lang = 'hi-IN';
     utterance.rate = 0.85;
     utterance.pitch = 0.9;
     utterance.volume = 1.0;
-
-    if (!selectedVoice) selectedVoice = findHindiVoice();
     if (selectedVoice) utterance.voice = selectedVoice;
 
     const dot = document.getElementById('voiceDot');
@@ -231,33 +221,6 @@ function selectService(name, price) {
 }
 
 // ============================================================
-// FAKE ORDER FLOW
-// ============================================================
-function updateOrderTicker() {
-    orderTickerText.textContent = fakeOrders[orderTickerIndex % fakeOrders.length];
-    orderTickerIndex++;
-    totalOrders += Math.floor(Math.random() * 3) + 1;
-    liveUsers = 42 + Math.floor(Math.random() * 20);
-    if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
-    if (liveUsersEl) liveUsersEl.textContent = liveUsers;
-}
-
-function initFakeFlow() {
-    setInterval(updateOrderTicker, 4000);
-    setInterval(() => {
-        if (Math.random() > 0.7) {
-            const review = fakeReviews[Math.floor(Math.random() * fakeReviews.length)];
-            statusMsg.textContent = '⭐ New review: ' + review.name + ' - ' + review.text.slice(0, 30) + '...';
-            statusMsg.className = 'success';
-            setTimeout(() => {
-                statusMsg.textContent = '💰 Select service & click Next';
-                statusMsg.className = '';
-            }, 4000);
-        }
-    }, 10000);
-}
-
-// ============================================================
 // FAKE REVIEWS
 // ============================================================
 function renderReviews() {
@@ -350,8 +313,7 @@ async function sendOrderEmail(order) {
                 service: order.service,
                 amount: '₹' + order.amount,
                 order_id: order.orderId,
-                region: order.region,
-                message: `🛒 New Order!\n\nUID: ${order.uid}\nCountry: ${order.country}\nService: ${order.service}\nAmount: ₹${order.amount}\nOrder ID: ${order.orderId}\nRegion: ${order.region}`
+                region: order.region
             })
         });
         console.log('📧 Order email sent!');
@@ -395,8 +357,7 @@ async function submitOrder() {
                 service: currentOrder.service,
                 amount: '₹' + currentOrder.amount,
                 region: currentOrder.region,
-                screenshot: currentOrder.screenshot,
-                message: `✅ Order Submitted!\n\nOrder ID: ${currentOrder.orderId}\nUID: ${currentOrder.uid}\nCountry: ${currentOrder.country}\nService: ${currentOrder.service}\nAmount: ₹${currentOrder.amount}\nRegion: ${currentOrder.region}\n\nScreenshot attached.`
+                screenshot: currentOrder.screenshot
             })
         });
 
@@ -409,16 +370,11 @@ async function submitOrder() {
             document.getElementById('overlayUid').textContent = currentOrder.uid;
 
             successOverlay.classList.add('show');
-            playVoice('payment_confirm');
-
-            setTimeout(() => {
-                playVoice('thank_you');
-            }, 1500);
+            playVoice('headshot');
 
             statusMsg.textContent = '✅ Order Submitted Successfully!';
             statusMsg.className = 'success';
 
-            // Reset
             document.getElementById('orderForm').reset();
             paymentSection.style.display = 'none';
             screenshotPreview.innerHTML = '';
@@ -528,7 +484,8 @@ window.addEventListener('load', function() {
     updatePrice();
     updateRegion();
     renderReviews();
-    initFakeFlow();
+    checkVoiceSupport();
+    
     setTimeout(() => {
         playVoice('welcome');
     }, 1500);
@@ -537,7 +494,6 @@ window.addEventListener('load', function() {
     if (liveUsersEl) liveUsersEl.textContent = liveUsers;
 
     console.log('🎮 MistalOnline.in Ready!');
-    console.log('✅ All functions loaded successfully!');
 });
 
 // ============================================================
@@ -551,3 +507,4 @@ window.selectService = selectService;
 window.playVoice = playVoice;
 window.updatePrice = updatePrice;
 window.updateRegion = updateRegion;
+window.testVoice = function() { playVoice('welcome'); };
