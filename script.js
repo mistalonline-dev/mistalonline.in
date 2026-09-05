@@ -426,17 +426,17 @@ async function submitOrder() {
             document.getElementById('overlayService').textContent = currentOrder.service;
             document.getElementById('overlayAmount').textContent = '₹' + currentOrder.amount;
             document.getElementById('overlayUid').textContent = currentOrder.uid;
-            
+
             successOverlay.classList.add('show');
             playVoice('payment_confirm');
-            
+
             setTimeout(() => {
                 playVoice('thank_you');
             }, 1500);
-            
+
             statusMsg.textContent = '✅ Order Submitted Successfully!';
             statusMsg.className = 'success';
-            
+
             // Reset
             document.getElementById('orderForm').reset();
             paymentSection.style.display = 'none';
@@ -444,7 +444,7 @@ async function submitOrder() {
             currentOrder = {};
             priceAmount.textContent = '₹0';
             regionDisplay.classList.remove('show');
-            
+
         } else {
             throw new Error('Submission failed');
         }
