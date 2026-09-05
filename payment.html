@@ -53,7 +53,6 @@
             pointer-events: none;
         }
 
-        /* Cancel Glow */
         .payment-container.cancel-mode {
             border-color: rgba(255, 71, 87, 0.3);
             box-shadow: 0 0 60px rgba(255, 71, 87, 0.1), 0 25px 60px rgba(0, 0, 0, 0.5);
@@ -79,60 +78,6 @@
             50% {
                 opacity: 1;
                 transform: scale(1.1);
-            }
-        }
-
-        /* Timer */
-        .timer-bar {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 10px;
-            padding: 10px 16px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-        .timer-bar .timer-label {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .timer-bar .timer-label svg {
-            width: 20px;
-            height: 20px;
-            stroke: rgba(255, 255, 255, 0.3);
-        }
-        .timer-bar .timer-time {
-            font-size: 22px;
-            font-weight: 900;
-            font-family: 'Courier New', monospace;
-            color: #f9d423;
-        }
-        .timer-bar .timer-time.warning {
-            color: #ff6b6b;
-            animation: timerPulse 0.5s infinite alternate;
-        }
-        .timer-bar .timer-time.success {
-            color: #2ed573;
-        }
-        .timer-bar .timer-time.cancel {
-            color: #ff4757;
-        }
-
-        @keyframes timerPulse {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.5;
-                transform: scale(1.05);
             }
         }
 
@@ -174,95 +119,197 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Order Details - SVG Icons */
-        .order-details {
+        /* ============================================================
+           CONFIRM DETAILS PAGE
+           ============================================================ */
+        .confirm-details {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        .confirm-details.hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .confirm-details .detail-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 215, 0, 0.06);
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
         }
-        .order-details .detail-row {
+        .confirm-details .detail-card .detail-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .order-details .detail-row:last-child {
+        .confirm-details .detail-card .detail-row:last-child {
             border-bottom: none;
         }
-        .order-details .detail-label {
+        .confirm-details .detail-card .detail-label {
             color: rgba(255, 255, 255, 0.4);
             font-size: 13px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .order-details .detail-label svg {
+        .confirm-details .detail-card .detail-label svg {
             width: 18px;
             height: 18px;
             stroke: rgba(255, 215, 0, 0.4);
         }
-        .order-details .detail-value {
+        .confirm-details .detail-card .detail-value {
             color: #ffffff;
             font-weight: 600;
             font-size: 14px;
         }
-        .order-details .detail-value.gold {
+        .confirm-details .detail-card .detail-value.gold {
             color: #f9d423;
         }
-        .order-details .amount-row {
+        .confirm-details .detail-card .amount-row {
             padding-top: 10px;
             margin-top: 6px;
             border-top: 1px solid rgba(255, 215, 0, 0.08);
         }
-        .order-details .amount-row .detail-value {
+        .confirm-details .detail-card .amount-row .detail-value {
             font-size: 24px;
             font-weight: 900;
         }
 
-        /* UPI Details */
-        .upi-details-box {
+        .confirm-details .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .confirm-details .btn-group button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .confirm-details .btn-group button svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+
+        .btn-edit {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .btn-edit:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+
+        .btn-next-payment {
+            background: linear-gradient(135deg, #f9d423, #f7971e);
+            color: #0a0a0a;
+        }
+        .btn-next-payment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(249, 212, 35, 0.2);
+        }
+
+        /* ============================================================
+           PAYMENT PAGE
+           ============================================================ */
+        .payment-page {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .payment-page.show {
+            display: block;
+        }
+
+        .payment-page .order-summary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.06);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .payment-page .order-summary .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .payment-page .order-summary .summary-row:last-child {
+            border-bottom: none;
+        }
+        .payment-page .order-summary .summary-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+        .payment-page .order-summary .summary-value {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .payment-page .order-summary .summary-value.gold {
+            color: #f9d423;
+        }
+        .payment-page .order-summary .summary-amount {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .payment-page .upi-details-box {
             text-align: center;
             padding: 12px;
             background: rgba(249, 212, 35, 0.05);
             border: 1px solid rgba(249, 212, 35, 0.06);
             border-radius: 12px;
             margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
         }
-        .upi-details-box .upi-label {
+        .payment-page .upi-details-box .upi-label {
             color: rgba(255, 255, 255, 0.3);
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .upi-details-box .upi-id {
+        .payment-page .upi-details-box .upi-id {
             color: #f9d423;
             font-size: 20px;
             font-weight: 700;
             letter-spacing: 1px;
         }
-        .upi-details-box .upi-name {
+        .payment-page .upi-details-box .upi-name {
             color: rgba(255, 255, 255, 0.4);
             font-size: 13px;
         }
 
-        /* Instructions - SVG Icons */
-        .instructions {
+        .payment-page .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
             border-radius: 12px;
             padding: 14px 16px;
             margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
         }
-        .instructions .inst-title {
+        .payment-page .instructions .inst-title {
             color: #2ed573;
             font-weight: 700;
             font-size: 13px;
@@ -271,19 +318,19 @@
             align-items: center;
             gap: 8px;
         }
-        .instructions .inst-title svg {
+        .payment-page .instructions .inst-title svg {
             width: 18px;
             height: 18px;
             stroke: #2ed573;
         }
-        .instructions .inst-step {
+        .payment-page .instructions .inst-step {
             color: rgba(255, 255, 255, 0.5);
             font-size: 13px;
             padding: 3px 0;
             padding-left: 24px;
             position: relative;
         }
-        .instructions .inst-step::before {
+        .payment-page .instructions .inst-step::before {
             content: '';
             position: absolute;
             left: 4px;
@@ -294,18 +341,15 @@
             border-radius: 50%;
         }
 
-        /* QR Code */
-        .qr-container {
+        .payment-page .qr-container {
             text-align: center;
             padding: 25px;
             background: rgba(255, 255, 255, 0.02);
             border: 2px solid rgba(255, 215, 0, 0.06);
             border-radius: 16px;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
         }
-        .qr-container .qr-label {
+        .payment-page .qr-container .qr-label {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -316,12 +360,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .qr-container .qr-label svg {
+        .payment-page .qr-container .qr-label svg {
             width: 20px;
             height: 20px;
             stroke: rgba(255, 255, 255, 0.3);
         }
-        .qr-container img {
+        .payment-page .qr-container img {
             width: 220px;
             height: 220px;
             border-radius: 12px;
@@ -330,13 +374,12 @@
             object-fit: contain;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
-        .qr-container .qr-fallback {
+        .payment-page .qr-container .qr-fallback {
             color: rgba(255, 255, 255, 0.3);
             font-size: 14px;
             padding: 30px;
         }
 
-        /* Buttons */
         .btn-confirm {
             width: 100%;
             padding: 16px;
@@ -349,8 +392,6 @@
             cursor: pointer;
             transition: 0.3s;
             text-transform: uppercase;
-            position: relative;
-            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -371,7 +412,7 @@
             transform: none !important;
         }
 
-        .btn-back {
+        .btn-back-payment {
             width: 100%;
             margin-top: 10px;
             padding: 14px;
@@ -389,15 +430,13 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            position: relative;
-            z-index: 1;
         }
-        .btn-back svg {
+        .btn-back-payment svg {
             width: 18px;
             height: 18px;
             stroke: currentColor;
         }
-        .btn-back:hover {
+        .btn-back-payment:hover {
             background: rgba(255, 255, 255, 0.06);
             color: #ffffff;
         }
@@ -408,8 +447,6 @@
             color: rgba(255, 255, 255, 0.3);
             font-size: 13px;
             min-height: 30px;
-            position: relative;
-            z-index: 1;
         }
         #statusMsg.success {
             color: #2ed573;
@@ -419,14 +456,12 @@
         }
 
         /* ============================================================
-           SUCCESS / CANCEL SCREEN
+           RESULT SCREEN
            ============================================================ */
         .result-container {
             display: none;
             text-align: center;
             padding: 30px 10px;
-            position: relative;
-            z-index: 2;
             animation: resultFadeIn 0.6s ease;
         }
         .result-container.show {
@@ -577,11 +612,8 @@
             color: #fff;
         }
 
-        .payment-content.hidden {
-            display: none;
-        }
-        .back-link.hidden {
-            display: none;
+        .hidden-page {
+            display: none !important;
         }
 
         @media (max-width: 480px) {
@@ -592,16 +624,8 @@
                 width: 170px;
                 height: 170px;
             }
-            .order-details .detail-row {
+            .confirm-details .btn-group {
                 flex-direction: column;
-                gap: 2px;
-                padding: 6px 0;
-            }
-            .order-details .amount-row .detail-value {
-                font-size: 20px;
-            }
-            .upi-details-box .upi-id {
-                font-size: 17px;
             }
             .result-container .result-circle {
                 width: 80px;
@@ -613,9 +637,6 @@
             }
             .result-container .result-title {
                 font-size: 20px;
-            }
-            .timer-bar .timer-time {
-                font-size: 18px;
             }
         }
     </style>
@@ -630,81 +651,106 @@
             Back to Home
         </a>
 
-        <!-- Timer Bar -->
-        <div class="timer-bar">
-            <span class="timer-label">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Time Left
-            </span>
-            <span class="timer-time" id="timerDisplay">40s</span>
-        </div>
-
-        <!-- PAYMENT CONTENT -->
-        <div class="payment-content" id="paymentContent">
-
+        <!-- ============================================================
+        PAGE 1: CONFIRM DETAILS
+        ============================================================ -->
+        <div class="confirm-details" id="confirmDetails">
             <div class="payment-header">
-                <h2>Complete <span>Payment</span></h2>
+                <h2>Confirm <span>Details</span></h2>
+                <p style="color:rgba(255,255,255,0.2);font-size:12px;margin-top:4px;">Please verify your order details</p>
             </div>
 
-            <!-- ORDER DETAILS -->
-            <div class="order-details">
-                <div class="detail-row">
-                    <span class="detail-label">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        Order ID
-                    </span>
-                    <span class="detail-value gold" id="orderIdDisplay">—</span>
-                </div>
+            <div class="detail-card">
                 <div class="detail-row">
                     <span class="detail-label">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         UID
                     </span>
-                    <span class="detail-value" id="uidDisplay">—</span>
+                    <span class="detail-value" id="confirmUid">—</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                         Country
                     </span>
-                    <span class="detail-value" id="countryDisplay">—</span>
+                    <span class="detail-value" id="confirmCountry">—</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                         Service
                     </span>
-                    <span class="detail-value" id="serviceDisplay">—</span>
+                    <span class="detail-value" id="confirmService">—</span>
                 </div>
                 <div class="detail-row amount-row">
                     <span class="detail-label">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
                         Amount
                     </span>
-                    <span class="detail-value gold" id="amountDisplay">₹0</span>
+                    <span class="detail-value gold" id="confirmAmount">₹0</span>
                 </div>
             </div>
 
-            <!-- UPI DETAILS -->
+            <div class="btn-group">
+                <button class="btn-edit" onclick="goBackToEdit()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Edit
+                </button>
+                <button class="btn-next-payment" onclick="goToPayment()">
+                    Next
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        PAGE 2: PAYMENT PAGE
+        ============================================================ -->
+        <div class="payment-page" id="paymentPage">
+            <div class="payment-header">
+                <h2>Complete <span>Payment</span></h2>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <div class="summary-row">
+                    <span class="summary-label">🎯 UID</span>
+                    <span class="summary-value" id="payUid">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">🌍 Country</span>
+                    <span class="summary-value" id="payCountry">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">🔥 Service</span>
+                    <span class="summary-value gold" id="payService">—</span>
+                </div>
+                <div class="summary-row" style="border-bottom:none;padding-top:8px;border-top:1px solid rgba(255,215,0,0.06);">
+                    <span class="summary-label">💰 Amount</span>
+                    <span class="summary-value gold summary-amount" id="payAmount">₹0</span>
+                </div>
+            </div>
+
+            <!-- UPI Details -->
             <div class="upi-details-box">
                 <div class="upi-label">Pay to UPI ID</div>
                 <div class="upi-id">9250150041@ybl</div>
                 <div class="upi-name">Gaurav Pandey</div>
             </div>
 
-            <!-- INSTRUCTIONS -->
+            <!-- Instructions -->
             <div class="instructions">
                 <div class="inst-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     Payment Instructions
                 </div>
                 <div class="inst-step">QR Code को PhonePe / GPay / Paytm से Scan करें</div>
-                <div class="inst-step">Amount ₹<span id="instAmount">0</span> Pay करें</div>
+                <div class="inst-step">Amount ₹<span id="payInstAmount">0</span> Pay करें</div>
                 <div class="inst-step">Payment Complete होने के बाद "Confirm Payment" Click करें</div>
                 <div class="inst-step">आपका Order Automatic Confirm हो जाएगा</div>
             </div>
 
-            <!-- QR CODE -->
+            <!-- QR Code -->
             <div class="qr-container">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -720,22 +766,21 @@
                 </div>
             </div>
 
-            <!-- CONFIRM BUTTON -->
+            <!-- Confirm Button -->
             <button class="btn-confirm" id="confirmBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                 Confirm Payment
             </button>
-            <a href="index.html" class="btn-back">
+            <button class="btn-back-payment" onclick="goBackToConfirm()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
                 Back
-            </a>
+            </button>
 
             <div id="statusMsg">Scan QR & Pay, then click Confirm</div>
-
         </div>
 
         <!-- ============================================================
-        RESULT SCREEN - SUCCESS / CANCEL
+        RESULT SCREEN
         ============================================================ -->
         <div class="result-container" id="resultContainer">
             <div class="result-circle" id="resultCircle">
@@ -759,12 +804,13 @@
 
     <script>
         // ============================================================
-        // PAYMENT PAGE SCRIPT - 40 SECOND TIMER
+        // PAYMENT PAGE SCRIPT
         // ============================================================
 
         const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
         const UPI_ID = '9250150041@ybl';
-        const TIMER_SECONDS = 40;
+        const TIMER_MINUTES = 10;
+        const TIMER_SECONDS = TIMER_MINUTES * 60;
 
         const orderData = JSON.parse(localStorage.getItem('orderData'));
 
@@ -781,22 +827,30 @@
         let timeLeft = TIMER_SECONDS;
         let timerInterval = null;
         let isProcessing = false;
+        let timerStarted = false;
 
         // DOM REFS
         const paymentContainer = document.getElementById('paymentContainer');
-        const paymentContent = document.getElementById('paymentContent');
         const backLink = document.getElementById('backLink');
-        const timerDisplay = document.getElementById('timerDisplay');
-        const orderIdDisplay = document.getElementById('orderIdDisplay');
-        const uidDisplay = document.getElementById('uidDisplay');
-        const countryDisplay = document.getElementById('countryDisplay');
-        const serviceDisplay = document.getElementById('serviceDisplay');
-        const amountDisplay = document.getElementById('amountDisplay');
-        const instAmount = document.getElementById('instAmount');
+
+        // Confirm Details Page
+        const confirmDetails = document.getElementById('confirmDetails');
+        const confirmUid = document.getElementById('confirmUid');
+        const confirmCountry = document.getElementById('confirmCountry');
+        const confirmService = document.getElementById('confirmService');
+        const confirmAmount = document.getElementById('confirmAmount');
+
+        // Payment Page
+        const paymentPage = document.getElementById('paymentPage');
+        const payUid = document.getElementById('payUid');
+        const payCountry = document.getElementById('payCountry');
+        const payService = document.getElementById('payService');
+        const payAmount = document.getElementById('payAmount');
+        const payInstAmount = document.getElementById('payInstAmount');
         const confirmBtn = document.getElementById('confirmBtn');
         const statusMsg = document.getElementById('statusMsg');
 
-        // Result refs
+        // Result
         const resultContainer = document.getElementById('resultContainer');
         const resultCircle = document.getElementById('resultCircle');
         const resultTitle = document.getElementById('resultTitle');
@@ -809,45 +863,68 @@
         const resultTick = document.getElementById('resultTick');
 
         // ============================================================
-        // DISPLAY ORDER DATA
+        // DISPLAY ORDER DATA ON CONFIRM PAGE
         // ============================================================
         if (currentOrder.orderId) {
-            orderIdDisplay.textContent = currentOrder.orderId;
-            uidDisplay.textContent = currentOrder.uid || '—';
-            countryDisplay.textContent = currentOrder.country || '—';
-            serviceDisplay.textContent = currentOrder.service || '—';
-            const amountText = '₹' + currentOrder.amount;
-            amountDisplay.textContent = amountText;
-            instAmount.textContent = currentOrder.amount;
+            confirmUid.textContent = currentOrder.uid || '—';
+            confirmCountry.textContent = currentOrder.country || '—';
+            confirmService.textContent = currentOrder.service || '—';
+            confirmAmount.textContent = '₹' + currentOrder.amount;
         } else {
             window.location.href = 'index.html';
         }
 
         // ============================================================
-        // TIMER
+        // GO TO PAYMENT PAGE
         // ============================================================
-        function updateTimer() {
-            timerDisplay.textContent = timeLeft + 's';
+        function goToPayment() {
+            // Fill payment page data
+            payUid.textContent = currentOrder.uid || '—';
+            payCountry.textContent = currentOrder.country || '—';
+            payService.textContent = currentOrder.service || '—';
+            payAmount.textContent = '₹' + currentOrder.amount;
+            payInstAmount.textContent = currentOrder.amount;
 
-            if (timeLeft <= 10) {
-                timerDisplay.classList.add('warning');
-            } else {
-                timerDisplay.classList.remove('warning');
-            }
+            // Switch pages
+            confirmDetails.classList.add('hidden');
+            paymentPage.classList.add('show');
 
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                // Auto Cancel Order
-                if (!currentOrder.confirmed && !currentOrder.cancelled) {
-                    cancelOrder();
-                }
+            // Start timer only once
+            if (!timerStarted) {
+                startTimer();
+                timerStarted = true;
             }
-            timeLeft--;
         }
 
+        // ============================================================
+        // GO BACK TO CONFIRM
+        // ============================================================
+        function goBackToConfirm() {
+            paymentPage.classList.remove('show');
+            confirmDetails.classList.remove('hidden');
+        }
+
+        // ============================================================
+        // GO BACK TO EDIT (Home page)
+        // ============================================================
+        function goBackToEdit() {
+            window.location.href = 'index.html';
+        }
+
+        // ============================================================
+        // TIMER - 10 MINUTES (Background)
+        // ============================================================
         function startTimer() {
-            updateTimer();
-            timerInterval = setInterval(updateTimer, 1000);
+            console.log('⏱️ Timer Started: 10 minutes');
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    if (!currentOrder.confirmed && !currentOrder.cancelled) {
+                        cancelOrder();
+                    }
+                }
+            }, 1000);
         }
 
         // ============================================================
@@ -896,7 +973,6 @@
             resultTitle.textContent = isSuccess ? 'Order Successful!' : 'Order Cancelled!';
             resultSub.textContent = isSuccess ? '🎉 Your order has been confirmed' : '⏰ Time limit exceeded';
 
-            // Change tick to cross for cancel
             if (isSuccess) {
                 resultTick.setAttribute('points', '20 6 9 17 4 12');
             } else {
@@ -909,7 +985,8 @@
             resultService.textContent = currentOrder.service || '—';
             resultAmount.textContent = '₹' + currentOrder.amount;
 
-            paymentContent.classList.add('hidden');
+            paymentPage.classList.remove('show');
+            confirmDetails.classList.add('hidden');
             backLink.classList.add('hidden');
             resultContainer.classList.add('show');
 
@@ -942,7 +1019,7 @@
         }
 
         // ============================================================
-        // CONFIRM PAYMENT - 40 SECOND CHECK
+        // CONFIRM PAYMENT
         // ============================================================
         async function confirmPayment() {
             if (isProcessing) return;
@@ -957,17 +1034,12 @@
                 return;
             }
 
-            // 🔥 CHECK: Agar 40 second se pehle submit kiya toh CANCEL
-            if (timeLeft > 0) {
-                // User submitted before 40 seconds - CANCEL
-                currentOrder.cancelled = true;
-                clearInterval(timerInterval);
-                confirmBtn.disabled = true;
-                showResult('cancel');
+            // Check if timer expired
+            if (timeLeft <= 0) {
+                cancelOrder();
                 return;
             }
 
-            // ✅ 40 second complete hone ke baad - SUCCESS
             isProcessing = true;
             statusMsg.textContent = '🔄 Confirming payment...';
             statusMsg.className = '';
@@ -1027,14 +1099,9 @@
             document.getElementById('qrFallback').style.display = 'block';
         };
 
-        // ============================================================
-        // START TIMER
-        // ============================================================
-        startTimer();
-
-        console.log('⏱️ Timer Started: 40 seconds');
-        console.log('📌 If user submits before 40s → Order Cancel');
-        console.log('📌 If user submits after 40s → Order Success');
+        console.log('⏱️ 10 Minute Timer Ready');
+        console.log('📌 Timer starts when user clicks Next');
+        console.log('📌 Order auto-cancels after 10 minutes');
     </script>
 
 </body>
