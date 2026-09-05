@@ -43,7 +43,7 @@
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="8" y1="2" x2="8" y2="22"/><line x1="16" y1="2" x2="16" y2="22"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="2" y1="16" x2="22" y2="16"/></svg>
                     Video Growth
                 </a>
-                <a href="help.html" class="help-btn">
+                <a href="#help" class="help-btn">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     Help
                 </a>
@@ -85,16 +85,16 @@
                 <h2>📦 Place Your Order</h2>
                 <p class="order-sub">Enter your UID, select service & complete payment</p>
 
-                <form id="orderForm" onsubmit="return placeOrder(event)">
-
+                <!-- STEP 1: ORDER FORM -->
+                <form id="orderForm">
                     <div class="form-group">
                         <label for="uid">🎯 Free Fire UID</label>
-                        <input type="text" id="uid" placeholder="Enter your Free Fire UID" required onfocus="playVoice('uid')" />
+                        <input type="text" id="uid" placeholder="Enter your Free Fire UID" required />
                     </div>
 
                     <div class="form-group">
                         <label for="country">🌍 Country / Server</label>
-                        <select id="country" required onfocus="playVoice('country')">
+                        <select id="country" required>
                             <option value="">— Select Country —</option>
                             <option value="India">India</option>
                             <option value="USA">USA</option>
@@ -117,7 +117,7 @@
 
                     <div class="form-group">
                         <label for="service">🔥 Select Service</label>
-                        <select id="service" required onchange="updatePrice()" onfocus="playVoice('service')">
+                        <select id="service" required onchange="updatePrice()">
                             <option value="">— Select Service —</option>
                             <option value="1000" data-price="139">🔥 1,000 Likes - ₹139</option>
                             <option value="3000" data-price="399">🔥 3,000 Likes - ₹399</option>
@@ -137,13 +137,14 @@
                         <span id="regionText">—</span>
                     </div>
 
-                    <button type="submit" class="btn-order" id="orderBtn">🔥 Place Order & Pay</button>
-                    <div id="statusMsg">💰 Select service & complete payment</div>
+                    <!-- NEXT BUTTON -->
+                    <button type="button" class="btn-next" id="nextBtn" onclick="goToPayment()">
+                        ➡️ Next: Proceed to Payment
+                    </button>
+                    <div id="statusMsg">💰 Select service & click Next</div>
                 </form>
 
-                <!-- ============================================================
-                PAYMENT SECTION - SIRF QR CODE (NO APPS, NO LINKS)
-                ============================================================ -->
+                <!-- STEP 2: PAYMENT SECTION (Hidden by default) -->
                 <div class="payment-section" id="paymentSection" style="display:none;">
                     <div class="payment-header">
                         <h3>💳 Complete Payment</h3>
@@ -151,7 +152,7 @@
                         <p>Amount: <span id="paymentAmountDisplay">₹0</span></p>
                     </div>
 
-                    <!-- 🔥 SIRF QR CODE - TERA QR CODE -->
+                    <!-- QR CODE -->
                     <div class="qr-container">
                         <span class="qr-label">📱 Scan to Pay via PhonePe/GPay</span>
                         <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
@@ -165,7 +166,7 @@
                         </div>
                     </div>
 
-                    <!-- 🔥 SCREENSHOT UPLOAD -->
+                    <!-- SCREENSHOT UPLOAD -->
                     <div class="screenshot-section">
                         <label for="screenshot">
                             📸 Upload Payment Screenshot
@@ -175,14 +176,12 @@
                         <div id="screenshotPreview"></div>
                     </div>
 
-                    <!-- 🔥 CONFIRM BUTTON -->
-                    <button class="btn-confirm" onclick="confirmPayment()">
-                        ✅ Confirm Payment
+                    <!-- SUBMIT BUTTON -->
+                    <button class="btn-submit-order" onclick="submitOrder()">
+                        ✅ Submit Order
                     </button>
 
-                    <p style="text-align:center;color:rgba(255,255,255,0.2);font-size:11px;margin-top:12px;">
-                        ⏳ Order will be confirmed after payment verification
-                    </p>
+                    <button class="btn-back" onclick="goBack()">⬅ Back</button>
                 </div>
 
             </div>
@@ -300,7 +299,7 @@
                     <a href="#instagram">Instagram</a>
                     <a href="#telegram">Telegram</a>
                     <a href="#video">Video Growth</a>
-                    <a href="help.html">Help</a>
+                    <a href="#help">Help</a>
                 </div>
                 <div class="footer-col">
                     <h4>Services</h4>
@@ -311,10 +310,10 @@
                 </div>
                 <div class="footer-col">
                     <h4>Support</h4>
-                    <a href="help.html">Help Center</a>
-                    <a href="help.html">Contact Us</a>
-                    <a href="help.html">Privacy Policy</a>
-                    <a href="help.html">Terms of Service</a>
+                    <a href="#help">Help Center</a>
+                    <a href="#help">Contact Us</a>
+                    <a href="#help">Privacy Policy</a>
+                    <a href="#help">Terms of Service</a>
                 </div>
             </div>
             <div class="footer-bottom">
