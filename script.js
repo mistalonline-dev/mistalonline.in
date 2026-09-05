@@ -551,3 +551,24 @@ window.playVoice = playVoice;
 window.updatePrice = updatePrice;
 window.updateRegion = updateRegion;
 window.updateOrderTicker = updateOrderTicker;
+
+// ============================================================
+// 🔥 EVENT LISTENER - Next Button (No inline onclick)
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const nextBtn = document.getElementById('nextBtn');
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            goToPayment();
+        });
+        console.log('✅ Next button event listener attached!');
+    } else {
+        console.log('❌ Next button not found!');
+    }
+});
+
+
+
+
+
