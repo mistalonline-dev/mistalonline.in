@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📝 Blog - MistalOnline</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .blog-page {
+            padding-top: 85px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 40px;
+        }
+        .blog-page h1 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .blog-page h1 span {
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .blog-page .blog-sub {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .blog-post:hover {
+            border-color: rgba(255, 215, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        .blog-post .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        .blog-post .post-meta .post-date {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .blog-post .post-meta .post-category {
+            padding: 2px 12px;
+            background: rgba(249, 212, 35, 0.08);
+            border-radius: 30px;
+            color: #f9d423;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .blog-post h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .blog-post h2 a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .blog-post h2 a:hover {
+            color: #f9d423;
+        }
+        .blog-post .post-excerpt {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .blog-post .read-more {
+            color: #f9d423;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: 0.3s;
+        }
+        .blog-post .read-more:hover {
+            gap: 10px;
+        }
+
+        .blog-footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 480px) {
+            .blog-page h1 {
+                font-size: 24px;
+            }
+            .blog-post {
+                padding: 16px;
+            }
+            .blog-post h2 {
+                font-size: 18px;
+            }
+            .blog-post .post-excerpt {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <span>Mistal<span>Online</span></span>
+            </a>
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+                    Home
+                </a>
+                <a href="index.html#reviews">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Reviews
+                </a>
+                <a href="mistolne.html" class="active help-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Blog
+                </a>
+                <a href="help.html" class="help-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Help
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BLOG CONTENT -->
+    <main class="blog-page">
+        <h1>📝 Mistal<span>Blog</span></h1>
+        <p class="blog-sub">Latest updates, tips & news about Free Fire</p>
+
+        <!-- Blog Post 1 -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 September 6, 2026</span>
+                <span class="post-category">Free Fire</span>
+            </div>
+            <h2><a href="#">How to Get 1K Free Fire Likes in 2026</a></h2>
+            <div class="post-excerpt">
+                Want to boost your Free Fire account quickly? Here's a complete guide on how to get 1,000 likes on your profile in 2026. Learn the best strategies and tips to grow your account fast...
+            </div>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <!-- Blog Post 2 -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 September 5, 2026</span>
+                <span class="post-category">Tips</span>
+            </div>
+            <h2><a href="#">Free Fire UID Verification: Why It's Important</a></h2>
+            <div class="post-excerpt">
+                UID verification is crucial for account safety and growth. In this post, we explain why verifying your Free Fire UID is important and how it can help you get more likes and followers...
+            </div>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <!-- Blog Post 3 -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 September 4, 2026</span>
+                <span class="post-category">Growth</span>
+            </div>
+            <h2><a href="#">10 Tips to Grow Your Free Fire Account</a></h2>
+            <div class="post-excerpt">
+                Growing your Free Fire account takes time and strategy. Here are 10 proven tips to help you increase your followers, likes, and overall presence in the game community...
+            </div>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <!-- Blog Post 4 -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 September 3, 2026</span>
+                <span class="post-category">Updates</span>
+            </div>
+            <h2><a href="#">Free Fire OB45 Update: What's New?</a></h2>
+            <div class="post-excerpt">
+                The OB45 update is here! Check out all the new features, characters, weapons, and changes in the latest Free Fire update. Everything you need to know in one place...
+            </div>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <!-- Blog Post 5 -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 September 2, 2026</span>
+                <span class="post-category">Guide</span>
+            </div>
+            <h2><a href="#">Best Free Fire Characters for Ranked Matches</a></h2>
+            <div class="post-excerpt">
+                Choosing the right character can make or break your ranked matches. Here's our tier list of the best Free Fire characters for ranked mode in 2026...
+            </div>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <div class="blog-footer">
+            <p>&copy; 2026 MistalOnline.in. All rights reserved.</p>
+        </div>
+    </main>
+
+    <script>
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('open');
+            }
+        });
+    </script>
+
+</body>
+</html>
