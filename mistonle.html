@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>📝 Blog - MistalOnline</title>
+    <title>📝 Mistal Blog - Free Fire Tips in Hindi</title>
+    <meta name="description" content="Free Fire tips, tricks, and guides in Hindi. Learn how to get more likes, followers, and grow your Free Fire account." />
     <link rel="stylesheet" href="style.css" />
     <style>
         .blog-page {
             padding-top: 85px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-left: 20px;
             padding-right: 20px;
@@ -16,7 +17,7 @@
         }
         .blog-page h1 {
             text-align: center;
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 800;
             margin-bottom: 4px;
         }
@@ -37,7 +38,7 @@
             border: 1px solid rgba(255, 215, 0, 0.04);
             border-radius: 16px;
             padding: 24px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             transition: 0.3s;
         }
         .blog-post:hover {
@@ -51,6 +52,7 @@
             color: rgba(255, 255, 255, 0.3);
             font-size: 12px;
             margin-bottom: 8px;
+            flex-wrap: wrap;
         }
         .blog-post .post-meta .post-date {
             display: flex;
@@ -83,9 +85,57 @@
         .blog-post .post-excerpt {
             color: rgba(255, 255, 255, 0.5);
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.8;
             margin-bottom: 12px;
         }
+
+        /* BEFORE / AFTER IMAGES */
+        .before-after {
+            display: flex;
+            gap: 16px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+        .before-after .ba-item {
+            flex: 1;
+            min-width: 120px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .before-after .ba-item .ba-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .before-after .ba-item .ba-label.before {
+            color: #ff4757;
+        }
+        .before-after .ba-item .ba-label.after {
+            color: #2ed573;
+        }
+        .before-after .ba-item .ba-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+        .before-after .ba-item .ba-number.before-num {
+            color: #ff4757;
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+        .before-after .ba-item .ba-number.after-num {
+            color: #2ed573;
+        }
+        .before-after .ba-item .ba-arrow {
+            font-size: 24px;
+            color: #f9d423;
+        }
+
         .blog-post .read-more {
             color: #f9d423;
             text-decoration: none;
@@ -109,6 +159,37 @@
             margin-top: 30px;
         }
 
+        /* SITEMAP SECTION */
+        .sitemap-section {
+            margin-top: 40px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            border-radius: 16px;
+        }
+        .sitemap-section h3 {
+            color: #f9d423;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sitemap-section code {
+            display: block;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.8;
+        }
+
         @media (max-width: 480px) {
             .blog-page h1 {
                 font-size: 24px;
@@ -121,6 +202,16 @@
             }
             .blog-post .post-excerpt {
                 font-size: 13px;
+            }
+            .before-after .ba-item .ba-number {
+                font-size: 24px;
+            }
+            .before-after {
+                gap: 8px;
+            }
+            .before-after .ba-item {
+                min-width: 80px;
+                padding: 8px;
             }
         }
     </style>
@@ -161,71 +252,324 @@
     <!-- BLOG CONTENT -->
     <main class="blog-page">
         <h1>📝 Mistal<span>Blog</span></h1>
-        <p class="blog-sub">Latest updates, tips & news about Free Fire</p>
+        <p class="blog-sub">🔥 Free Fire Tips, Tricks & Guides in Hindi</p>
 
-        <!-- Blog Post 1 -->
+        <!-- ============================================================
+        BLOG POST 1
+        ============================================================ -->
         <div class="blog-post">
             <div class="post-meta">
-                <span class="post-date">📅 September 6, 2026</span>
+                <span class="post-date">📅 6 सितंबर 2026</span>
                 <span class="post-category">Free Fire</span>
             </div>
-            <h2><a href="#">How to Get 1K Free Fire Likes in 2026</a></h2>
-            <div class="post-excerpt">
-                Want to boost your Free Fire account quickly? Here's a complete guide on how to get 1,000 likes on your profile in 2026. Learn the best strategies and tips to grow your account fast...
+            <h2><a href="#">Free Fire में 1K Likes कैसे पाएं? (2026 Guide)</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">0</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Likes</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">1,000</div>
+                    <div style="font-size:12px;color:#2ed573;">Likes</div>
+                </div>
             </div>
-            <a href="#" class="read-more">Read More →</a>
+            <div class="post-excerpt">
+                क्या आप Free Fire में अपने प्रोफाइल पर 1,000 Likes पाना चाहते हैं? इस गाइड में हम आपको बताएंगे कि कैसे आप अपने Free Fire अकाउंट को बिना किसी हैक के असली Likes से भर सकते हैं। आज के समय में Free Fire में Likes होना बहुत जरूरी है क्योंकि इससे आपका प्रोफाइल प्रोफेशनल लगता है और लोग आपको ज्यादा फॉलो करते हैं। हमारी सर्विस से आप 100% असली और एक्टिव यूजर्स से Likes पा सकते हैं जो आपके अकाउंट को बूस्ट करेंगे। इस गाइड में हम स्टेप बाय स्टेप बताएंगे कि कैसे आप 1K Likes पा सकते हैं और अपने गेमिंग प्रोफाइल को नेक्स्ट लेवल पर ले जा सकते हैं।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
         </div>
 
-        <!-- Blog Post 2 -->
+        <!-- ============================================================
+        BLOG POST 2
+        ============================================================ -->
         <div class="blog-post">
             <div class="post-meta">
-                <span class="post-date">📅 September 5, 2026</span>
-                <span class="post-category">Tips</span>
+                <span class="post-date">📅 5 सितंबर 2026</span>
+                <span class="post-category">UID</span>
             </div>
-            <h2><a href="#">Free Fire UID Verification: Why It's Important</a></h2>
+            <h2><a href="#">Free Fire UID Verification क्यों जरूरी है?</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">Unverified</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Account</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">Verified ✅</div>
+                    <div style="font-size:12px;color:#2ed573;">Account</div>
+                </div>
+            </div>
             <div class="post-excerpt">
-                UID verification is crucial for account safety and growth. In this post, we explain why verifying your Free Fire UID is important and how it can help you get more likes and followers...
+                Free Fire में UID Verification का बहुत बड़ा महत्व है। जब आप अपना UID वेरिफाई कराते हैं तो आपका अकाउंट सुरक्षित हो जाता है और आपको ज्यादा भरोसा मिलता है। बहुत सारे लोग अपना UID वेरिफाई नहीं कराते हैं जिससे उनका अकाउंट हैक होने का खतरा बना रहता है। इस आर्टिकल में हम आपको बताएंगे कि UID Verification क्यों जरूरी है और यह आपके Free Fire अनुभव को कैसे बेहतर बनाता है। वेरिफाइड अकाउंट को लोग ज्यादा ट्रस्ट करते हैं और वे आपको ज्यादा लाइक्स और फॉलोअर्स देते हैं।
             </div>
-            <a href="#" class="read-more">Read More →</a>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
         </div>
 
-        <!-- Blog Post 3 -->
+        <!-- ============================================================
+        BLOG POST 3
+        ============================================================ -->
         <div class="blog-post">
             <div class="post-meta">
-                <span class="post-date">📅 September 4, 2026</span>
+                <span class="post-date">📅 4 सितंबर 2026</span>
                 <span class="post-category">Growth</span>
             </div>
-            <h2><a href="#">10 Tips to Grow Your Free Fire Account</a></h2>
-            <div class="post-excerpt">
-                Growing your Free Fire account takes time and strategy. Here are 10 proven tips to help you increase your followers, likes, and overall presence in the game community...
+            <h2><a href="#">Free Fire अकाउंट कैसे ग्रो करें? 10 टिप्स</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">100</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Followers</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">5,000+</div>
+                    <div style="font-size:12px;color:#2ed573;">Followers</div>
+                </div>
             </div>
-            <a href="#" class="read-more">Read More →</a>
+            <div class="post-excerpt">
+                Free Fire में अकाउंट ग्रो करना हर गेमर का सपना होता है। इस आर्टिकल में हम आपको 10 ऐसे टिप्स बताएंगे जिनसे आप अपने Free Fire अकाउंट को तेजी से ग्रो कर सकते हैं। चाहे आप नए खिलाड़ी हों या पुराने, ये टिप्स आपके काम आएंगे। हम आपको बताएंगे कि कैसे आप अपने प्रोफाइल को अट्रैक्टिव बना सकते हैं, ज्यादा लाइक्स और फॉलोअर्स कैसे पा सकते हैं, और कैसे आप Free Fire कम्युनिटी में अपनी पहचान बना सकते हैं। सही स्ट्रैटेजी और हमारी सर्विस के साथ आप 1K Likes से 100K Likes तक का सफर तय कर सकते हैं।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
         </div>
 
-        <!-- Blog Post 4 -->
+        <!-- ============================================================
+        BLOG POST 4
+        ============================================================ -->
         <div class="blog-post">
             <div class="post-meta">
-                <span class="post-date">📅 September 3, 2026</span>
+                <span class="post-date">📅 3 सितंबर 2026</span>
                 <span class="post-category">Updates</span>
             </div>
-            <h2><a href="#">Free Fire OB45 Update: What's New?</a></h2>
+            <h2><a href="#">Free Fire OB45 अपडेट: नए फीचर्स और चेंजेस</a></h2>
             <div class="post-excerpt">
-                The OB45 update is here! Check out all the new features, characters, weapons, and changes in the latest Free Fire update. Everything you need to know in one place...
+                Free Fire का OB45 अपडेट आ गया है! इस अपडेट में कई नए कैरेक्टर, हथियार, और गेमप्ले चेंजेस आए हैं। इस आर्टिकल में हम आपको सभी नए फीचर्स के बारे में विस्तार से बताएंगे। नए अपडेट में कौन से कैरेक्टर सबसे स्ट्रॉन्ग हैं, कौन से हथियार अब ज्यादा पावरफुल हो गए हैं, और गेमप्ले में क्या बदलाव आए हैं - सब कुछ जानिए। साथ ही हम आपको बताएंगे कि इन नए अपडेट्स का फायदा उठाकर आप कैसे अपने अकाउंट को बूस्ट कर सकते हैं और ज्यादा लाइक्स पा सकते हैं।
             </div>
-            <a href="#" class="read-more">Read More →</a>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
         </div>
 
-        <!-- Blog Post 5 -->
+        <!-- ============================================================
+        BLOG POST 5
+        ============================================================ -->
         <div class="blog-post">
             <div class="post-meta">
-                <span class="post-date">📅 September 2, 2026</span>
+                <span class="post-date">📅 2 सितंबर 2026</span>
                 <span class="post-category">Guide</span>
             </div>
-            <h2><a href="#">Best Free Fire Characters for Ranked Matches</a></h2>
-            <div class="post-excerpt">
-                Choosing the right character can make or break your ranked matches. Here's our tier list of the best Free Fire characters for ranked mode in 2026...
+            <h2><a href="#">Free Fire के Best Characters – Ranked Matches के लिए</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">Silver</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Rank</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">Heroic</div>
+                    <div style="font-size:12px;color:#2ed573;">Rank</div>
+                </div>
             </div>
-            <a href="#" class="read-more">Read More →</a>
+            <div class="post-excerpt">
+                Ranked Matches में जीतना हर Free Fire प्लेयर का लक्ष्य होता है और इसके लिए सही कैरेक्टर चुनना बहुत जरूरी है। इस आर्टिकल में हम आपको Free Fire के टॉप 10 बेस्ट कैरेक्टर के बारे में बताएंगे जो Ranked Matches में आपको जीत दिला सकते हैं। हम हर कैरेक्टर की एबिलिटी, उनके स्ट्रॉन्ग और वीक पॉइंट्स के बारे में विस्तार से बताएंगे। साथ ही हम आपको बताएंगे कि कैसे आप सही कैरेक्टर चुनकर अपने गेमप्ले को बेहतर बना सकते हैं और अपने अकाउंट पर ज्यादा लाइक्स पा सकते हैं। सही कैरेक्टर और हमारी सर्विस के साथ आप Heroic रैंक तक पहुंच सकते हैं।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
+        </div>
+
+        <!-- ============================================================
+        BLOG POST 6
+        ============================================================ -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 1 सितंबर 2026</span>
+                <span class="post-category">Likes</span>
+            </div>
+            <h2><a href="#">Free Fire में 5K Likes पाने का आसान तरीका</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">0</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Likes</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">5,000</div>
+                    <div style="font-size:12px;color:#2ed573;">Likes</div>
+                </div>
+            </div>
+            <div class="post-excerpt">
+                5,000 Likes पाना अब पहले से कहीं ज्यादा आसान हो गया है। इस आर्टिकल में हम आपको बताएंगे कि कैसे आप बिना किसी परेशानी के 5,000 Likes पा सकते हैं। हमारी सर्विस 100% असली और ऑर्गेनिक Likes प्रदान करती है जो आपके अकाउंट को रियल ग्रोथ देती है। हम आपको स्टेप बाय स्टेप गाइड करेंगे कि कैसे आप अपने Free Fire प्रोफाइल पर 5,000 Likes ला सकते हैं और अपने गेमिंग करियर को नई ऊंचाइयों पर ले जा सकते हैं। 0 से 5K Likes का यह सफर अब बहुत आसान है।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
+        </div>
+
+        <!-- ============================================================
+        BLOG POST 7
+        ============================================================ -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 31 अगस्त 2026</span>
+                <span class="post-category">Tips</span>
+            </div>
+            <h2><a href="#">Free Fire में Followers बढ़ाने के 5 आसान तरीके</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">50</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Followers</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">1,000+</div>
+                    <div style="font-size:12px;color:#2ed573;">Followers</div>
+                </div>
+            </div>
+            <div class="post-excerpt">
+                Free Fire में Followers बढ़ाना हर गेमर की ड्रीम होती है। इस आर्टिकल में हम आपको 5 ऐसे आसान तरीके बताएंगे जिनसे आप अपने Free Fire अकाउंट पर Followers बढ़ा सकते हैं। हम आपको बताएंगे कि कैसे आप अपने प्रोफाइल को आकर्षक बना सकते हैं, कैसे आप दूसरों को अपनी तरफ अट्रैक्ट कर सकते हैं, और कैसे आप हमारी सर्विस का उपयोग करके तेजी से Followers बढ़ा सकते हैं। 50 से 1000+ Followers तक का यह सफर अब बहुत आसान है।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
+        </div>
+
+        <!-- ============================================================
+        BLOG POST 8
+        ============================================================ -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 30 अगस्त 2026</span>
+                <span class="post-category">Diamonds</span>
+            </h2>
+            <h2><a href="#">Free Fire में Free Diamonds कैसे पाएं? (2026)</a></h2>
+            <div class="post-excerpt">
+                Free Fire में Diamonds पाना हर किसी का सपना होता है। इस आर्टिकल में हम आपको बताएंगे कि कैसे आप Free Fire में बिना पैसे खर्च किए Diamonds पा सकते हैं। हम आपको सभी legit तरीकों के बारे में बताएंगे जिनसे आप Free Diamonds प्राप्त कर सकते हैं। साथ ही हम आपको बताएंगे कि कैसे आप अपने Diamonds का सही उपयोग करके अपने अकाउंट को बूस्ट कर सकते हैं और ज्यादा Likes पा सकते हैं। Free Diamonds पाने के बाद आप अपने प्रोफाइल को और भी शानदार बना सकते हैं।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
+        </div>
+
+        <!-- ============================================================
+        BLOG POST 9
+        ============================================================ -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 29 अगस्त 2026</span>
+                <span class="post-category">Booyah</span>
+            </div>
+            <h2><a href="#">Free Fire में हर Game में Booyah कैसे मारें?</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">0</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Booyah</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">10+</div>
+                    <div style="font-size:12px;color:#2ed573;">Booyah</div>
+                </div>
+            </div>
+            <div class="post-excerpt">
+                Free Fire में हर Game में Booyah मारना हर प्लेयर का सपना होता है। इस आर्टिकल में हम आपको बताएंगे कि कैसे आप Free Fire में अपनी गेमिंग स्किल्स को इम्प्रूव कर सकते हैं और हर Game में Booyah मार सकते हैं। हम आपको बताएंगे सही Landing Spot, Best Weapons, और Winning Strategies के बारे में। साथ ही हम आपको बताएंगे कि कैसे आप अपने Winning Streak को बनाए रख सकते हैं और अपने अकाउंट पर ज्यादा Likes पा सकते हैं। सही स्ट्रैटेजी और हमारी सर्विस के साथ आप हर Game में Booyah मार सकते हैं।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
+        </div>
+
+        <!-- ============================================================
+        BLOG POST 10
+        ============================================================ -->
+        <div class="blog-post">
+            <div class="post-meta">
+                <span class="post-date">📅 28 अगस्त 2026</span>
+                <span class="post-category">Success</span>
+            </div>
+            <h2><a href="#">Free Fire में 1K से 10K Likes तक का सफर</a></h2>
+            <div class="before-after">
+                <div class="ba-item">
+                    <div class="ba-label before">❌ पहले</div>
+                    <div class="ba-number before-num">1,000</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.2);">Likes</div>
+                </div>
+                <div class="ba-item" style="display:flex;align-items:center;justify-content:center;">
+                    <span class="ba-arrow">➜</span>
+                    <span style="font-size:20px;margin-left:4px;">🚀</span>
+                </div>
+                <div class="ba-item">
+                    <div class="ba-label after">✅ बाद में</div>
+                    <div class="ba-number after-num">10,000</div>
+                    <div style="font-size:12px;color:#2ed573;">Likes</div>
+                </div>
+            </div>
+            <div class="post-excerpt">
+                1,000 से 10,000 Likes तक का सफर कैसे तय करें? इस आर्टिकल में हम आपको बताएंगे कि कैसे आप अपने Free Fire अकाउंट को 10,000 Likes तक पहुंचा सकते हैं। हम आपको बताएंगे कि कैसे आप अपने प्रोफाइल को और भी आकर्षक बना सकते हैं, कैसे आप ज्यादा से ज्यादा लोगों तक पहुंच सकते हैं, और कैसे आप हमारी सर्विस का उपयोग करके इस लक्ष्य को हासिल कर सकते हैं। 1K से 10K Likes तक का यह सफर आपकी गेमिंग आइडेंटिटी को बदल सकता है। हमारी सर्विस के साथ यह सफर और भी आसान हो जाता है।
+            </div>
+            <a href="#" class="read-more">पूरा पढ़ें →</a>
+        </div>
+
+        <!-- ============================================================
+        SITEMAP SECTION
+        ============================================================ -->
+        <div class="sitemap-section">
+            <h3>📌 Sitemap.xml</h3>
+            <p style="color:rgba(255,255,255,0.3);font-size:13px;margin-bottom:10px;">इस sitemap को अपनी website के root folder में upload करें और Google Search Console में submit करें।</p>
+            <code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+
+  &lt;url&gt;
+    &lt;loc&gt;https://mistalonline.in/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-09-06&lt;/lastmod&gt;
+    &lt;changefreq&gt;daily&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+
+  &lt;url&gt;
+    &lt;loc&gt;https://mistalonline.in/mistolne.html&lt;/loc&gt;
+    &lt;lastmod&gt;2026-09-06&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;0.9&lt;/priority&gt;
+  &lt;/url&gt;
+
+  &lt;url&gt;
+    &lt;loc&gt;https://mistalonline.in/help.html&lt;/loc&gt;
+    &lt;lastmod&gt;2026-09-06&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.5&lt;/priority&gt;
+  &lt;/url&gt;
+
+  &lt;url&gt;
+    &lt;loc&gt;https://mistalonline.in/payment.html&lt;/loc&gt;
+    &lt;lastmod&gt;2026-09-06&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.8&lt;/priority&gt;
+  &lt;/url&gt;
+
+  &lt;url&gt;
+    &lt;loc&gt;https://mistalonline.in/index.html#reviews&lt;/loc&gt;
+    &lt;lastmod&gt;2026-09-06&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;0.6&lt;/priority&gt;
+  &lt;/url&gt;
+
+&lt;/urlset&gt;</code>
         </div>
 
         <div class="blog-footer">
