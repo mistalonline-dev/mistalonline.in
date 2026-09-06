@@ -1,8 +1,13 @@
+/* ============================================================
+   MISTALONLINE.IN - COMPLETE STYLES
+   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #0a0a0a;
@@ -11,6 +16,9 @@ body {
     min-height: 100vh;
 }
 
+/* ============================================================
+   VOICE INDICATOR
+   ============================================================ */
 .voice-indicator {
     position: fixed;
     bottom: 20px;
@@ -50,6 +58,9 @@ body {
     }
 }
 
+/* ============================================================
+   HEADER / NAVBAR
+   ============================================================ */
 .navbar {
     position: fixed;
     top: 0;
@@ -69,6 +80,7 @@ body {
     justify-content: space-between;
     height: 65px;
 }
+
 .logo {
     display: flex;
     align-items: center;
@@ -89,6 +101,7 @@ body {
     stroke: #f9d423;
     stroke-width: 2;
 }
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -116,6 +129,7 @@ body {
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
+
 .nav-menu {
     display: flex;
     align-items: center;
@@ -153,6 +167,9 @@ body {
     border: 1px solid rgba(249, 212, 35, 0.1);
 }
 
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
 .main-content {
     padding-top: 85px;
     max-width: 1200px;
@@ -161,6 +178,9 @@ body {
     padding-right: 20px;
 }
 
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
 .hero {
     text-align: center;
     padding: 30px 20px;
@@ -183,6 +203,7 @@ body {
     color: rgba(255, 255, 255, 0.4);
     font-size: 15px;
 }
+
 .order-counter {
     display: flex;
     justify-content: center;
@@ -203,7 +224,9 @@ body {
     stroke: currentColor;
 }
 
-/* FAKE ORDERS */
+/* ============================================================
+   FAKE ORDERS - FLOATING
+   ============================================================ */
 .fake-order-float {
     position: fixed;
     z-index: 99999;
@@ -261,6 +284,9 @@ body {
     }
 }
 
+/* ============================================================
+   ORDER SECTION
+   ============================================================ */
 .order-section {
     padding: 20px 0 40px;
 }
@@ -285,6 +311,9 @@ body {
     margin-bottom: 20px;
 }
 
+/* ============================================================
+   FORM ELEMENTS
+   ============================================================ */
 .form-group {
     margin-bottom: 14px;
 }
@@ -305,6 +334,7 @@ body {
     stroke: rgba(255, 215, 0, 0.4);
     stroke-width: 2;
 }
+
 .form-group input,
 .form-group select {
     width: 100%;
@@ -331,7 +361,9 @@ body {
     color: #fff;
 }
 
-/* 🔥 LIKES SELECT - DESIGNED */
+/* ============================================================
+   🔥 LIKES SELECT - CUSTOM DESIGN
+   ============================================================ */
 .likes-select-wrapper {
     position: relative;
     width: 100%;
@@ -374,6 +406,9 @@ body {
     pointer-events: none;
 }
 
+/* ============================================================
+   PRICE DISPLAY
+   ============================================================ */
 .price-display {
     display: flex;
     justify-content: space-between;
@@ -402,6 +437,9 @@ body {
     font-weight: 900;
 }
 
+/* ============================================================
+   NEXT BUTTON
+   ============================================================ */
 .btn-next {
     width: 100%;
     padding: 15px;
@@ -445,7 +483,9 @@ body {
     color: #ff4757;
 }
 
-/* PRICE LIST - NEXT BUTTON KE NICHE */
+/* ============================================================
+   🔥 PRICE LIST - NEXT BUTTON KE NICHE
+   ============================================================ */
 .package-section {
     margin-top: 20px;
     padding-top: 16px;
@@ -531,6 +571,9 @@ body {
     stroke-width: 2;
 }
 
+/* ============================================================
+   REVIEWS SECTION
+   ============================================================ */
 .reviews-section {
     padding: 30px 0 20px;
 }
@@ -550,6 +593,7 @@ body {
     stroke: #f9d423;
     stroke-width: 2;
 }
+
 .reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -627,6 +671,9 @@ body {
     }
 }
 
+/* ============================================================
+   HELP SECTION
+   ============================================================ */
 .help-section {
     padding: 30px 0 20px;
 }
@@ -656,6 +703,7 @@ body {
     font-size: 13px;
     margin: 4px 0 16px;
 }
+
 .help-links {
     display: flex;
     flex-wrap: wrap;
@@ -687,6 +735,9 @@ body {
     color: #fff;
 }
 
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .footer {
     background: rgba(10, 10, 10, 0.9);
     border-top: 1px solid rgba(255, 215, 0, 0.04);
@@ -721,6 +772,7 @@ body {
     color: rgba(255, 255, 255, 0.2);
     font-size: 12px;
 }
+
 .footer-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -746,6 +798,7 @@ body {
 .footer-col a:hover {
     color: #f9d423;
 }
+
 .footer-bottom {
     text-align: center;
     padding-top: 14px;
@@ -756,6 +809,9 @@ body {
     font-size: 11px;
 }
 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -795,6 +851,7 @@ body {
         display: none;
     }
 }
+
 @media (max-width: 480px) {
     .hero h1 {
         font-size: 20px;
