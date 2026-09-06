@@ -3,192 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>❓ Help - MistalOnline</title>
+    <title>🎮 MistalOnline - Free Fire Services</title>
     <link rel="stylesheet" href="style.css" />
-    <style>
-        .help-page {
-            padding-top: 85px;
-            max-width: 800px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 40px;
-        }
-        .help-page h1 {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-        .help-page h1 span {
-            background: linear-gradient(135deg, #f9d423, #ff4e50);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .help-page .help-sub {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .faq-section h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #f9d423;
-        }
-        .faq-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        .faq-item:hover {
-            border-color: rgba(255, 215, 0, 0.08);
-        }
-        .faq-question {
-            width: 100%;
-            padding: 14px 18px;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: left;
-            font-family: 'Segoe UI', sans-serif;
-            transition: 0.3s;
-        }
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        .faq-question .faq-arrow {
-            color: rgba(255, 255, 255, 0.3);
-            transition: 0.3s;
-            font-size: 14px;
-        }
-        .faq-question.active .faq-arrow {
-            transform: rotate(180deg);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            padding: 0 18px;
-        }
-        .faq-answer.open {
-            max-height: 500px;
-            padding: 0 18px 18px;
-        }
-        .faq-answer p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-            line-height: 1.8;
-            padding: 2px 0;
-        }
-        .faq-answer a {
-            color: #f9d423;
-            text-decoration: none;
-        }
-
-        .contact-section {
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 215, 0, 0.04);
-            border-radius: 16px;
-            text-align: center;
-        }
-        .contact-section h2 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        .contact-section p {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-        .contact-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.3s;
-            border: 1px solid transparent;
-        }
-        .contact-btn.telegram {
-            background: rgba(0, 136, 204, 0.08);
-            color: #0088cc;
-            border-color: rgba(0, 136, 204, 0.15);
-        }
-        .contact-btn.telegram:hover {
-            background: rgba(0, 136, 204, 0.15);
-            transform: translateY(-2px);
-        }
-        .contact-btn.instagram {
-            background: rgba(225, 48, 108, 0.08);
-            color: #e1306c;
-            border-color: rgba(225, 48, 108, 0.15);
-        }
-        .contact-btn.instagram:hover {
-            background: rgba(225, 48, 108, 0.15);
-            transform: translateY(-2px);
-        }
-        .contact-btn.email {
-            background: rgba(249, 212, 35, 0.08);
-            color: #f9d423;
-            border-color: rgba(249, 212, 35, 0.15);
-        }
-        .contact-btn.email:hover {
-            background: rgba(249, 212, 35, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .help-footer {
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 12px;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 480px) {
-            .help-page h1 {
-                font-size: 24px;
-            }
-            .faq-question {
-                font-size: 14px;
-                padding: 12px 14px;
-            }
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            .contact-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
 </head>
 <body>
+
+    <!-- VOICE INDICATOR -->
+    <div class="voice-indicator">
+        <span class="voice-dot" id="voiceDot"></span>
+        <span id="voiceStatus">Voice Active</span>
+    </div>
 
     <!-- HEADER -->
     <header class="navbar">
@@ -201,15 +25,15 @@
                 <span></span><span></span><span></span>
             </button>
             <nav class="nav-menu" id="navMenu">
-                <a href="index.html">
+                <a href="index.html" class="active">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
                     Home
                 </a>
-                <a href="index.html#reviews">
+                <a href="#reviews">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     Reviews
                 </a>
-                <a href="help.html" class="active help-btn">
+                <a href="help.html" class="help-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     Help
                 </a>
@@ -217,156 +41,211 @@
         </div>
     </header>
 
-    <!-- HELP CONTENT -->
-    <main class="help-page">
-        <h1>❓ Help <span>Center</span></h1>
-        <p class="help-sub">Find answers to your questions below</p>
+    <!-- MAIN -->
+    <main class="main-content" id="home">
 
-        <!-- FAQ Section -->
-        <div class="faq-section">
-            <h2>📌 Frequently Asked Questions</h2>
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Grow Your <span>Free Fire</span> Account</h1>
+            <p>Get instant likes at the best prices</p>
+            <div class="order-counter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>Total Orders: <strong id="totalOrders">12,847</strong></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                <span>Live: <strong id="liveUsers">47</strong></span>
+            </div>
+        </section>
 
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    <span>📦 How to place an order?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
-                <div class="faq-answer">
-                    <p>1. Enter your Free Fire UID</p>
-                    <p>2. Select number of likes (1K, 3K, 5K, 10K)</p>
-                    <p>3. Select your country</p>
-                    <p>4. Click "Next" to proceed to payment</p>
+        <!-- ORDER SECTION -->
+        <section class="order-section" id="orderSection">
+            <div class="order-container">
+
+                <h2>Place Your Order</h2>
+                <p class="order-sub">Enter your UID, select likes & country</p>
+
+                <form id="orderForm">
+                    <!-- UID -->
+                    <div class="form-group">
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            Free Fire UID
+                        </label>
+                        <input type="text" id="uid" placeholder="Enter your Free Fire UID" />
+                    </div>
+
+                    <!-- 🔥 LIKES SELECT - DESIGNED -->
+                    <div class="form-group">
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            Select Likes
+                        </label>
+                        <div class="likes-select-wrapper">
+                            <select id="likesSelect" class="likes-select">
+                                <option value="1" data-price="139">🔥 1,000 Likes - ₹139</option>
+                                <option value="3" data-price="399" selected>🔥 3,000 Likes - ₹399</option>
+                                <option value="5" data-price="649">🔥 5,000 Likes - ₹649</option>
+                                <option value="10" data-price="1199">🔥 10,000 Likes - ₹1,199</option>
+                            </select>
+                            <span class="select-arrow">▼</span>
+                        </div>
+                    </div>
+
+                    <!-- Country -->
+                    <div class="form-group">
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                            Country
+                        </label>
+                        <select id="country">
+                            <option value="">— Select Country —</option>
+                            <option value="India">India</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="USA">USA</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Display -->
+                    <div class="price-display">
+                        <span class="price-label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                            Amount
+                        </span>
+                        <span class="price-amount" id="priceAmount">₹399</span>
+                    </div>
+
+                    <!-- NEXT BUTTON -->
+                    <button type="button" class="btn-next" id="nextBtn">
+                        Next
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <div id="statusMsg">Select likes & country, then click Next</div>
+
+                    <!-- 🔥 PRICE LIST - NEXT BUTTON KE NICHE -->
+                    <div class="package-section">
+                        <div class="package-header">
+                            <span class="package-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </span>
+                            <h3>FREE FIRE LIKES PACKAGES</h3>
+                            <p>Daily 1K Likes Packages</p>
+                        </div>
+
+                        <div class="package-grid">
+                            <div class="package-item">
+                                <span class="pkg-likes"><span>1,000</span> Likes</span>
+                                <span class="pkg-price">₹139</span>
+                                <span class="pkg-days">📅 1 Day</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes"><span>3,000</span> Likes</span>
+                                <span class="pkg-price">₹399</span>
+                                <span class="pkg-days">📅 1 Day</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes"><span>5,000</span> Likes</span>
+                                <span class="pkg-price">₹649</span>
+                                <span class="pkg-days">📅 1 Day</span>
+                            </div>
+                            <div class="package-item">
+                                <span class="pkg-likes"><span>10,000</span> Likes</span>
+                                <span class="pkg-price">₹1,199</span>
+                                <span class="pkg-days">📅 1 Day</span>
+                            </div>
+                        </div>
+
+                        <div class="package-features">
+                            <span class="feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                                FAST DELIVERY
+                            </span>
+                            <span class="feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                FREE FIRE LIKES
+                            </span>
+                            <span class="feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                1K LIKES DAILY
+                            </span>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section class="reviews-section" id="reviews">
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Customer Reviews
+                <span style="font-size:14px;color:rgba(255,255,255,0.2);font-weight:400;">(200+ reviews)</span>
+            </h2>
+            <div class="reviews-grid" id="reviewsGrid"></div>
+        </section>
+
+        <!-- HELP -->
+        <section class="help-section" id="help">
+            <div class="help-container">
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Need Help?
+                </h2>
+                <p>Contact us for any queries or support</p>
+                <div class="help-links">
+                    <a href="help.html" class="help-btn-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 4.5L2.5 10.5L9.5 13.5L12.5 20.5L21.5 4.5Z"/><path d="M9.5 13.5L15.5 8.5"/></svg>
+                        Telegram
+                    </a>
+                    <a href="help.html" class="help-btn-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        Instagram
+                    </a>
+                    <a href="help.html" class="help-btn-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Email
+                    </a>
                 </div>
             </div>
+        </section>
 
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    <span>💰 How to pay for my order?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
-                <div class="faq-answer">
-                    <p>After clicking "Next", you will see a QR code on the payment page.</p>
-                    <p>1. Open PhonePe / Google Pay / Paytm</p>
-                    <p>2. Scan the QR code</p>
-                    <p>3. Enter the exact amount shown</p>
-                    <p>4. Complete the payment</p>
-                    <p>5. Click "Confirm Payment" on our page</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    <span>⏳ How long does delivery take?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
-                <div class="faq-answer">
-                    <p>⏱️ Delivery time depends on the package:</p>
-                    <p>• 1,000-10,000 Likes: 5-30 minutes</p>
-                    <p>• 15,000-30,000 Likes: 1-6 hours</p>
-                    <p>• 60,000-90,000 Likes: 6-24 hours</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    <span>🔒 Is my UID safe?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
-                <div class="faq-answer">
-                    <p>✅ Yes! Your UID is completely safe with us.</p>
-                    <p>We only use it to deliver your order.</p>
-                    <p>We do not store or share your UID with anyone.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    <span>🔄 What if I don't receive my order?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Contact us on Telegram or Instagram DM with your Order ID and UID.</p>
-                    <p>We will check and resolve the issue within 24 hours.</p>
-                    <p>Full refund if order is not delivered.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">
-                    <span>📱 How to contact support?</span>
-                    <span class="faq-arrow">▼</span>
-                </button>
-                <div class="faq-answer">
-                    <p>💬 Telegram: <a href="#">@MistalOnline</a></p>
-                    <p>📸 Instagram: <a href="#">@MistalOnline</a></p>
-                    <p>📧 Email: <a href="#">support@mistalonline.in</a></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="contact-section">
-            <h2>📞 Still Need Help?</h2>
-            <p>Contact us directly via any of these channels</p>
-            <div class="contact-links">
-                <a href="#" class="contact-btn telegram">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M21.5 4.5L2.5 10.5L9.5 13.5L12.5 20.5L21.5 4.5Z"/><path d="M9.5 13.5L15.5 8.5"/></svg>
-                    Telegram
-                </a>
-                <a href="#" class="contact-btn instagram">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    Instagram
-                </a>
-                <a href="#" class="contact-btn email">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Email
-                </a>
-            </div>
-        </div>
-
-        <div class="help-footer">
-            <p>&copy; 2026 MistalOnline.in. All rights reserved.</p>
-        </div>
     </main>
 
-    <script>
-        // Hamburger
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </span>
+                <span>Mistal<span>Online</span></span>
+                <p>Grow your social media presence with us</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="#reviews">Reviews</a>
+                    <a href="help.html">Help</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="help.html">Help Center</a>
+                    <a href="help.html">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MistalOnline.in. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navMenu.classList.toggle('open');
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('open');
-            }
-        });
-
-        // FAQ Toggle
-        function toggleFaq(button) {
-            const answer = button.nextElementSibling;
-            const isOpen = answer.classList.contains('open');
-
-            document.querySelectorAll('.faq-answer').forEach(el => {
-                if (el !== answer) {
-                    el.classList.remove('open');
-                    el.previousElementSibling.classList.remove('active');
-                }
-            });
-
-            if (isOpen) {
-                answer.classList.remove('open');
-                button.classList.remove('active');
-            } else {
-                answer.classList.add('open');
-                button.classList.add('active');
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
