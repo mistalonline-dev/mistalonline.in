@@ -4,11 +4,564 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>🎮 MistalOnline - Free Fire Services</title>
-    <link rel="stylesheet" href="style.css" />
     <style>
         /* ============================================================
-           CONFIRM PAGE STYLES
-           ============================================================ */
+                   COMPLETE STYLES
+                   ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            background-image: radial-gradient(ellipse at 30% 20%, #1a0a2e 0%, #0a0a0a 70%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .voice-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            border-radius: 30px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            max-width: 200px;
+        }
+        .voice-indicator .voice-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff4757;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+        .voice-indicator .voice-dot.speaking {
+            background: #2ed573;
+            animation: pulse-dot 0.8s infinite;
+        }
+        .voice-indicator #voiceStatus {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.3;
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.06);
+            padding: 0 20px;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 65px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+        .logo span {
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            stroke: #f9d423;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+            flex-shrink: 0;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: #ffffff;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        .nav-menu a svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .nav-menu a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .nav-menu a.active {
+            color: #f9d423;
+            background: rgba(249, 212, 35, 0.06);
+        }
+        .nav-menu a.help-btn {
+            background: rgba(249, 212, 35, 0.08);
+            color: #f9d423;
+            border: 1px solid rgba(249, 212, 35, 0.1);
+        }
+
+        .main-content {
+            padding-top: 85px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 15px;
+        }
+        .order-counter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 12px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+        .order-counter strong {
+            color: #f9d423;
+        }
+        .order-counter svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            flex-shrink: 0;
+        }
+
+        .fake-order-float {
+            position: fixed;
+            z-index: 99999;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(46, 213, 115, 0.15);
+            border-radius: 12px;
+            padding: 10px 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: floatOrder 8s ease forwards;
+            pointer-events: none;
+            max-width: 280px;
+            min-width: 200px;
+        }
+        .fake-order-float .order-uid {
+            color: #2ed573;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .fake-order-float .order-amount {
+            color: #f9d423;
+            font-weight: 700;
+        }
+        .fake-order-float .order-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+        }
+        .fake-order-float .order-badge {
+            display: inline-block;
+            padding: 1px 10px;
+            background: rgba(46, 213, 115, 0.08);
+            border-radius: 30px;
+            color: #2ed573;
+            font-size: 10px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        @keyframes floatOrder {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-40px) scale(0.9);
+            }
+        }
+
+        .order-section {
+            padding: 20px 0 40px;
+        }
+        .order-container {
+            max-width: 520px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.06);
+            border-radius: 20px;
+            padding: 30px 25px;
+        }
+        .order-container h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+        .order-sub {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group label svg {
+            width: 16px;
+            height: 16px;
+            stroke: rgba(255, 215, 0, 0.4);
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            outline: none;
+            transition: 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #f9d423;
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .form-group select option {
+            background: #1a0a2e;
+            color: #fff;
+        }
+
+        .likes-select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .likes-select {
+            width: 100%;
+            padding: 12px 16px;
+            padding-right: 44px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(255, 215, 0, 0.08);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .likes-select:hover {
+            border-color: rgba(249, 212, 35, 0.2);
+        }
+        .likes-select:focus {
+            border-color: #f9d423;
+            box-shadow: 0 0 0 3px rgba(249, 212, 35, 0.08);
+        }
+        .likes-select option {
+            background: #1a0a2e;
+            color: #ffffff;
+            padding: 10px;
+        }
+        .select-arrow {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        .price-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(249, 212, 35, 0.04);
+            border: 1px solid rgba(249, 212, 35, 0.06);
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+        .price-display .price-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .price-display .price-label svg {
+            width: 16px;
+            height: 16px;
+            stroke: rgba(255, 215, 0, 0.4);
+            flex-shrink: 0;
+        }
+        .price-display .price-amount {
+            color: #f9d423;
+            font-size: 22px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .btn-next {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #f9d423, #f7971e);
+            border: none;
+            border-radius: 12px;
+            color: #0a0a0a;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-next svg {
+            width: 20px;
+            height: 20px;
+            stroke: #0a0a0a;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(249, 212, 35, 0.2);
+        }
+
+        #statusMsg {
+            text-align: center;
+            margin-top: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            min-height: 25px;
+        }
+        #statusMsg.success {
+            color: #2ed573;
+        }
+        #statusMsg.error {
+            color: #ff4757;
+        }
+
+        .package-section {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 215, 0, 0.06);
+        }
+        .package-header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .package-header .package-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: #ff4757;
+            stroke-width: 2;
+        }
+        .package-header h3 {
+            font-size: 16px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .package-header p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+        }
+        .package-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .package-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            border-radius: 8px;
+            padding: 8px 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .package-item:hover {
+            border-color: rgba(255, 215, 0, 0.12);
+            transform: translateY(-2px);
+        }
+        .package-item .pkg-likes {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .package-item .pkg-likes span {
+            color: #f9d423;
+        }
+        .package-item .pkg-price {
+            font-size: 15px;
+            font-weight: 900;
+            color: #f9d423;
+            display: block;
+            margin: 2px 0;
+        }
+        .package-item .pkg-days {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .package-features {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .package-features .feature {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .package-features .feature svg {
+            width: 12px;
+            height: 12px;
+            stroke: #f9d423;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+                   CONFIRM PAGE STYLES
+                   ============================================================ */
         .confirm-page {
             display: none;
             animation: fadeSlide 0.4s ease;
@@ -23,7 +576,6 @@
         .order-form-page.hidden {
             display: none !important;
         }
-
         @keyframes fadeSlide {
             0% {
                 opacity: 0;
@@ -106,7 +658,6 @@
             height: 20px;
             stroke: currentColor;
         }
-
         .btn-edit {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06) !important;
@@ -116,7 +667,6 @@
             background: rgba(255, 255, 255, 0.08);
             color: #ffffff;
         }
-
         .btn-confirm-next {
             background: linear-gradient(135deg, #f9d423, #f7971e);
             color: #0a0a0a;
@@ -126,7 +676,294 @@
             box-shadow: 0 10px 40px rgba(249, 212, 35, 0.2);
         }
 
-        @media (max-width: 480px) {
+        .reviews-section {
+            padding: 30px 0 20px;
+        }
+        .reviews-section h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .reviews-section h2 svg {
+            width: 24px;
+            height: 24px;
+            stroke: #f9d423;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .reviews-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+        .reviews-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .reviews-grid::-webkit-scrollbar-thumb {
+            background: #f9d423;
+            border-radius: 10px;
+        }
+        .review-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            border-radius: 14px;
+            padding: 14px 16px;
+            transition: 0.3s;
+            animation: reviewFade 0.5s ease;
+        }
+        .review-card:hover {
+            border-color: rgba(255, 215, 0, 0.12);
+            transform: translateY(-2px);
+        }
+        .review-card .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .review-card .review-name {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        .review-card .review-stars {
+            color: #f9d423;
+            font-size: 13px;
+        }
+        .review-card .review-text {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+        .review-card .review-service {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 2px 10px;
+            background: rgba(249, 212, 35, 0.06);
+            border-radius: 30px;
+            color: #f9d423;
+            font-size: 11px;
+        }
+        .review-card .review-amount {
+            color: #2ed573;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+        @keyframes reviewFade {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .help-section {
+            padding: 30px 0 20px;
+        }
+        .help-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            border-radius: 20px;
+            padding: 30px 20px;
+        }
+        .help-container h2 {
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .help-container h2 svg {
+            width: 24px;
+            height: 24px;
+            stroke: #f9d423;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .help-container p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 13px;
+            margin: 4px 0 16px;
+        }
+        .help-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .help-btn-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .help-btn-link svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .help-btn-link:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+
+        .footer {
+            background: rgba(10, 10, 10, 0.9);
+            border-top: 1px solid rgba(255, 215, 0, 0.04);
+            padding: 30px 20px 16px;
+            margin-top: 30px;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-brand {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer-brand .logo-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: #f9d423;
+            stroke-width: 2;
+        }
+        .footer-brand span {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .footer-brand span span {
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .footer-col h4 {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .footer-col a {
+            display: block;
+            color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            font-size: 12px;
+            padding: 3px 0;
+            transition: 0.3s;
+        }
+        .footer-col a:hover {
+            color: #f9d423;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-menu {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 14px 20px;
+                gap: 4px;
+                display: none;
+                border-bottom: 1px solid rgba(255, 215, 0, 0.04);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .nav-menu a {
+                padding: 10px 14px;
+                width: 100%;
+                border-radius: 6px;
+            }
+            .hero h1 {
+                font-size: 24px;
+            }
+            .order-container {
+                padding: 20px 16px;
+            }
+            .package-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+            .package-item .pkg-likes {
+                font-size: 11px;
+            }
+            .package-item .pkg-price {
+                font-size: 13px;
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                max-height: 400px;
+            }
+            .price-display .price-amount {
+                font-size: 18px;
+            }
+            .voice-indicator {
+                bottom: 10px;
+                right: 10px;
+                padding: 5px 12px;
+                font-size: 10px;
+                max-width: 150px;
+            }
+            .fake-order-float {
+                display: none;
+            }
             .btn-group {
                 flex-direction: column;
             }
@@ -138,6 +975,61 @@
             }
             .confirm-details .amount-row .detail-value {
                 font-size: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 20px;
+            }
+            .order-container h2 {
+                font-size: 18px;
+            }
+            .order-container {
+                padding: 16px 12px;
+            }
+            .form-group input,
+            .form-group select {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            .likes-select {
+                font-size: 13px;
+                padding: 10px 12px;
+                padding-right: 36px;
+            }
+            .price-display .price-amount {
+                font-size: 16px;
+            }
+            .btn-next {
+                font-size: 13px;
+                padding: 12px;
+            }
+            .voice-indicator {
+                bottom: 8px;
+                right: 8px;
+                padding: 4px 10px;
+                font-size: 9px;
+                max-width: 120px;
+            }
+            .logo {
+                font-size: 17px;
+            }
+            .logo svg {
+                width: 22px;
+                height: 22px;
+            }
+            .reviews-section h2 {
+                font-size: 20px;
+            }
+            .review-card .review-text {
+                font-size: 12px;
+            }
+            .help-container h2 {
+                font-size: 18px;
+            }
+            .help-btn-link {
+                padding: 6px 14px;
+                font-size: 12px;
             }
         }
     </style>
@@ -451,7 +1343,459 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- ============================================================
+    COMPLETE SCRIPT - WORKING
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // VOICE ASSISTANT
+        // ============================================================
+        const voiceMessages = {
+            welcome: 'मिस्टल ऑनलाइन में आपका स्वागत है',
+            uid: 'कृपया अपना फ्री फायर यूजर आईडी दर्ज करें',
+            likes: 'कृपया लाइक्स चुनें',
+            country: 'कृपया अपना देश चुनें',
+            next: 'अगले चरण पर जाएं',
+            confirm: 'कृपया अपनी डिटेल्स चेक करें',
+            error: 'कृपया सभी फील्ड भरें'
+        };
+
+        let isVoiceSpeaking = false;
+        let selectedVoice = null;
+        let voiceSupported = false;
+
+        function checkVoiceSupport() {
+            voiceSupported = 'speechSynthesis' in window;
+            if (!voiceSupported) {
+                document.getElementById('voiceStatus').textContent = 'Voice Not Supported';
+            }
+            return voiceSupported;
+        }
+
+        function findHindiVoice() {
+            if (!voiceSupported) return null;
+            const voices = window.speechSynthesis.getVoices();
+            let hindiVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Google'));
+            if (!hindiVoice) hindiVoice = voices.find(v => v.lang === 'hi-IN');
+            if (!hindiVoice) hindiVoice = voices.find(v => v.lang.startsWith('hi'));
+            return hindiVoice || voices[0] || null;
+        }
+
+        function playVoice(type) {
+            if (!voiceSupported) return;
+            const message = voiceMessages[type];
+            if (!message) return;
+            if (isVoiceSpeaking) window.speechSynthesis.cancel();
+
+            const voices = window.speechSynthesis.getVoices();
+            if (voices.length === 0) {
+                window.speechSynthesis.onvoiceschanged = function() { playVoice(type); };
+                return;
+            }
+
+            if (!selectedVoice) selectedVoice = findHindiVoice();
+
+            const utterance = new SpeechSynthesisUtterance(message);
+            utterance.lang = 'hi-IN';
+            utterance.rate = 0.85;
+            utterance.pitch = 0.9;
+            utterance.volume = 1.0;
+            if (selectedVoice) utterance.voice = selectedVoice;
+
+            const dot = document.getElementById('voiceDot');
+            const status = document.getElementById('voiceStatus');
+
+            utterance.onstart = function() {
+                isVoiceSpeaking = true;
+                if (dot) dot.className = 'voice-dot speaking';
+                if (status) status.textContent = '🔊 ' + message;
+            };
+            utterance.onend = function() {
+                isVoiceSpeaking = false;
+                if (dot) dot.className = 'voice-dot';
+                if (status) status.textContent = 'Voice Active';
+            };
+            utterance.onerror = function() {
+                isVoiceSpeaking = false;
+                if (dot) dot.className = 'voice-dot';
+                if (status) status.textContent = 'Voice Active';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // ============================================================
+        // HAMBURGER MENU
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('open');
+            }
+        });
+
+        // ============================================================
+        // LIKES SELECTOR
+        // ============================================================
+        const likesSelect = document.getElementById('likesSelect');
+        const priceAmount = document.getElementById('priceAmount');
+
+        likesSelect.addEventListener('change', function() {
+            const price = this.options[this.selectedIndex].dataset.price;
+            priceAmount.textContent = '₹' + price;
+        });
+
+        // ============================================================
+        // FAKE ORDERS
+        // ============================================================
+        function createFakeOrder() {
+            const container = document.getElementById('fakeOrdersContainer');
+            if (!container) {
+                const newContainer = document.createElement('div');
+                newContainer.id = 'fakeOrdersContainer';
+                document.body.appendChild(newContainer);
+            }
+
+            const cont = document.getElementById('fakeOrdersContainer');
+            const uid = Math.floor(Math.random() * 9000000000) + 1000000000;
+            const qty = [1, 3, 5, 7, 10, 15][Math.floor(Math.random() * 6)];
+            const amount = qty * 139;
+
+            const order = document.createElement('div');
+            order.className = 'fake-order-float';
+            order.innerHTML = `
+                        <div class="order-text">🎯 <span class="order-uid">${uid}</span></div>
+                        <div class="order-text">Ordered <span class="order-amount">${qty}K Likes</span></div>
+                        <div class="order-text" style="font-size:12px;color:rgba(255,255,255,0.3);">₹${amount}</div>
+                        <span class="order-badge">✅ Order Placed</span>
+                    `;
+            cont.appendChild(order);
+
+            setTimeout(() => {
+                if (order.parentNode) order.remove();
+            }, 8000);
+        }
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        let totalOrders = 12847;
+        let liveUsers = 47;
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const uidInput = document.getElementById('uid');
+        const countrySelect = document.getElementById('country');
+        const statusMsg = document.getElementById('statusMsg');
+        const totalOrdersEl = document.getElementById('totalOrders');
+        const liveUsersEl = document.getElementById('liveUsers');
+        const reviewsGrid = document.getElementById('reviewsGrid');
+
+        // Confirm Page
+        const orderFormPage = document.getElementById('orderFormPage');
+        const confirmPage = document.getElementById('confirmPage');
+        const confirmUid = document.getElementById('confirmUid');
+        const confirmService = document.getElementById('confirmService');
+        const confirmCountry = document.getElementById('confirmCountry');
+        const confirmAmount = document.getElementById('confirmAmount');
+        const editBtn = document.getElementById('editBtn');
+        const confirmNextBtn = document.getElementById('confirmNextBtn');
+
+        // ============================================================
+        // FAKE REVIEWS
+        // ============================================================
+        const reviewNames = [
+            'Rahul Sharma', 'Priya Patel', 'Amit Kumar', 'Neha Singh', 'Vikram Raj',
+            'Sneha Reddy', 'Arjun Mehta', 'Kavya Nair', 'Rohan Verma', 'Pooja Jain',
+            'Ankit Gupta', 'Meera Iyer', 'Suresh Babu', 'Divya Menon', 'Gaurav Singh',
+            'Aditi Rao', 'Manish Shah', 'Swati Desai', 'Rajesh Khanna', 'Deepika Padukone',
+            'Ranveer Singh', 'Alia Bhatt', 'Shah Rukh Khan', 'Salman Khan', 'Akshay Kumar',
+            'Varun Dhawan', 'Samantha Ruth', 'Nayanthara', 'Vijay Deverakonda', 'Allu Arjun',
+            'Ram Charan', 'Jr NTR', 'Mahesh Babu', 'Pawan Kalyan', 'Naga Chaitanya',
+            'Sai Pallavi', 'Keerthy Suresh', 'Anushka Shetty', 'Rashmika Mandanna', 'Pooja Hegde',
+            'Kriti Sanon', 'Shraddha Kapoor', 'Katrina Kaif', 'Kareena Kapoor', 'Priyanka Chopra',
+            'Deepak Kumar', 'Sunil Sharma', 'Vikram Singh', 'Ravi Patel', 'Manoj Tiwari',
+            'Sachin Tendulkar', 'Virat Kohli', 'MS Dhoni', 'Rohit Sharma', 'KL Rahul'
+        ];
+
+        const reviewTexts = [
+            'Best service ever! Got my likes in 2 hours. Highly recommend!',
+            'Amazing service! 100% satisfied with the delivery.',
+            'Good service. Fast delivery and great support.',
+            'Very professional. Got exactly what I paid for.',
+            'Quick delivery and great support team!',
+            'Excellent service! Will order again for sure.',
+            'Nice experience. Smooth process from start to finish.',
+            'Perfect! Exactly as promised. No issues at all.',
+            'Great quality and fast delivery. Loved it!',
+            'Highly satisfied with the service. Keep it up!',
+            'Good value for money. Best price in the market.',
+            'Reliable and trustworthy service. 5 stars!',
+            'Best in the market! Super fast delivery.',
+            'Super fast delivery, loved the experience!',
+            'Professional team, great support throughout.',
+            '100% satisfied with the order. Will recommend.',
+            'Fastest delivery I have ever seen!',
+            'Quality is top notch. Very happy with the service.',
+            'Great service, will recommend to all my friends.',
+            'Nice platform for free fire likes. Very reliable.',
+            'वाह! बहुत बढ़िया सर्विस है। 5 स्टार!',
+            'सबसे अच्छी सर्विस! 2 घंटे में मिल गए।',
+            'शानदार सर्विस! बहुत अच्छा लगा।',
+            'काफी अच्छा काम करते हैं। भरोसा है।',
+            'नंबर 1 सर्विस! जबरदस्त काम करते हैं।',
+            'फास्ट डिलीवरी और बढ़िया सपोर्ट।',
+            '100% संतुष्ट हूं। बहुत अच्छा लगा।',
+            'बहुत ही प्रोफेशनल टीम है। शानदार।',
+            'दोस्तों को भी बताऊंगा। बहुत अच्छा।',
+            'बढ़िया क्वालिटी और फास्ट सर्विस।',
+            'Ek number! Best service ever in India.',
+            'Maza aa gaya. Super fast delivery. Thanks!',
+            'Best price and best quality. Highly recommended.',
+            'Trusted service. Will order again for sure.',
+            'Awesome! Got 10K likes instantly. Amazing!',
+            'Fast and reliable. Thanks for the great service.',
+            'Good experience. Keep up the good work.',
+            'Perfect service. No issues at all. 5 stars!',
+            'Love the service! Highly recommended to all.',
+            'Best service for Free Fire likes in India.',
+            'भाई ने पक्का किया! 1 घंटे में मिल गए।',
+            'जबरदस्त सर्विस है। सबको बताऊंगा।',
+            'मस्त माल मिलता है यहाँ। बहुत अच्छा।',
+            'फटाफट डिलीवरी। बहुत अच्छा लगा।',
+            'पैसा वसूल सर्विस है। शानदार।',
+            'Great support and fast delivery. Loved it!',
+            'Superb! Best service in India. 5 stars!',
+            '100% reliable. Go for it without any doubt.',
+            'Nice experience. Will order again for sure.',
+            'Fast and trustworthy service. Highly recommended.'
+        ];
+
+        const reviewServices = [
+            'Free Fire Likes', 'Free Fire Followers', 'Free Fire Diamond', 'Free Fire Booyah'
+        ];
+
+        function generateFakeReviews(count) {
+            const reviews = [];
+            const usedNames = new Set();
+            for (let i = 0; i < count; i++) {
+                let name;
+                do {
+                    name = reviewNames[Math.floor(Math.random() * reviewNames.length)];
+                } while (usedNames.has(name) && usedNames.size < reviewNames.length);
+                usedNames.add(name);
+
+                const text = reviewTexts[Math.floor(Math.random() * reviewTexts.length)];
+                const service = reviewServices[Math.floor(Math.random() * reviewServices.length)];
+                const stars = Math.random() > 0.8 ? '⭐' : (Math.random() > 0.5 ? '⭐⭐' : '⭐⭐⭐⭐⭐');
+                const amount = Math.floor(Math.random() * 2000) + 100;
+
+                reviews.push({
+                    name: name,
+                    stars: stars,
+                    text: text,
+                    service: service,
+                    amount: amount
+                });
+            }
+            return reviews;
+        }
+
+        const fakeReviews = generateFakeReviews(210);
+
+        // ============================================================
+        // VOICE ON FIELDS
+        // ============================================================
+        uidInput.addEventListener('focus', function() {
+            playVoice('uid');
+        });
+
+        likesSelect.addEventListener('focus', function() {
+            playVoice('likes');
+        });
+
+        countrySelect.addEventListener('focus', function() {
+            playVoice('country');
+        });
+
+        // ============================================================
+        // FAKE REVIEWS RENDER
+        // ============================================================
+        function renderReviews() {
+            if (!reviewsGrid) return;
+            reviewsGrid.innerHTML = fakeReviews.map(r => `
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="review-name">${r.name}</span>
+                                <span class="review-stars">${r.stars}</span>
+                            </div>
+                            <div class="review-text">${r.text} <span class="review-amount">(₹${r.amount})</span></div>
+                            <span class="review-service">${r.service}</span>
+                        </div>
+                    `).join('');
+        }
+
+        // ============================================================
+        // 🔥 GO TO CONFIRM PAGE - FIXED
+        // ============================================================
+        function goToConfirm() {
+            console.log('🔵 goToConfirm called!');
+
+            const uid = uidInput.value.trim();
+            const country = countrySelect.value;
+            const selectedOption = likesSelect.options[likesSelect.selectedIndex];
+            const qty = parseInt(selectedOption.value);
+            const amount = parseInt(selectedOption.dataset.price);
+            const serviceName = qty + 'K Free Fire Likes';
+
+            if (!uid) {
+                statusMsg.textContent = '⚠️ Please enter your Free Fire UID!';
+                statusMsg.className = 'error';
+                playVoice('error');
+                return;
+            }
+
+            if (!country) {
+                statusMsg.textContent = '⚠️ Please select your country!';
+                statusMsg.className = 'error';
+                playVoice('error');
+                return;
+            }
+
+            // Fill confirm details
+            confirmUid.textContent = uid;
+            confirmService.textContent = serviceName;
+            confirmCountry.textContent = country;
+            confirmAmount.textContent = '₹' + amount;
+
+            // Store temp data
+            window.tempOrder = {
+                uid: uid,
+                country: country,
+                service: serviceName,
+                amount: amount,
+                qty: qty
+            };
+
+            console.log('✅ Confirm Data:', window.tempOrder);
+
+            // 🔥 SWITCH PAGES - FIXED
+            orderFormPage.style.display = 'none';
+            confirmPage.style.display = 'block';
+            confirmPage.classList.add('show');
+
+            playVoice('confirm');
+
+            statusMsg.textContent = '✅ Please verify your details';
+            statusMsg.className = 'success';
+        }
+
+        // ============================================================
+        // GO BACK TO EDIT - FIXED
+        // ============================================================
+        function goBackToEdit() {
+            confirmPage.style.display = 'none';
+            confirmPage.classList.remove('show');
+            orderFormPage.style.display = 'block';
+            statusMsg.textContent = '💰 Edit your details';
+            statusMsg.className = '';
+        }
+
+        // ============================================================
+        // CONFIRM & GO TO PAYMENT - FIXED
+        // ============================================================
+        function goToPayment() {
+            const orderData = window.tempOrder;
+
+            if (!orderData) {
+                statusMsg.textContent = '⚠️ No order data found!';
+                statusMsg.className = 'error';
+                return;
+            }
+
+            const orderId = 'ORD' + Date.now().toString(36).toUpperCase();
+
+            const finalOrder = {
+                uid: orderData.uid,
+                country: orderData.country,
+                service: orderData.service,
+                amount: orderData.amount,
+                qty: orderData.qty,
+                orderId: orderId
+            };
+
+            localStorage.setItem('orderData', JSON.stringify(finalOrder));
+            playVoice('next');
+            window.location.href = 'payment.html';
+        }
+
+        // ============================================================
+        // EVENT LISTENERS
+        // ============================================================
+        document.getElementById('nextBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            goToConfirm();
+        });
+
+        editBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            goBackToEdit();
+        });
+
+        confirmNextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            goToPayment();
+        });
+
+        // ============================================================
+        // ON LOAD
+        // ============================================================
+        window.addEventListener('load', function() {
+            renderReviews();
+            checkVoiceSupport();
+
+            if (!document.getElementById('fakeOrdersContainer')) {
+                const container = document.createElement('div');
+                container.id = 'fakeOrdersContainer';
+                document.body.appendChild(container);
+            }
+
+            setTimeout(() => {
+                playVoice('welcome');
+            }, 1500);
+
+            if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
+            if (liveUsersEl) liveUsersEl.textContent = liveUsers;
+
+            setInterval(() => {
+                createFakeOrder();
+            }, 3000 + Math.random() * 2000);
+
+            setTimeout(createFakeOrder, 1000);
+            setTimeout(createFakeOrder, 2500);
+            setTimeout(createFakeOrder, 4000);
+
+            console.log('MistalOnline.in Ready!');
+            console.log('✅ Confirm Page Working!');
+        });
+
+        // ============================================================
+        // MAKE FUNCTIONS GLOBAL
+        // ============================================================
+        window.playVoice = playVoice;
+        window.goToConfirm = goToConfirm;
+        window.goBackToEdit = goBackToEdit;
+        window.goToPayment = goToPayment;
+    </script>
 
 </body>
 </html>
