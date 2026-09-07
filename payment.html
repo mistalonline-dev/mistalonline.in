@@ -107,7 +107,6 @@
             margin-top: 4px;
         }
 
-        /* INSTRUCTIONS - WITHOUT UPI ID */
         .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
@@ -155,7 +154,29 @@
             font-weight: 700;
         }
 
-        /* 🔥 QR CODE - NO UPI ID */
+        /* AMOUNT DISPLAY - BIG */
+        .amount-display-box {
+            text-align: center;
+            padding: 12px;
+            background: rgba(249, 212, 35, 0.04);
+            border: 1px solid rgba(249, 212, 35, 0.06);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .amount-display-box .amount-label {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .amount-display-box .amount-value {
+            color: #f9d423;
+            font-size: 32px;
+            font-weight: 900;
+            display: block;
+            margin-top: 2px;
+        }
+
         .qr-container {
             text-align: center;
             padding: 25px;
@@ -193,10 +214,6 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             display: block;
             margin: 0 auto;
-        }
-        /* 🔥 UPI ID HIDDEN - No display */
-        .upi-hidden {
-            display: none !important;
         }
 
         .btn-download {
@@ -489,6 +506,9 @@
             .instructions .inst-step {
                 font-size: 13px;
             }
+            .amount-display-box .amount-value {
+                font-size: 26px;
+            }
         }
     </style>
 </head>
@@ -510,19 +530,24 @@
                 <p>Scan QR Code & Pay</p>
             </div>
 
-            <!-- INSTRUCTIONS - No UPI ID -->
+            <!-- AMOUNT DISPLAY -->
+            <div class="amount-display-box">
+                <span class="amount-label">💰 Total Amount</span>
+                <span class="amount-value" id="displayAmount">₹0</span>
+            </div>
+
             <div class="instructions">
                 <div class="inst-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     Payment Instructions
                 </div>
                 <div class="inst-step">📱 QR Code को PhonePe / GPay / Paytm से <strong>Scan</strong> करें</div>
-                <div class="inst-step">💰 Exact Amount Pay करें</div>
+                <div class="inst-step">💰 <strong id="instAmount">₹0</strong> Pay करें</div>
                 <div class="inst-step">✅ Payment Complete होने के बाद <strong>"Submit Payment"</strong> Click करें</div>
                 <div class="inst-step">🎯 आपका Order Automatic Confirm हो जाएगा</div>
             </div>
 
-            <!-- 🔥 QR CODE - No UPI ID Display -->
+            <!-- QR CODE -->
             <div class="qr-container">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -531,7 +556,8 @@
                 <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
                      alt="QR Code" 
                      id="qrImage"
-                     style="width:220px;height:220px;border-radius:12px;background:#ffffff;padding:10px;object-fit:contain;box-shadow:0 8px 30px rgba(0,0,0,0.3);display:block;margin:0 auto;" />
+                     style="width:220px;height:220px;border-radius:12px;background:#ffffff;padding:10px;object-fit:contain;box-shadow:0 8px 30px rgba(0,0,0,0.3);display:block;margin:0 auto;" 
+                     onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block';" />
                 <div id="qrFallback" style="display:none;padding:20px;color:rgba(255,255,255,0.3);">
                     <span style="font-size:40px;display:block;">📱</span>
                     <span style="font-size:14px;">QR Code not loaded. Please refresh.</span>
@@ -581,7 +607,7 @@
 
     <script>
         // ============================================================
-        // PAYMENT PAGE - UPI ID HIDDEN
+        // PAYMENT PAGE - FINAL
         // ============================================================
 
         const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
@@ -599,17 +625,22 @@
         };
 
         // ============================================================
-        // VOICE ASSISTANT
+        // DISPLAY AMOUNT
+        // ============================================================
+        document.getElementById('displayAmount').textContent = '₹' + currentOrder.amount;
+        document.getElementById('instAmount').textContent = '₹' + currentOrder.amount;
+
+        // ============================================================
+        // 🔥 VOICE ASSISTANT - WITH AMOUNT VOICE
         // ============================================================
         function playVoice(type) {
             if (!('speechSynthesis' in window)) return;
 
             const messages = {
                 welcome: 'कृपया QR Code Scan करें और Payment करें',
+                amount: 'आपको ₹' + currentOrder.amount + ' का Payment करना है',
                 submit: 'पेमेंट सबमिट हो रहा है',
-                success: 'हेडशॉट! आपका ऑर्डर सफलतापूर्वक पूरा हो गया है',
-                cancel: 'आपका ऑर्डर कैंसल हो गया है',
-                error: 'कृपया सभी फील्ड भरें'
+                success: 'हेडशॉट! आपका ऑर्डर सफलतापूर्वक पूरा हो गया है'
             };
 
             const msg = messages[type];
@@ -811,21 +842,21 @@
         });
 
         // ============================================================
-        // ON LOAD
+        // 🔥 ON LOAD - WELCOME + AMOUNT VOICE
         // ============================================================
         setTimeout(() => {
             playVoice('welcome');
-        }, 1000);
+            setTimeout(() => {
+                playVoice('amount');
+            }, 1800);
+        }, 800);
 
-        console.log('💳 Payment Page Ready - UPI ID Hidden');
+        console.log('💳 Payment Page Ready');
         console.log('📦 Order:', currentOrder);
+        console.log('💰 Amount Voice: आपको ₹' + currentOrder.amount + ' का Payment करना है');
         
         // QR Image Check
         const qrImg = document.getElementById('qrImage');
-        qrImg.onerror = function() {
-            this.style.display = 'none';
-            document.getElementById('qrFallback').style.display = 'block';
-        };
         qrImg.onload = function() {
             document.getElementById('qrFallback').style.display = 'none';
             this.style.display = 'block';
