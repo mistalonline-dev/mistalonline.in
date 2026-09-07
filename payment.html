@@ -2,7 +2,7 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>💳 Payment - MistalOnline</title>
     <style>
         * {
@@ -10,32 +10,43 @@
             padding: 0;
             box-sizing: border-box;
         }
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a0a;
             background-image: radial-gradient(ellipse at 30% 20%, #1a0a2e 0%, #0a0a0a 70%);
             color: #ffffff;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-        }
-
-        .payment-container {
-            max-width: 480px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 215, 0, 0.10);
-            border-radius: 24px;
-            padding: 35px 30px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-            transition: 0.4s ease;
-            position: relative;
+            padding: 10px;
+            height: 100vh;
             overflow: hidden;
         }
 
+        .payment-container {
+            max-width: 540px;
+            width: 100%;
+            height: 100vh;
+            max-height: 780px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 215, 0, 0.10);
+            border-radius: 28px;
+            padding: 22px 26px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 🔥 SUCCESS MODE GLOW */
         .payment-container.success-mode {
             border-color: rgba(46, 213, 115, 0.3);
             box-shadow: 0 0 60px rgba(46, 213, 115, 0.1), 0 25px 60px rgba(0, 0, 0, 0.5);
@@ -48,19 +59,18 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle at center, rgba(46, 213, 115, 0.05), transparent 60%);
-            animation: glowPulse 2s ease-in-out infinite;
+            animation: glowPulse 3s ease-in-out infinite;
             pointer-events: none;
         }
-
         @keyframes glowPulse {
             0%,
             100% {
-                opacity: 0.5;
+                opacity: 0.3;
                 transform: scale(1);
             }
             50% {
-                opacity: 1;
-                transform: scale(1.1);
+                opacity: 0.8;
+                transform: scale(1.05);
             }
         }
 
@@ -68,32 +78,44 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.3);
             text-decoration: none;
-            font-size: 13px;
-            margin-bottom: 15px;
+            font-size: 12px;
+            margin-bottom: 4px;
             transition: 0.3s;
-            position: relative;
-            z-index: 1;
+            flex-shrink: 0;
+            z-index: 2;
         }
         .back-link:hover {
             color: #f9d423;
         }
         .back-link svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             stroke: currentColor;
+        }
+
+        /* ============================================================ */
+        /* SCREEN 1 - PAYMENT */
+        /* ============================================================ */
+        .screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            flex: 1;
+        }
+        .screen.active {
+            display: flex;
         }
 
         .payment-header {
             text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
         .payment-header h2 {
-            font-size: 26px;
-            font-weight: 800;
+            font-size: 16px;
+            font-weight: 700;
             color: #ffffff;
         }
         .payment-header h2 span {
@@ -102,72 +124,72 @@
             -webkit-text-fill-color: transparent;
         }
         .payment-header p {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 14px;
-            margin-top: 4px;
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 10px;
+            margin-top: 0;
         }
 
         .amount-display-box {
             text-align: center;
-            padding: 12px;
+            padding: 5px 12px;
             background: rgba(249, 212, 35, 0.04);
             border: 1px solid rgba(249, 212, 35, 0.06);
-            border-radius: 12px;
-            margin-bottom: 16px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            flex-shrink: 0;
         }
         .amount-display-box .amount-label {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 12px;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .amount-display-box .amount-value {
             color: #f9d423;
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 900;
             display: block;
-            margin-top: 2px;
+            margin-top: 0;
         }
 
         .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
-            border-radius: 12px;
-            padding: 16px 18px;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            border-radius: 10px;
+            padding: 6px 14px;
+            margin-bottom: 6px;
+            flex-shrink: 0;
         }
         .instructions .inst-title {
             color: #2ed573;
             font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 8px;
+            font-size: 11px;
+            margin-bottom: 2px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .instructions .inst-title svg {
-            width: 20px;
-            height: 20px;
+            width: 14px;
+            height: 14px;
             stroke: #2ed573;
         }
         .instructions .inst-step {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 10px;
             font-weight: 500;
-            padding: 4px 0;
-            padding-left: 28px;
+            padding: 1px 0;
+            padding-left: 18px;
             position: relative;
-            line-height: 1.6;
+            line-height: 1.4;
         }
         .instructions .inst-step::before {
             content: '';
             position: absolute;
             left: 4px;
-            top: 12px;
-            width: 8px;
-            height: 8px;
+            top: 5px;
+            width: 5px;
+            height: 5px;
             background: #f9d423;
             border-radius: 50%;
         }
@@ -176,111 +198,96 @@
             font-weight: 700;
         }
 
-        /* 🔥 QR CODE - SIRF QR */
+        /* 🔥 QR CODE - BADA */
         .qr-container {
             text-align: center;
-            padding: 25px;
+            padding: 6px;
             background: rgba(255, 255, 255, 0.02);
             border: 2px solid rgba(255, 215, 0, 0.06);
-            border-radius: 16px;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 0;
         }
         .qr-container .qr-label {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 13px;
-            margin-bottom: 12px;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 10px;
+            margin-bottom: 2px;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
         }
         .qr-container .qr-label svg {
-            width: 22px;
-            height: 22px;
-            stroke: rgba(255, 255, 255, 0.3);
+            width: 14px;
+            height: 14px;
+            stroke: rgba(255, 255, 255, 0.12);
         }
-
-        /* 🔥 QR CODE IMAGE - DIRECT HTML */
-        .qr-container .qr-image-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 10px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            width: 220px;
-            height: 220px;
-            margin: 0 auto;
-        }
-        .qr-container .qr-image-wrapper img {
+        .qr-container iframe {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .btn-download {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        .btn-download svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-        }
-        .btn-download:hover {
-            background: rgba(255, 255, 255, 0.06);
-            color: #ffffff;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #2ed573, #26de81);
+            max-width: 340px;
+            height: 340px;
             border: none;
-            border-radius: 14px;
-            color: #0a0a0a;
-            font-size: 16px;
-            font-weight: 900;
+            border-radius: 12px;
+            background: transparent;
+            display: block;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+            margin-bottom: 4px;
+        }
+        .btn-row .btn-half {
+            flex: 1;
+            padding: 12px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            position: relative;
-            z-index: 1;
+            gap: 6px;
+            border: none;
+            letter-spacing: 0.5px;
+        }
+        .btn-row .btn-half svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2;
+        }
+
+        .btn-download {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .btn-download:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2ed573, #26de81);
+            color: #0a0a0a;
         }
         .btn-submit svg {
-            width: 22px;
-            height: 22px;
             stroke: #0a0a0a;
-            stroke-width: 2.5;
         }
         .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 50px rgba(46, 213, 115, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(46, 213, 115, 0.25);
         }
         .btn-submit:disabled {
             opacity: 0.5;
@@ -288,15 +295,14 @@
             transform: none !important;
         }
 
-        .btn-back {
+        .btn-back-bottom {
             width: 100%;
-            margin-top: 10px;
-            padding: 14px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
@@ -305,28 +311,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            position: relative;
-            z-index: 1;
+            gap: 6px;
+            flex-shrink: 0;
         }
-        .btn-back svg {
-            width: 18px;
-            height: 18px;
+        .btn-back-bottom svg {
+            width: 14px;
+            height: 14px;
             stroke: currentColor;
         }
-        .btn-back:hover {
+        .btn-back-bottom:hover {
             background: rgba(255, 255, 255, 0.06);
             color: #ffffff;
         }
 
         #statusMsg {
             text-align: center;
-            margin-top: 14px;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 13px;
-            min-height: 30px;
-            position: relative;
-            z-index: 1;
+            margin-top: 4px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            min-height: 16px;
+            flex-shrink: 0;
         }
         #statusMsg.success {
             color: #2ed573;
@@ -335,187 +339,234 @@
             color: #ff4757;
         }
 
-        /* SUCCESS SCREEN */
-        .result-container {
-            display: none;
-            text-align: center;
-            padding: 20px 10px;
-            position: relative;
-            z-index: 2;
-            animation: resultFadeIn 0.6s ease;
-        }
-        .result-container.show {
-            display: block;
-        }
-
-        @keyframes resultFadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.02);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .result-container .result-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #2ed573, #26de81);
+        /* ============================================================ */
+        /* 🔥 SCREEN 2 - ORDER SUCCESS */
+        /* ============================================================ */
+        .success-screen {
+            flex: 1;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-            animation: circlePop 0.6s ease;
-            box-shadow: 0 0 60px rgba(46, 213, 115, 0.3);
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        @keyframes circlePop {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .result-container .result-circle svg {
-            width: 50px;
-            height: 50px;
-            stroke: #ffffff;
-            stroke-width: 2.5;
-            animation: tickBounce 0.5s ease 0.3s both;
-        }
-
-        @keyframes tickBounce {
-            0% {
-                transform: scale(0);
-            }
-            60% {
-                transform: scale(1.3);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .result-container .result-title {
-            font-size: 32px;
-            font-weight: 900;
-            color: #2ed573;
-            margin-top: 4px;
-            letter-spacing: 1px;
-            animation: fadeUp 0.5s ease 0.2s both;
-        }
-
-        .result-container .result-sub {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 16px;
-            margin-top: 4px;
-            animation: fadeUp 0.5s ease 0.3s both;
-        }
-
-        .result-container .result-details {
-            margin-top: 20px;
-            padding: 16px 24px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 215, 0, 0.04);
-            border-radius: 12px;
+        .success-icon {
             text-align: center;
-            animation: fadeUp 0.5s ease 0.4s both;
+            font-size: 56px;
+            margin-bottom: 2px;
+            flex-shrink: 0;
         }
-        .result-container .result-details p {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 15px;
-            padding: 6px 0;
-            font-weight: 500;
-        }
-        .result-container .result-details p span {
-            color: #ffffff;
-            font-weight: 700;
-        }
-        .result-container .result-details p .gold {
-            color: #f9d423;
-            font-weight: 700;
+        .success-icon .check {
+            display: inline-block;
+            background: rgba(46, 213, 115, 0.1);
+            padding: 10px 18px;
+            border-radius: 50%;
+            border: 2px solid rgba(46, 213, 115, 0.2);
         }
 
-        .result-container .btn-home {
-            margin-top: 18px;
-            padding: 14px 40px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1.5px solid rgba(255, 255, 255, 0.08);
+        .order-header {
+            text-align: center;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+        .order-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #2ed573;
+        }
+        .order-header p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .order-details-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
+            padding: 12px 16px;
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .order-details-box::-webkit-scrollbar {
+            width: 3px;
+        }
+        .order-details-box::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .detail-value {
+            color: #ffffff;
+            font-size: 12px;
             font-weight: 600;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-all;
+        }
+        .detail-value.amount {
+            color: #f9d423;
+            font-size: 16px;
+            font-weight: 900;
+        }
+        .detail-value.status {
+            color: #2ed573;
+        }
+
+        .btn-row-success {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .btn-row-success .btn-success {
+            flex: 1;
+            padding: 12px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            letter-spacing: 0.5px;
             text-decoration: none;
-            display: inline-block;
-            animation: fadeUp 0.5s ease 0.5s both;
         }
-        .result-container .btn-home:hover {
+        .btn-row-success .btn-success svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2;
+        }
+
+        .btn-download-order {
+            background: linear-gradient(135deg, #f9d423, #f7971e);
+            color: #0a0a0a;
+        }
+        .btn-download-order svg {
+            stroke: #0a0a0a;
+        }
+        .btn-download-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(249, 212, 35, 0.2);
+        }
+
+        .btn-home {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .btn-home:hover {
             background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-        }
-
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .payment-content.hidden {
-            display: none;
-        }
-        .back-link.hidden {
-            display: none;
+            color: #ffffff;
         }
 
         @media (max-width: 480px) {
             .payment-container {
-                padding: 25px 18px;
+                padding: 14px 16px;
+                max-height: 680px;
+                border-radius: 20px;
             }
-            .qr-container .qr-image-wrapper {
-                width: 170px;
-                height: 170px;
-            }
-            .result-container .result-title {
-                font-size: 24px;
-            }
-            .result-container .result-circle {
-                width: 80px;
-                height: 80px;
-            }
-            .result-container .result-circle svg {
-                width: 40px;
-                height: 40px;
+            .qr-container iframe {
+                max-width: 290px;
+                height: 290px;
             }
             .payment-header h2 {
-                font-size: 22px;
-            }
-            .instructions .inst-step {
-                font-size: 13px;
+                font-size: 14px;
             }
             .amount-display-box .amount-value {
-                font-size: 26px;
+                font-size: 20px;
+            }
+            .order-header h2 {
+                font-size: 18px;
+            }
+            .success-icon {
+                font-size: 46px;
+            }
+        }
+        @media (max-height: 600px) {
+            .payment-container {
+                padding: 10px 12px;
+                max-height: 580px;
+            }
+            .qr-container iframe {
+                max-width: 230px;
+                height: 230px;
+            }
+            .qr-container {
+                padding: 4px;
+            }
+            .instructions {
+                padding: 4px 10px;
+            }
+            .instructions .inst-step {
+                font-size: 9px;
+                padding: 1px 0 1px 16px;
+            }
+            .instructions .inst-step::before {
+                top: 4px;
+                width: 4px;
+                height: 4px;
+            }
+            .amount-display-box {
+                padding: 3px 8px;
+                margin-bottom: 4px;
+            }
+            .amount-display-box .amount-value {
+                font-size: 17px;
+            }
+            .btn-row .btn-half {
+                font-size: 9px;
+                padding: 6px 4px;
+            }
+            .payment-header h2 {
+                font-size: 13px;
+            }
+            .order-details-box {
+                padding: 8px 12px;
+            }
+            .detail-row {
+                padding: 4px 0;
+            }
+            .detail-label {
+                font-size: 10px;
+            }
+            .detail-value {
+                font-size: 11px;
+            }
+            .detail-value.amount {
+                font-size: 14px;
+            }
+            .order-header h2 {
+                font-size: 16px;
+            }
+            .success-icon {
+                font-size: 38px;
+            }
+            .success-icon .check {
+                padding: 6px 12px;
+            }
+            .btn-row-success .btn-success {
+                font-size: 9px;
+                padding: 8px 6px;
             }
         }
     </style>
@@ -524,21 +575,21 @@
 
     <div class="payment-container" id="paymentContainer">
 
-        <!-- Back Link -->
-        <a href="index.html" class="back-link" id="backLink">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-            Back to Home
-        </a>
+        <!-- ========================================================== -->
+        <!-- SCREEN 1: PAYMENT -->
+        <!-- ========================================================== -->
+        <div class="screen active" id="screenPayment">
 
-        <!-- PAYMENT CONTENT -->
-        <div class="payment-content" id="paymentContent">
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Back
+            </a>
 
             <div class="payment-header">
-                <h2>💳 Complete <span>Payment</span></h2>
-                <p>Scan QR Code & Pay</p>
+                <h2>💳 <span>Payment</span></h2>
+                <p>Scan QR & Pay</p>
             </div>
 
-            <!-- AMOUNT DISPLAY -->
             <div class="amount-display-box">
                 <span class="amount-label">💰 Total Amount</span>
                 <span class="amount-value" id="displayAmount">₹0</span>
@@ -551,77 +602,84 @@
                 </div>
                 <div class="inst-step">📱 QR Code को PhonePe / GPay / Paytm से <strong>Scan</strong> करें</div>
                 <div class="inst-step">💰 <strong id="instAmount">₹0</strong> Pay करें</div>
-                <div class="inst-step">✅ Payment Complete होने के बाद <strong>"Submit Payment"</strong> Click करें</div>
+                <div class="inst-step">✅ Payment Complete होने के बाद <strong>"Submit"</strong> Click करें</div>
                 <div class="inst-step">🎯 आपका Order Automatic Confirm हो जाएगा</div>
             </div>
 
-            <!-- 🔥 QR CODE - HTML IMAGE -->
             <div class="qr-container">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
                     Scan to Pay
                 </span>
-                <div class="qr-image-wrapper">
-                    <img src="image.html" 
-                         alt="QR Code" 
-                         id="qrImage"
-                         onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block';" />
-                    <div id="qrFallback" style="display:none;padding:20px;color:rgba(255,255,255,0.3);">
-                        <span style="font-size:40px;display:block;">📱</span>
-                        <span style="font-size:14px;">QR Code not loaded. Please refresh.</span>
-                    </div>
-                </div>
+                <iframe src="image.html" title="QR Code" id="qrIframe"></iframe>
             </div>
 
-            <!-- DOWNLOAD BUTTON -->
-            <button class="btn-download" id="downloadBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download QR Code
-            </button>
+            <div class="btn-row">
+                <button class="btn-half btn-download" id="downloadBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    QR
+                </button>
+                <button class="btn-half btn-submit" id="submitBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Submit
+                </button>
+            </div>
 
-            <!-- SUBMIT BUTTON -->
-            <button class="btn-submit" id="submitBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                Submit Payment
-            </button>
-
-            <a href="index.html" class="btn-back">
+            <a href="index.html" class="btn-back-bottom">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
                 Back
             </a>
 
             <div id="statusMsg">Scan QR & Pay, then click Submit</div>
-
         </div>
 
-        <!-- SUCCESS SCREEN -->
-        <div class="result-container" id="resultContainer">
-            <div class="result-circle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                </svg>
+        <!-- ========================================================== -->
+        <!-- SCREEN 2: ORDER SUCCESS (next screen) -->
+        <!-- ========================================================== -->
+        <div class="screen" id="screenSuccess">
+
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Back
+            </a>
+
+            <div class="success-screen">
+                <div class="success-icon">
+                    <span class="check">✅</span>
+                </div>
+
+                <div class="order-header">
+                    <h2>🎯 Order Successfully!</h2>
+                    <p>आपका ऑर्डर सफलतापूर्वक पूरा हो गया है</p>
+                </div>
+
+                <div class="order-details-box" id="orderDetailsBox">
+                    <!-- Filled by JavaScript -->
+                </div>
+
+                <div class="btn-row-success">
+                    <button class="btn-success btn-download-order" id="orderDownloadBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download Order
+                    </button>
+                    <a href="index.html" class="btn-success btn-home">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        Home
+                    </a>
+                </div>
             </div>
-            <div class="result-title">🎯 Order Done!</div>
-            <div class="result-sub">🎉 Your order has been confirmed successfully</div>
-            <div class="result-details">
-                <p>📦 Order ID: <span class="gold" id="resultOrderId">—</span></p>
-                <p>🎯 UID: <span id="resultUid">—</span></p>
-                <p>🔥 Service: <span id="resultService">—</span></p>
-                <p>💰 Amount: <span class="gold" id="resultAmount">₹0</span></p>
-            </div>
-            <a href="index.html" class="btn-home">🏠 Go to Home</a>
+
         </div>
 
     </div>
 
     <script>
         // ============================================================
-        // PAYMENT PAGE - FINAL
+        // PAYMENT PAGE SCRIPT
         // ============================================================
 
         const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
 
-        // Get order data from localStorage
         const orderData = JSON.parse(localStorage.getItem('orderData'));
 
         let currentOrder = {
@@ -633,14 +691,12 @@
             confirmed: false
         };
 
-        // ============================================================
-        // DISPLAY AMOUNT
-        // ============================================================
+        // Display Amount
         document.getElementById('displayAmount').textContent = '₹' + currentOrder.amount;
         document.getElementById('instAmount').textContent = '₹' + currentOrder.amount;
 
         // ============================================================
-        // 🔥 VOICE ASSISTANT - WITH AMOUNT
+        // VOICE
         // ============================================================
         function playVoice(type) {
             if (!('speechSynthesis' in window)) return;
@@ -662,8 +718,7 @@
             utterance.volume = 1.0;
 
             const voices = window.speechSynthesis.getVoices();
-            const hindiVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Google')) ||
-                voices.find(v => v.lang === 'hi-IN') ||
+            const hindiVoice = voices.find(v => v.lang === 'hi-IN') ||
                 voices.find(v => v.lang.startsWith('hi'));
             if (hindiVoice) utterance.voice = hindiVoice;
 
@@ -671,134 +726,143 @@
         }
 
         // ============================================================
-        // DOM REFS
-        // ============================================================
-        const paymentContainer = document.getElementById('paymentContainer');
-        const paymentContent = document.getElementById('paymentContent');
-        const backLink = document.getElementById('backLink');
-        const submitBtn = document.getElementById('submitBtn');
-        const statusMsg = document.getElementById('statusMsg');
-        const resultContainer = document.getElementById('resultContainer');
-
-        // ============================================================
-        // DOWNLOAD QR CODE
+        // DOWNLOAD QR
         // ============================================================
         document.getElementById('downloadBtn').addEventListener('click', function() {
-            const img = document.getElementById('qrImage');
-            
-            if (img.src && img.src !== '' && img.complete && img.naturalHeight > 0) {
-                const link = document.createElement('a');
-                link.download = 'image.html';
-                link.href = img.src;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                statusMsg.textContent = '✅ QR Code downloaded successfully!';
-                statusMsg.className = 'success';
-                setTimeout(() => {
-                    statusMsg.textContent = 'Scan QR & Pay, then click Submit';
-                    statusMsg.className = '';
-                }, 3000);
-                return;
-            }
-
             try {
-                const canvas = document.createElement('canvas');
-                canvas.width = 300;
-                canvas.height = 300;
-                const ctx = canvas.getContext('2d');
-                
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, 300, 300);
-                ctx.fillStyle = '#000000';
-                
-                const markerSize = 30;
-                const markerPositions = [[5, 5], [5, 265], [265, 5]];
-                
-                markerPositions.forEach(([x, y]) => {
-                    ctx.fillRect(x, y, markerSize, markerSize);
-                    ctx.fillStyle = '#ffffff';
-                    ctx.fillRect(x + 4, y + 4, markerSize - 8, markerSize - 8);
-                    ctx.fillStyle = '#000000';
-                    ctx.fillRect(x + 10, y + 10, markerSize - 20, markerSize - 20);
-                    ctx.fillStyle = '#000000';
-                });
-                
-                for (let i = 0; i < 20; i++) {
-                    for (let j = 0; j < 20; j++) {
-                        const x = 45 + i * 12;
-                        const y = 45 + j * 12;
-                        if ((i < 4 && j < 4) || (i < 4 && j > 15) || (i > 15 && j < 4)) continue;
-                        if (Math.random() > 0.5) {
-                            ctx.fillRect(x, y, 8, 8);
-                        }
-                    }
+                const iframe = document.getElementById('qrIframe');
+                const imgSrc = iframe?.contentDocument?.querySelector('img')?.src;
+
+                if (imgSrc) {
+                    const link = document.createElement('a');
+                    link.download = 'QR_Code_MistalOnline.png';
+                    link.href = imgSrc;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    document.getElementById('statusMsg').textContent = '✅ QR Code downloaded!';
+                    document.getElementById('statusMsg').className = 'success';
+                    setTimeout(() => {
+                        document.getElementById('statusMsg').textContent = 'Scan QR & Pay, then click Submit';
+                        document.getElementById('statusMsg').className = '';
+                    }, 3000);
+                    return;
                 }
-                
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(130, 130, 40, 40);
-                ctx.fillStyle = '#000000';
-                ctx.font = '20px Arial';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText('📱', 150, 150);
-                
-                const link = document.createElement('a');
-                link.download = 'QR_Code_MistalOnline.png';
-                link.href = canvas.toDataURL('image/png');
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                statusMsg.textContent = '✅ QR Code downloaded!';
-                statusMsg.className = 'success';
-                setTimeout(() => {
-                    statusMsg.textContent = 'Scan QR & Pay, then click Submit';
-                    statusMsg.className = '';
-                }, 3000);
-            } catch (e) {
-                statusMsg.textContent = '❌ Error downloading QR Code. Please try again.';
-                statusMsg.className = 'error';
-            }
+            } catch (e) {}
+
+            const link = document.createElement('a');
+            link.download = 'QR_Code_MistalOnline.png';
+            link.href = 'AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            document.getElementById('statusMsg').textContent = '✅ QR Code downloaded!';
+            document.getElementById('statusMsg').className = 'success';
+            setTimeout(() => {
+                document.getElementById('statusMsg').textContent = 'Scan QR & Pay, then click Submit';
+                document.getElementById('statusMsg').className = '';
+            }, 3000);
         });
 
         // ============================================================
-        // SHOW SUCCESS
+        // SWITCH TO SUCCESS SCREEN
         // ============================================================
-        function showSuccess() {
-            document.getElementById('resultOrderId').textContent = currentOrder.orderId;
-            document.getElementById('resultUid').textContent = currentOrder.uid || '—';
-            document.getElementById('resultService').textContent = currentOrder.service || '—';
-            document.getElementById('resultAmount').textContent = '₹' + currentOrder.amount;
+        function showSuccessScreen() {
+            document.getElementById('screenPayment').classList.remove('active');
+            document.getElementById('screenSuccess').classList.add('active');
+            document.getElementById('paymentContainer').classList.add('success-mode');
 
-            paymentContent.classList.add('hidden');
-            backLink.classList.add('hidden');
-            resultContainer.classList.add('show');
-            paymentContainer.classList.add('success-mode');
+            // Fill order details
+            const box = document.getElementById('orderDetailsBox');
+            box.innerHTML = `
+                        <div class="detail-row">
+                            <span class="detail-label">🆔 Order ID</span>
+                            <span class="detail-value">${currentOrder.orderId || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">🎯 UID</span>
+                            <span class="detail-value">${currentOrder.uid || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">🌍 Country</span>
+                            <span class="detail-value">${currentOrder.country || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">🔥 Service</span>
+                            <span class="detail-value">${currentOrder.service || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">💰 Amount</span>
+                            <span class="detail-value amount">₹${currentOrder.amount}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">📅 Date</span>
+                            <span class="detail-value">${new Date().toLocaleString()}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">✅ Status</span>
+                            <span class="detail-value status">✅ CONFIRMED</span>
+                        </div>
+                    `;
 
             playVoice('success');
+            localStorage.removeItem('orderData');
         }
+
+        // ============================================================
+        // DOWNLOAD ORDER (text file)
+        // ============================================================
+        document.getElementById('orderDownloadBtn').addEventListener('click', function() {
+            const order = currentOrder;
+            const text = `
+        ═════════════════════════════════════════════
+                    📦 ORDER CONFIRMATION
+        ═════════════════════════════════════════════
+
+        🆔 Order ID    : ${order.orderId || '—'}
+        🎯 UID         : ${order.uid || '—'}
+        🌍 Country     : ${order.country || '—'}
+        🔥 Service     : ${order.service || '—'}
+        💰 Amount      : ₹${order.amount}
+        📅 Date        : ${new Date().toLocaleString()}
+        ✅ Status      : CONFIRMED ✅
+
+        ═════════════════════════════════════════════
+        Thank you for your order!
+        MistalOnline.in
+        ═════════════════════════════════════════════
+            `;
+
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = `Order_${order.orderId || 'details'}_Confirmed.txt`;
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
 
         // ============================================================
         // SUBMIT PAYMENT
         // ============================================================
         async function submitPayment() {
             if (currentOrder.confirmed) {
-                statusMsg.textContent = '✅ Order already confirmed!';
-                statusMsg.className = 'success';
+                showSuccessScreen();
                 return;
             }
 
             if (!currentOrder.orderId) {
-                statusMsg.textContent = '⚠️ No order found! Please go back and create order.';
-                statusMsg.className = 'error';
+                document.getElementById('statusMsg').textContent = '⚠️ No order found!';
+                document.getElementById('statusMsg').className = 'error';
                 return;
             }
 
-            statusMsg.textContent = '🔄 Submitting payment...';
-            statusMsg.className = '';
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '⏳ Processing...';
+            document.getElementById('statusMsg').textContent = '🔄 Submitting payment...';
+            document.getElementById('statusMsg').className = '';
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').innerHTML = '⏳ Processing...';
             playVoice('submit');
 
             try {
@@ -824,34 +888,29 @@
 
                 if (result.success) {
                     currentOrder.confirmed = true;
-                    showSuccess();
-                    localStorage.removeItem('orderData');
+                    showSuccessScreen();
                 } else {
                     throw new Error('Submission failed');
                 }
 
             } catch (error) {
-                console.error('Submission error:', error);
-                statusMsg.textContent = '❌ ' + (error.message || 'Something went wrong. Try again.');
-                statusMsg.className = 'error';
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    Submit Payment
-                `;
+                document.getElementById('statusMsg').textContent = '❌ ' + (error.message || 'Try again.');
+                document.getElementById('statusMsg').className = 'error';
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerHTML = `
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            Submit
+                        `;
             }
         }
 
-        // ============================================================
-        // EVENT LISTENERS
-        // ============================================================
-        submitBtn.addEventListener('click', function(e) {
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
             e.preventDefault();
             submitPayment();
         });
 
         // ============================================================
-        // ON LOAD - WELCOME + AMOUNT VOICE
+        // ON LOAD - VOICE
         // ============================================================
         setTimeout(() => {
             playVoice('welcome');
@@ -862,13 +921,6 @@
 
         console.log('💳 Payment Page Ready');
         console.log('📦 Order:', currentOrder);
-        
-        // QR Image Check
-        const qrImg = document.getElementById('qrImage');
-        qrImg.onload = function() {
-            document.getElementById('qrFallback').style.display = 'none';
-            this.style.display = 'block';
-        };
     </script>
 
 </body>
