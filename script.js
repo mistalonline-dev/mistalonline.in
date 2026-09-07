@@ -7,10 +7,11 @@
 // ============================================================
 const voiceMessages = {
     welcome: 'मिस्टल ऑनलाइन में आपका स्वागत है',
-    uid: 'कृपया अपना फ्री फायर यूजर आईडी दर्ज करें',
+    uid: 'कृपया अपना फ्री फायर Uid दर्ज करें',
     likes: 'कृपया लाइक्स चुनें',
     country: 'कृपया अपना देश चुनें',
     next: 'अगले चरण पर जाएं',
+    confirm: 'कृपया अपनी डिटेल्स चेक करें',
     error: 'कृपया सभी फील्ड भरें'
 };
 
@@ -97,7 +98,7 @@ document.addEventListener('click', function(e) {
 });
 
 // ============================================================
-// LIKES SELECTOR - UPDATE PRICE
+// LIKES SELECTOR
 // ============================================================
 const likesSelect = document.getElementById('likesSelect');
 const priceAmount = document.getElementById('priceAmount');
@@ -108,7 +109,7 @@ likesSelect.addEventListener('change', function() {
 });
 
 // ============================================================
-// FAKE ORDERS - GREEN FLOATING
+// FAKE ORDERS
 // ============================================================
 function createFakeOrder() {
     const container = document.getElementById('fakeOrdersContainer');
@@ -154,8 +155,18 @@ const totalOrdersEl = document.getElementById('totalOrders');
 const liveUsersEl = document.getElementById('liveUsers');
 const reviewsGrid = document.getElementById('reviewsGrid');
 
+// Confirm Page
+const orderFormPage = document.getElementById('orderFormPage');
+const confirmPage = document.getElementById('confirmPage');
+const confirmUid = document.getElementById('confirmUid');
+const confirmService = document.getElementById('confirmService');
+const confirmCountry = document.getElementById('confirmCountry');
+const confirmAmount = document.getElementById('confirmAmount');
+const editBtn = document.getElementById('editBtn');
+const confirmNextBtn = document.getElementById('confirmNextBtn');
+
 // ============================================================
-// FAKE REVIEWS - 200+ with DUMMY DATA
+// FAKE REVIEWS
 // ============================================================
 const reviewNames = [
     'Rahul Sharma', 'Priya Patel', 'Amit Kumar', 'Neha Singh', 'Vikram Raj',
@@ -289,9 +300,9 @@ function renderReviews() {
 }
 
 // ============================================================
-// NEXT BUTTON - GO TO PAYMENT
+// GO TO CONFIRM PAGE
 // ============================================================
-function goToPayment() {
+function goToConfirm() {
     const uid = uidInput.value.trim();
     const country = countrySelect.value;
     const selectedOption = likesSelect.options[likesSelect.selectedIndex];
@@ -313,21 +324,82 @@ function goToPayment() {
         return;
     }
 
-    const orderId = 'ORD' + Date.now().toString(36).toUpperCase();
+    confirmUid.textContent = uid;
+    confirmService.textContent = serviceName;
+    confirmCountry.textContent = country;
+    confirmAmount.textContent = '₹' + amount;
 
-    const orderData = {
+    window.tempOrder = {
         uid: uid,
         country: country,
         service: serviceName,
         amount: amount,
-        qty: qty,
+        qty: qty
+    };
+
+    orderFormPage.classList.add('hidden');
+    confirmPage.classList.add('show');
+    playVoice('confirm');
+
+    statusMsg.textContent = '✅ Please verify your details';
+    statusMsg.className = 'success';
+}
+
+// ============================================================
+// GO BACK TO EDIT
+// ============================================================
+function goBackToEdit() {
+    confirmPage.classList.remove('show');
+    orderFormPage.classList.remove('hidden');
+    statusMsg.textContent = '💰 Edit your details';
+    statusMsg.className = '';
+}
+
+// ============================================================
+// CONFIRM & GO TO PAYMENT
+// ============================================================
+function goToPayment() {
+    const orderData = window.tempOrder;
+
+    if (!orderData) {
+        statusMsg.textContent = '⚠️ No order data found!';
+        statusMsg.className = 'error';
+        return;
+    }
+
+    const orderId = 'ORD' + Date.now().toString(36).toUpperCase();
+
+    const finalOrder = {
+        uid: orderData.uid,
+        country: orderData.country,
+        service: orderData.service,
+        amount: orderData.amount,
+        qty: orderData.qty,
         orderId: orderId
     };
-    localStorage.setItem('orderData', JSON.stringify(orderData));
 
+    localStorage.setItem('orderData', JSON.stringify(finalOrder));
     playVoice('next');
     window.location.href = 'payment.html';
 }
+
+// ============================================================
+// EVENT LISTENERS
+// ============================================================
+document.getElementById('nextBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    goToConfirm();
+});
+
+editBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    goBackToEdit();
+});
+
+confirmNextBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    goToPayment();
+});
 
 // ============================================================
 // ON LOAD
@@ -336,7 +408,6 @@ window.addEventListener('load', function() {
     renderReviews();
     checkVoiceSupport();
 
-    // Create container for fake orders
     if (!document.getElementById('fakeOrdersContainer')) {
         const container = document.createElement('div');
         container.id = 'fakeOrdersContainer';
@@ -350,12 +421,10 @@ window.addEventListener('load', function() {
     if (totalOrdersEl) totalOrdersEl.textContent = totalOrders.toLocaleString();
     if (liveUsersEl) liveUsersEl.textContent = liveUsers;
 
-    // Fake orders every 3-5 seconds
     setInterval(() => {
         createFakeOrder();
     }, 3000 + Math.random() * 2000);
 
-    // Initial orders
     setTimeout(createFakeOrder, 1000);
     setTimeout(createFakeOrder, 2500);
     setTimeout(createFakeOrder, 4000);
@@ -364,15 +433,9 @@ window.addEventListener('load', function() {
 });
 
 // ============================================================
-// EVENT LISTENERS
-// ============================================================
-document.getElementById('nextBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    goToPayment();
-});
-
-// ============================================================
 // MAKE FUNCTIONS GLOBAL
 // ============================================================
 window.playVoice = playVoice;
+window.goToConfirm = goToConfirm;
+window.goBackToEdit = goBackToEdit;
 window.goToPayment = goToPayment;
