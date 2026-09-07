@@ -6,20 +6,22 @@
     <title>🎮 MistalOnline - Free Fire Services</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-        /* Extra styles for confirm page */
+        /* ============================================================
+           CONFIRM PAGE STYLES
+           ============================================================ */
         .confirm-page {
             display: none;
             animation: fadeSlide 0.4s ease;
         }
         .confirm-page.show {
-            display: block;
+            display: block !important;
         }
         .order-form-page {
             display: block;
             animation: fadeSlide 0.4s ease;
         }
         .order-form-page.hidden {
-            display: none;
+            display: none !important;
         }
 
         @keyframes fadeSlide {
@@ -201,7 +203,9 @@
                 <h2>Place Your Order</h2>
                 <p class="order-sub">Enter your UID, select likes & country</p>
 
-                <!-- STEP 1: ORDER FORM -->
+                <!-- ============================================================
+                STEP 1: ORDER FORM
+                ============================================================ -->
                 <div class="order-form-page" id="orderFormPage">
                     <form id="orderForm">
                         <div class="form-group">
@@ -254,6 +258,7 @@
                             <span class="price-amount" id="priceAmount">₹399</span>
                         </div>
 
+                        <!-- NEXT BUTTON -->
                         <button type="button" class="btn-next" id="nextBtn">
                             Next
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -312,7 +317,9 @@
                     </form>
                 </div>
 
-                <!-- STEP 2: CONFIRM DETAILS PAGE -->
+                <!-- ============================================================
+                STEP 2: CONFIRM DETAILS PAGE
+                ============================================================ -->
                 <div class="confirm-page" id="confirmPage">
                     <h2 style="text-align:center;font-size:22px;font-weight:800;margin-bottom:16px;">
                         <span style="background:linear-gradient(135deg,#f9d423,#ff4e50);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Confirm Details</span>
