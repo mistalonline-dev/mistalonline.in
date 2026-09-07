@@ -1,5 +1,5 @@
 // ============================================================
-// MISTALONLINE.IN - COMPLETE SCRIPT
+// MISTALONLINE.IN - COMPLETE SCRIPT (CONFIRM PAGE FIXED)
 // ============================================================
 
 // ============================================================
@@ -7,7 +7,7 @@
 // ============================================================
 const voiceMessages = {
     welcome: 'मिस्टल ऑनलाइन में आपका स्वागत है',
-    uid: 'कृपया अपना फ्री फायर Uid दर्ज करें',
+    uid: 'कृपया अपना फ्री फायर यूजर आईडी दर्ज करें',
     likes: 'कृपया लाइक्स चुनें',
     country: 'कृपया अपना देश चुनें',
     next: 'अगले चरण पर जाएं',
@@ -155,7 +155,7 @@ const totalOrdersEl = document.getElementById('totalOrders');
 const liveUsersEl = document.getElementById('liveUsers');
 const reviewsGrid = document.getElementById('reviewsGrid');
 
-// Confirm Page
+// Confirm Page Elements
 const orderFormPage = document.getElementById('orderFormPage');
 const confirmPage = document.getElementById('confirmPage');
 const confirmUid = document.getElementById('confirmUid');
@@ -300,9 +300,11 @@ function renderReviews() {
 }
 
 // ============================================================
-// GO TO CONFIRM PAGE
+// 🔥 GO TO CONFIRM PAGE (FIXED)
 // ============================================================
 function goToConfirm() {
+    console.log('🔵 goToConfirm called!');
+
     const uid = uidInput.value.trim();
     const country = countrySelect.value;
     const selectedOption = likesSelect.options[likesSelect.selectedIndex];
@@ -324,11 +326,13 @@ function goToConfirm() {
         return;
     }
 
+    // 🔥 Fill confirm details
     confirmUid.textContent = uid;
     confirmService.textContent = serviceName;
     confirmCountry.textContent = country;
     confirmAmount.textContent = '₹' + amount;
 
+    // Store temp data
     window.tempOrder = {
         uid: uid,
         country: country,
@@ -337,8 +341,13 @@ function goToConfirm() {
         qty: qty
     };
 
-    orderFormPage.classList.add('hidden');
+    console.log('✅ Confirm Data:', window.tempOrder);
+
+    // 🔥 Switch pages - FIXED
+    orderFormPage.style.display = 'none';
+    confirmPage.style.display = 'block';
     confirmPage.classList.add('show');
+
     playVoice('confirm');
 
     statusMsg.textContent = '✅ Please verify your details';
@@ -346,17 +355,18 @@ function goToConfirm() {
 }
 
 // ============================================================
-// GO BACK TO EDIT
+// GO BACK TO EDIT (FIXED)
 // ============================================================
 function goBackToEdit() {
+    confirmPage.style.display = 'none';
     confirmPage.classList.remove('show');
-    orderFormPage.classList.remove('hidden');
+    orderFormPage.style.display = 'block';
     statusMsg.textContent = '💰 Edit your details';
     statusMsg.className = '';
 }
 
 // ============================================================
-// CONFIRM & GO TO PAYMENT
+// CONFIRM & GO TO PAYMENT (FIXED)
 // ============================================================
 function goToPayment() {
     const orderData = window.tempOrder;
