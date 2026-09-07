@@ -107,6 +107,28 @@
             margin-top: 4px;
         }
 
+        .amount-display-box {
+            text-align: center;
+            padding: 12px;
+            background: rgba(249, 212, 35, 0.04);
+            border: 1px solid rgba(249, 212, 35, 0.06);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .amount-display-box .amount-label {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .amount-display-box .amount-value {
+            color: #f9d423;
+            font-size: 32px;
+            font-weight: 900;
+            display: block;
+            margin-top: 2px;
+        }
+
         .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
@@ -154,29 +176,7 @@
             font-weight: 700;
         }
 
-        /* AMOUNT DISPLAY - BIG */
-        .amount-display-box {
-            text-align: center;
-            padding: 12px;
-            background: rgba(249, 212, 35, 0.04);
-            border: 1px solid rgba(249, 212, 35, 0.06);
-            border-radius: 12px;
-            margin-bottom: 16px;
-        }
-        .amount-display-box .amount-label {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .amount-display-box .amount-value {
-            color: #f9d423;
-            font-size: 32px;
-            font-weight: 900;
-            display: block;
-            margin-top: 2px;
-        }
-
+        /* 🔥 QR CODE - SIRF QR */
         .qr-container {
             text-align: center;
             padding: 25px;
@@ -204,16 +204,24 @@
             height: 22px;
             stroke: rgba(255, 255, 255, 0.3);
         }
-        .qr-container img {
+
+        /* 🔥 QR CODE IMAGE - DIRECT HTML */
+        .qr-container .qr-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             width: 220px;
             height: 220px;
-            border-radius: 12px;
-            background: #ffffff;
-            padding: 10px;
-            object-fit: contain;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            display: block;
             margin: 0 auto;
+        }
+        .qr-container .qr-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .btn-download {
@@ -485,7 +493,7 @@
             .payment-container {
                 padding: 25px 18px;
             }
-            .qr-container img {
+            .qr-container .qr-image-wrapper {
                 width: 170px;
                 height: 170px;
             }
@@ -547,20 +555,21 @@
                 <div class="inst-step">🎯 आपका Order Automatic Confirm हो जाएगा</div>
             </div>
 
-            <!-- QR CODE -->
+            <!-- 🔥 QR CODE - HTML IMAGE -->
             <div class="qr-container">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
                     Scan to Pay
                 </span>
-                <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
-                     alt="QR Code" 
-                     id="qrImage"
-                     style="width:220px;height:220px;border-radius:12px;background:#ffffff;padding:10px;object-fit:contain;box-shadow:0 8px 30px rgba(0,0,0,0.3);display:block;margin:0 auto;" 
-                     onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block';" />
-                <div id="qrFallback" style="display:none;padding:20px;color:rgba(255,255,255,0.3);">
-                    <span style="font-size:40px;display:block;">📱</span>
-                    <span style="font-size:14px;">QR Code not loaded. Please refresh.</span>
+                <div class="qr-image-wrapper">
+                    <img src="AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp" 
+                         alt="QR Code" 
+                         id="qrImage"
+                         onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block';" />
+                    <div id="qrFallback" style="display:none;padding:20px;color:rgba(255,255,255,0.3);">
+                        <span style="font-size:40px;display:block;">📱</span>
+                        <span style="font-size:14px;">QR Code not loaded. Please refresh.</span>
+                    </div>
                 </div>
             </div>
 
@@ -631,7 +640,7 @@
         document.getElementById('instAmount').textContent = '₹' + currentOrder.amount;
 
         // ============================================================
-        // 🔥 VOICE ASSISTANT - WITH AMOUNT VOICE
+        // 🔥 VOICE ASSISTANT - WITH AMOUNT
         // ============================================================
         function playVoice(type) {
             if (!('speechSynthesis' in window)) return;
@@ -842,7 +851,7 @@
         });
 
         // ============================================================
-        // 🔥 ON LOAD - WELCOME + AMOUNT VOICE
+        // ON LOAD - WELCOME + AMOUNT VOICE
         // ============================================================
         setTimeout(() => {
             playVoice('welcome');
@@ -853,7 +862,6 @@
 
         console.log('💳 Payment Page Ready');
         console.log('📦 Order:', currentOrder);
-        console.log('💰 Amount Voice: आपको ₹' + currentOrder.amount + ' का Payment करना है');
         
         // QR Image Check
         const qrImg = document.getElementById('qrImage');
