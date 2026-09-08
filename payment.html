@@ -690,4 +690,412 @@
             <a href="index.html" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
                 ← वापस जाएं
-            <
+            </a>
+
+            <div class="payment-header">
+                <h2>💳 Payment</h2>
+                <p>SCAN QR &amp; PAY</p>
+            </div>
+
+            <!-- INSTRUCTIONS - HINDI -->
+            <div class="instructions">
+                <div class="inst-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    भुगतान कैसे करें
+                </div>
+                <div class="inst-step">1. <strong>QR Code</strong> या <strong>Pay Now</strong> पर क्लिक करें</div>
+                <div class="inst-step">2. <strong id="instAmount">₹0</strong> का भुगतान करें</div>
+                <div class="inst-step">3. भुगतान के बाद <strong>Confirm</strong> करें</div>
+                <div class="inst-step">4. आपका ऑर्डर <strong>Confirm</strong> हो जाएगा</div>
+            </div>
+
+            <!-- 🔥 AMOUNT - "₹" aur "पैसे" ke saath -->
+            <div class="amount-display-box">
+                <span class="amount-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
+                    Payment
+                </span>
+                <span class="amount-value" id="displayAmount">₹0</span>
+                <div class="amount-currency">पैसे</div>
+            </div>
+
+            <div class="qr-amount">
+                <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Tap QR</span>
+            </div>
+
+            <!-- QR CODE -->
+            <div class="qr-container" id="qrContainer">
+                <span class="qr-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    Tap to Pay
+                </span>
+                <img src="" alt="QR Code" id="qrImage" />
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="btn-row">
+                <button class="btn-half btn-download" id="downloadBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    QR
+                </button>
+                <button class="btn-half btn-submit" id="submitBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Pay Now
+                </button>
+            </div>
+
+            <div id="statusMsg">QR पर टैप करें या Pay Now पर क्लिक करें 💳</div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- SCREEN 2: ORDER SUCCESS -->
+        <!-- ========================================================== -->
+        <div class="screen" id="screenSuccess">
+
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                ← वापस जाएं
+            </a>
+
+            <div class="success-screen">
+                <div class="success-icon">
+                    <span class="check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                </div>
+
+                <div class="order-header">
+                    <h2>🎉 ऑर्डर सफल!</h2>
+                    <p>आपका ऑर्डर कन्फर्म हो गया है</p>
+                </div>
+
+                <div class="order-details-box" id="orderDetailsBox"></div>
+
+                <div class="btn-row-success">
+                    <button class="btn-success btn-download-order" id="orderDownloadBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        डाउनलोड
+                    </button>
+                    <a href="index.html" class="btn-success btn-home">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        होम
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        // PAYMENT PAGE SCRIPT
+        // ============================================================
+
+        const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
+
+        const UPI_ID = 'mistalonline@naviaxis';
+        const MERCHANT_NAME = 'MistalOnline';
+
+        const orderData = JSON.parse(localStorage.getItem('orderData'));
+
+        let currentOrder = {
+            uid: orderData?.uid || '',
+            country: orderData?.country || '',
+            service: orderData?.service || '',
+            amount: orderData?.amount || 0,
+            orderId: orderData?.orderId || '',
+            confirmed: false
+        };
+
+        const formattedAmount = '₹' + currentOrder.amount;
+        document.getElementById('displayAmount').textContent = formattedAmount;
+        document.getElementById('instAmount').textContent = formattedAmount;
+        document.getElementById('qrPayAmount').textContent = formattedAmount;
+
+        // ============================================================
+        // UPI LINKS
+        // ============================================================
+        const UPI_LINKS = {
+            generic: `upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            gpay: `gpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            phonepe: `phonepe://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            paytm: `paytmmp://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            bhim: `bhim://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            fampay: `in.fampay.app://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            cred: `credpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            ios_gpay: `gpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            ios_phonepe: `phonepe://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            ios_paytm: `paytmmp://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            ios_fampay: `in.fampay.app://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+            ios_cred: `credpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
+        };
+
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=${encodeURIComponent(UPI_LINKS.generic)}`;
+        document.getElementById('qrImage').src = qrUrl;
+
+        // ============================================================
+        // DETECT PLATFORM
+        // ============================================================
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        }
+
+        function isAndroid() {
+            return /Android/.test(navigator.userAgent);
+        }
+
+        // ============================================================
+        // OPEN UPI APP
+        // ============================================================
+        function openUpiApp(appName) {
+            if (!currentOrder.amount || !currentOrder.orderId) {
+                alert('Please refresh, order not loaded!');
+                return;
+            }
+
+            let link = '';
+
+            if (isAndroid()) {
+                switch(appName) {
+                    case 'gpay': link = UPI_LINKS.gpay; break;
+                    case 'phonepe': link = UPI_LINKS.phonepe; break;
+                    case 'paytm': link = UPI_LINKS.paytm; break;
+                    case 'bhim': link = UPI_LINKS.bhim; break;
+                    case 'fampay': link = UPI_LINKS.fampay; break;
+                    case 'cred': link = UPI_LINKS.cred; break;
+                    default: link = UPI_LINKS.generic;
+                }
+            } else if (isIOS()) {
+                switch(appName) {
+                    case 'gpay': link = UPI_LINKS.ios_gpay; break;
+                    case 'phonepe': link = UPI_LINKS.ios_phonepe; break;
+                    case 'paytm': link = UPI_LINKS.ios_paytm; break;
+                    case 'fampay': link = UPI_LINKS.ios_fampay; break;
+                    case 'cred': link = UPI_LINKS.ios_cred; break;
+                    default: link = UPI_LINKS.generic;
+                }
+            } else {
+                link = UPI_LINKS.generic;
+            }
+
+            window.location.href = link;
+
+            document.getElementById('statusMsg').textContent = `⏳ UPI App खुल रही है...`;
+            document.getElementById('statusMsg').className = 'warning';
+
+            setTimeout(() => {
+                if (!currentOrder.confirmed) {
+                    document.getElementById('statusMsg').textContent = '✅ भुगतान हो गया? "Pay Now" पर क्लिक करें';
+                    document.getElementById('statusMsg').className = 'success';
+                    document.getElementById('submitBtn').innerHTML = 'Confirm ✅';
+                }
+            }, 30000);
+        }
+
+        // ============================================================
+        // EVENTS
+        // ============================================================
+        document.getElementById('qrContainer').addEventListener('click', function() {
+            if (isAndroid()) {
+                window.location.href = UPI_LINKS.generic;
+            } else if (isIOS()) {
+                window.location.href = UPI_LINKS.ios_gpay;
+            } else {
+                window.location.href = UPI_LINKS.generic;
+            }
+            document.getElementById('statusMsg').textContent = '⏳ UPI App खुल रही है...';
+            document.getElementById('statusMsg').className = 'warning';
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            if (currentOrder.confirmed) {
+                showSuccessScreen();
+                return;
+            }
+
+            if (isAndroid()) {
+                window.location.href = UPI_LINKS.generic;
+            } else if (isIOS()) {
+                window.location.href = UPI_LINKS.ios_gpay;
+            } else {
+                window.location.href = UPI_LINKS.generic;
+            }
+            
+            document.getElementById('statusMsg').textContent = '⏳ UPI App खुल रही है...';
+            document.getElementById('statusMsg').className = 'warning';
+            
+            setTimeout(() => {
+                if (!currentOrder.confirmed) {
+                    currentOrder.confirmed = true;
+                    showSuccessScreen();
+                }
+            }, 20000);
+        });
+
+        // ============================================================
+        // DOWNLOAD QR
+        // ============================================================
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const img = document.getElementById('qrImage');
+            const link = document.createElement('a');
+            link.download = 'QR_Code_MistalOnline.png';
+            link.href = img.src;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            document.getElementById('statusMsg').textContent = '✅ QR Code डाउनलोड हो गया!';
+            document.getElementById('statusMsg').className = 'success';
+            setTimeout(() => {
+                document.getElementById('statusMsg').textContent = 'QR पर टैप करें या Pay Now पर क्लिक करें 💳';
+                document.getElementById('statusMsg').className = '';
+            }, 3000);
+        });
+
+        // ============================================================
+        // SHOW SUCCESS SCREEN
+        // ============================================================
+        function showSuccessScreen() {
+            document.getElementById('screenPayment').classList.remove('active');
+            document.getElementById('screenSuccess').classList.add('active');
+            document.getElementById('paymentContainer').classList.add('success-mode');
+
+            const box = document.getElementById('orderDetailsBox');
+            box.innerHTML = `
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 10h2"/><path d="M16 14h2"/></svg>
+                                Order ID
+                            </span>
+                            <span class="detail-value">${currentOrder.orderId || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                UID
+                            </span>
+                            <span class="detail-value">${currentOrder.uid || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                                Country
+                            </span>
+                            <span class="detail-value">${currentOrder.country || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                Service
+                            </span>
+                            <span class="detail-value">${currentOrder.service || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Amount
+                            </span>
+                            <span class="detail-value amount">₹${currentOrder.amount}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                Date
+                            </span>
+                            <span class="detail-value">${new Date().toLocaleString()}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                                Status
+                            </span>
+                            <span class="detail-value status">✅ CONFIRMED</span>
+                        </div>
+                    `;
+
+            localStorage.removeItem('orderData');
+        }
+
+        // ============================================================
+        // DOWNLOAD ORDER
+        // ============================================================
+        document.getElementById('orderDownloadBtn').addEventListener('click', function() {
+            const order = currentOrder;
+            const text = `
+        ═════════════════════════════════════════════
+                    ORDER CONFIRMATION
+        ═════════════════════════════════════════════
+
+        Order ID    : ${order.orderId || '—'}
+        UID         : ${order.uid || '—'}
+        Country     : ${order.country || '—'}
+        Service     : ${order.service || '—'}
+        Amount      : ₹${order.amount}
+        Date        : ${new Date().toLocaleString()}
+        Status      : CONFIRMED ✅
+
+        ═════════════════════════════════════════════
+        Thank you for your order!
+        MistalOnline.in
+        ═════════════════════════════════════════════
+            `;
+
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = `Order_${order.orderId || 'details'}_Confirmed.txt`;
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
+
+        // ============================================================
+        // VOICE
+        // ============================================================
+        function playVoice(type) {
+            if (!('speechSynthesis' in window)) return;
+
+            const messages = {
+                welcome: 'QR Code पर टैप करें या Pay Now पर क्लिक करें',
+                amount: 'आपको ₹' + currentOrder.amount + ' का Payment करना है',
+                submit: 'UPI App खुल रही है',
+                success: 'आपका ऑर्डर सफलतापूर्वक पूरा हो गया है'
+            };
+
+            const msg = messages[type];
+            if (!msg) return;
+
+            const utterance = new SpeechSynthesisUtterance(msg);
+            utterance.lang = 'hi-IN';
+            utterance.rate = 0.85;
+            utterance.pitch = 0.9;
+            utterance.volume = 1.0;
+
+            const voices = window.speechSynthesis.getVoices();
+            const hindiVoice = voices.find(v => v.lang === 'hi-IN') ||
+                voices.find(v => v.lang.startsWith('hi'));
+            if (hindiVoice) utterance.voice = hindiVoice;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // ============================================================
+        // ON LOAD
+        // ============================================================
+        setTimeout(() => {
+            playVoice('welcome');
+            setTimeout(() => {
+                playVoice('amount');
+            }, 1800);
+        }, 800);
+
+        console.log('✅ Payment Page Ready');
+        console.log('📦 Order:', currentOrder);
+        console.log('🔑 UPI ID:', UPI_ID);
+    </script>
+
+</body>
+</html>
