@@ -37,7 +37,7 @@
             backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 215, 0, 0.08);
             border-radius: 32px;
-            padding: 12px 20px 10px 20px;
+            padding: 10px 18px 8px 18px;
             box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
             transition: 0.4s ease;
             display: flex;
@@ -91,7 +91,7 @@
             gap: 6px;
             color: rgba(255, 255, 255, 0.25);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 1px;
             transition: 0.3s;
             flex-shrink: 0;
@@ -100,8 +100,8 @@
             color: #f9d423;
         }
         .back-link svg {
-            width: 16px;
-            height: 16px;
+            width: 15px;
+            height: 15px;
             stroke: currentColor;
         }
 
@@ -114,36 +114,80 @@
             flex-shrink: 0;
         }
         .payment-header h2 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: 0.5px;
         }
-        .payment-header h2 span {
-            background: linear-gradient(135deg, #f9d423, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
         .payment-header p {
             color: rgba(255, 255, 255, 0.15);
-            font-size: 12px;
+            font-size: 11px;
             margin-top: 0px;
             letter-spacing: 1px;
         }
 
-        /* 🔥 TOTAL AMOUNT - BADA TEXT */
+        /* 🔥 INSTRUCTIONS - TOP PE */
+        .instructions {
+            background: rgba(46, 213, 115, 0.04);
+            border: 1px solid rgba(46, 213, 115, 0.06);
+            border-radius: 12px;
+            padding: 6px 14px;
+            margin-bottom: 3px;
+            flex-shrink: 0;
+            order: -1;
+        }
+        .instructions .inst-title {
+            color: #2ed573;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .instructions .inst-title svg {
+            width: 17px;
+            height: 17px;
+            stroke: #2ed573;
+        }
+        .instructions .inst-step {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 1px 0;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+        .instructions .inst-step::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            background: #f9d423;
+            border-radius: 50%;
+        }
+        .instructions .inst-step strong {
+            color: #f9d423;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* 🔥 TOTAL AMOUNT */
         .amount-display-box {
             text-align: center;
-            padding: 8px 12px;
+            padding: 5px 12px;
             background: rgba(249, 212, 35, 0.04);
             border: 1px solid rgba(249, 212, 35, 0.06);
             border-radius: 12px;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             flex-shrink: 0;
         }
         .amount-display-box .amount-label {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 16px;
+            font-size: 15px;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: flex;
@@ -153,87 +197,39 @@
             font-weight: 600;
         }
         .amount-display-box .amount-label svg {
-            width: 18px;
-            height: 18px;
+            width: 17px;
+            height: 17px;
             stroke: rgba(255, 255, 255, 0.4);
         }
         .amount-display-box .amount-value {
             color: #f9d423;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 900;
             display: block;
-            margin-top: 2px;
+            margin-top: 0px;
             letter-spacing: 2px;
         }
 
         /* 🔥 QR KE UPAR AMOUNT - SCAN & PAY */
         .qr-amount {
             text-align: center;
-            padding: 4px 0;
+            padding: 3px 0;
             flex-shrink: 0;
             margin-bottom: 2px;
         }
         .qr-amount .qr-pay-text {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
         .qr-amount .qr-pay-text strong {
             color: #f9d423;
-            font-size: 22px;
+            font-size: 21px;
             font-weight: 900;
         }
 
-        /* 🔥 INSTRUCTIONS - BADA TEXT */
-        .instructions {
-            background: rgba(46, 213, 115, 0.04);
-            border: 1px solid rgba(46, 213, 115, 0.06);
-            border-radius: 12px;
-            padding: 8px 16px;
-            margin-bottom: 3px;
-            flex-shrink: 0;
-        }
-        .instructions .inst-title {
-            color: #2ed573;
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 3px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .instructions .inst-title svg {
-            width: 18px;
-            height: 18px;
-            stroke: #2ed573;
-        }
-        .instructions .inst-step {
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 15px;
-            font-weight: 500;
-            padding: 2px 0;
-            padding-left: 22px;
-            position: relative;
-            line-height: 1.7;
-        }
-        .instructions .inst-step::before {
-            content: '';
-            position: absolute;
-            left: 4px;
-            top: 9px;
-            width: 7px;
-            height: 7px;
-            background: #f9d423;
-            border-radius: 50%;
-        }
-        .instructions .inst-step strong {
-            color: #f9d423;
-            font-weight: 700;
-            font-size: 17px;
-        }
-
-        /* 🔥 QR CODE - TERA image.html (BADA) */
+        /* 🔥 QR CODE - BADA AUR SAHI SHOW */
         .qr-container {
             text-align: center;
             padding: 4px;
@@ -267,8 +263,8 @@
         }
         .qr-container iframe {
             width: 100%;
-            max-width: 300px;
-            height: 300px;
+            max-width: 320px;
+            height: 320px;
             border: none;
             border-radius: 12px;
             background: white;
@@ -284,7 +280,7 @@
         }
         .btn-row .btn-half {
             flex: 1;
-            padding: 17px 10px;
+            padding: 16px 10px;
             border-radius: 14px;
             font-size: 16px;
             font-weight: 700;
@@ -342,7 +338,7 @@
             border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 10px;
             color: rgba(255, 255, 255, 0.2);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
@@ -369,8 +365,8 @@
             text-align: center;
             margin-top: 2px;
             color: rgba(255, 255, 255, 0.2);
-            font-size: 14px;
-            min-height: 22px;
+            font-size: 13px;
+            min-height: 20px;
             flex-shrink: 0;
             font-weight: 500;
         }
@@ -410,8 +406,8 @@
             border: 2px solid rgba(46, 213, 115, 0.15);
         }
         .success-icon .check svg {
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             stroke: #2ed573;
             stroke-width: 2.5;
             fill: none;
@@ -423,14 +419,14 @@
             flex-shrink: 0;
         }
         .order-header h2 {
-            font-size: 26px;
+            font-size: 25px;
             font-weight: 800;
             color: #2ed573;
             letter-spacing: 0.5px;
         }
         .order-header p {
             color: rgba(255, 255, 255, 0.25);
-            font-size: 14px;
+            font-size: 13px;
             margin-top: 1px;
         }
 
@@ -454,7 +450,7 @@
         .detail-row {
             display: flex;
             justify-content: space-between;
-            padding: 7px 0;
+            padding: 6px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
         .detail-row:last-child {
@@ -462,7 +458,7 @@
         }
         .detail-label {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -471,15 +467,15 @@
             gap: 8px;
         }
         .detail-label svg {
-            width: 17px;
-            height: 17px;
+            width: 16px;
+            height: 16px;
             stroke: rgba(255, 255, 255, 0.3);
             fill: none;
             stroke-width: 2;
         }
         .detail-value {
             color: #ffffff;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             text-align: right;
             max-width: 60%;
@@ -487,14 +483,13 @@
         }
         .detail-value.amount {
             color: #f9d423;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
         }
         .detail-value.status {
             color: #2ed573;
         }
 
-        /* 🔥 SUCCESS BUTTONS - UPAR AUR BADA */
         .btn-row-success {
             display: flex;
             gap: 10px;
@@ -502,7 +497,7 @@
         }
         .btn-row-success .btn-success {
             flex: 1;
-            padding: 17px 10px;
+            padding: 16px 10px;
             border-radius: 14px;
             font-size: 16px;
             font-weight: 700;
@@ -552,46 +547,43 @@
             stroke: #ffffff;
         }
 
-        /* ============================================================ */
-        /* RESPONSIVE */
-        /* ============================================================ */
         @media (max-width: 480px) {
             .payment-container {
-                padding: 10px 14px 8px 14px;
+                padding: 8px 12px 6px 12px;
                 max-height: 720px;
                 border-radius: 24px;
             }
             .qr-container iframe {
-                max-width: 250px;
-                height: 250px;
+                max-width: 260px;
+                height: 260px;
             }
             .payment-header h2 {
-                font-size: 20px;
-            }
-            .amount-display-box .amount-value {
-                font-size: 30px;
-            }
-            .amount-display-box .amount-label {
-                font-size: 14px;
-            }
-            .qr-amount .qr-pay-text {
-                font-size: 16px;
-            }
-            .qr-amount .qr-pay-text strong {
                 font-size: 19px;
             }
+            .amount-display-box .amount-value {
+                font-size: 28px;
+            }
+            .amount-display-box .amount-label {
+                font-size: 13px;
+            }
+            .qr-amount .qr-pay-text {
+                font-size: 15px;
+            }
+            .qr-amount .qr-pay-text strong {
+                font-size: 18px;
+            }
             .order-header h2 {
-                font-size: 22px;
+                font-size: 21px;
             }
             .success-icon .check svg {
-                width: 40px;
-                height: 40px;
+                width: 38px;
+                height: 38px;
             }
             .instructions .inst-step {
-                font-size: 14px;
+                font-size: 13px;
             }
             .instructions .inst-title {
-                font-size: 15px;
+                font-size: 14px;
             }
             .btn-row .btn-half {
                 font-size: 14px;
@@ -602,16 +594,16 @@
                 padding: 14px 8px;
             }
             .detail-value {
-                font-size: 14px;
+                font-size: 13px;
             }
             .detail-value.amount {
-                font-size: 19px;
+                font-size: 18px;
             }
             .detail-label {
-                font-size: 13px;
+                font-size: 12px;
             }
             #statusMsg {
-                font-size: 13px;
+                font-size: 12px;
             }
         }
         @media (max-height: 600px) {
@@ -621,8 +613,8 @@
                 border-radius: 20px;
             }
             .qr-container iframe {
-                max-width: 180px;
-                height: 180px;
+                max-width: 190px;
+                height: 190px;
             }
             .qr-container {
                 padding: 2px;
@@ -631,7 +623,7 @@
                 padding: 3px 10px;
             }
             .instructions .inst-step {
-                font-size: 13px;
+                font-size: 12px;
                 padding: 1px 0 1px 16px;
                 line-height: 1.4;
             }
@@ -641,26 +633,26 @@
                 height: 5px;
             }
             .instructions .inst-title {
-                font-size: 14px;
+                font-size: 13px;
             }
             .amount-display-box {
                 padding: 3px 8px;
-                margin-bottom: 3px;
+                margin-bottom: 2px;
             }
             .amount-display-box .amount-value {
-                font-size: 24px;
+                font-size: 22px;
             }
             .amount-display-box .amount-label {
-                font-size: 12px;
+                font-size: 11px;
             }
             .qr-amount .qr-pay-text {
-                font-size: 14px;
+                font-size: 13px;
             }
             .qr-amount .qr-pay-text strong {
-                font-size: 16px;
+                font-size: 15px;
             }
             .btn-row .btn-half {
-                font-size: 13px;
+                font-size: 12px;
                 padding: 10px 6px;
                 border-radius: 10px;
             }
@@ -669,7 +661,7 @@
                 height: 18px;
             }
             .payment-header h2 {
-                font-size: 17px;
+                font-size: 16px;
             }
             .payment-header p {
                 font-size: 10px;
@@ -681,29 +673,29 @@
                 padding: 3px 0;
             }
             .detail-label {
-                font-size: 12px;
+                font-size: 11px;
             }
             .detail-value {
-                font-size: 13px;
+                font-size: 12px;
             }
             .detail-value.amount {
-                font-size: 17px;
+                font-size: 16px;
             }
             .order-header h2 {
-                font-size: 19px;
+                font-size: 18px;
             }
             .order-header p {
-                font-size: 12px;
+                font-size: 11px;
             }
             .success-icon .check {
                 padding: 4px 8px;
             }
             .success-icon .check svg {
-                width: 32px;
-                height: 32px;
+                width: 30px;
+                height: 30px;
             }
             .btn-row-success .btn-success {
-                font-size: 13px;
+                font-size: 12px;
                 padding: 10px 6px;
                 border-radius: 10px;
             }
@@ -713,14 +705,14 @@
             }
             .btn-back-bottom {
                 padding: 3px;
-                font-size: 11px;
+                font-size: 10px;
             }
             #statusMsg {
-                font-size: 12px;
+                font-size: 11px;
                 min-height: 16px;
             }
             .back-link {
-                font-size: 12px;
+                font-size: 11px;
                 margin-bottom: 0px;
             }
             .back-link svg {
@@ -749,21 +741,7 @@
                 <p>SCAN QR &amp; PAY</p>
             </div>
 
-            <!-- 🔥 TOTAL AMOUNT - "Total" likha hai -->
-            <div class="amount-display-box">
-                <span class="amount-label">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
-                    Total
-                </span>
-                <span class="amount-value" id="displayAmount">₹0</span>
-            </div>
-
-            <!-- 🔥 QR KE UPAR AMOUNT - Scan & Pay -->
-            <div class="qr-amount">
-                <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Scan QR</span>
-            </div>
-
-            <!-- 🔥 INSTRUCTIONS - BADA TEXT -->
+            <!-- 🔥 INSTRUCTIONS - TOP PE -->
             <div class="instructions">
                 <div class="inst-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
@@ -775,7 +753,21 @@
                 <div class="inst-step">Order will be <strong>Confirmed</strong> automatically</div>
             </div>
 
-            <!-- 🔥 QR CODE - TERA image.html -->
+            <!-- 🔥 TOTAL AMOUNT -->
+            <div class="amount-display-box">
+                <span class="amount-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
+                    Total
+                </span>
+                <span class="amount-value" id="displayAmount">₹0</span>
+            </div>
+
+            <!-- 🔥 QR KE UPAR AMOUNT -->
+            <div class="qr-amount">
+                <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Scan QR</span>
+            </div>
+
+            <!-- 🔥 QR CODE -->
             <div class="qr-container">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -784,7 +776,7 @@
                 <iframe src="image.html" title="QR Code" id="qrIframe"></iframe>
             </div>
 
-            <!-- 🔥 BUTTONS - BADE AUR UPAR -->
+            <!-- 🔥 BUTTONS -->
             <div class="btn-row">
                 <button class="btn-half btn-download" id="downloadBtn" disabled>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -801,12 +793,11 @@
                 Back
             </a>
 
-            <!-- 🔥 STATUS MESSAGE - BADA TEXT -->
-            <div id="statusMsg" class="warning">⏳ Pehle Payment Karein, phir Submit karein</div>
+            <div id="statusMsg">⏳ Pehle Payment Karein, phir Submit karein</div>
         </div>
 
         <!-- ========================================================== -->
-        <!-- SCREEN 2: ORDER SUCCESS - BUTTONS UPAR -->
+        <!-- SCREEN 2: ORDER SUCCESS -->
         <!-- ========================================================== -->
         <div class="screen" id="screenSuccess">
 
@@ -827,11 +818,8 @@
                     <p>Your order has been confirmed</p>
                 </div>
 
-                <div class="order-details-box" id="orderDetailsBox">
-                    <!-- Filled by JavaScript -->
-                </div>
+                <div class="order-details-box" id="orderDetailsBox"></div>
 
-                <!-- 🔥 SUCCESS BUTTONS - UPAR AUR BADA -->
                 <div class="btn-row-success">
                     <button class="btn-success btn-download-order" id="orderDownloadBtn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -866,34 +854,29 @@
             confirmed: false
         };
 
-        // Set amounts everywhere
         const formattedAmount = '₹' + currentOrder.amount;
         document.getElementById('displayAmount').textContent = formattedAmount;
         document.getElementById('instAmount').textContent = formattedAmount;
         document.getElementById('qrPayAmount').textContent = formattedAmount;
 
         // ============================================================
-        // 🔥 1 MINUTE WAIT - BACKGROUND MEIN
+        // 🔥 1 MINUTE WAIT - PURE BACKGROUND (kuch dikhega nahi)
         // ============================================================
         let waitTime = 60;
         const submitBtn = document.getElementById('submitBtn');
         const downloadBtn = document.getElementById('downloadBtn');
         const statusMsg = document.getElementById('statusMsg');
+        let isWaiting = true;
 
-        function startWaitTimer() {
-            const timer = setInterval(() => {
-                waitTime--;
-                if (waitTime <= 0) {
-                    clearInterval(timer);
-                    submitBtn.disabled = false;
-                    downloadBtn.disabled = false;
-                    statusMsg.textContent = '✅ Payment karein aur Submit karein';
-                    statusMsg.className = 'success';
-                }
-            }, 1000);
-        }
-
-        startWaitTimer();
+        // ⏳ Background timer - kuch show nahi hoga
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            downloadBtn.disabled = false;
+            isWaiting = false;
+            statusMsg.textContent = '✅ Payment karein aur Submit karein';
+            statusMsg.className = 'success';
+            console.log('✅ 1 minute wait complete - Buttons enabled');
+        }, 60000); // 60 seconds = 1 minute
 
         // ============================================================
         // VOICE
@@ -929,6 +912,15 @@
         // DOWNLOAD QR
         // ============================================================
         document.getElementById('downloadBtn').addEventListener('click', function() {
+            if (isWaiting) {
+                statusMsg.textContent = '⏳ Wait 1 minute before downloading!';
+                statusMsg.className = 'warning';
+                setTimeout(() => {
+                    statusMsg.textContent = '⏳ Pehle Payment Karein, phir Submit karein';
+                    statusMsg.className = '';
+                }, 2000);
+                return;
+            }
             try {
                 const iframe = document.getElementById('qrIframe');
                 const imgSrc = iframe?.contentDocument?.querySelector('img')?.src;
@@ -1068,14 +1060,15 @@
         // SUBMIT PAYMENT
         // ============================================================
         async function submitPayment() {
-            if (currentOrder.confirmed) {
-                showSuccessScreen();
+            // 🔥 Check if 1 minute passed
+            if (isWaiting) {
+                statusMsg.textContent = '⏳ Pehle Payment Karein, phir Submit karein!';
+                statusMsg.className = 'warning';
                 return;
             }
 
-            if (waitTime > 0) {
-                statusMsg.textContent = '⏳ Pehle Payment Karein, phir Submit karein!';
-                statusMsg.className = 'warning';
+            if (currentOrder.confirmed) {
+                showSuccessScreen();
                 return;
             }
 
@@ -1144,7 +1137,7 @@
 
         console.log('Payment Page Ready');
         console.log('Order:', currentOrder);
-        console.log('⏳ 1 minute wait active - Background mein chal raha hai');
+        console.log('⏳ 1 minute wait - Background mein chal raha hai (kuch dikhega nahi)');
         console.log('✅ QR Code from image.html');
     </script>
 
