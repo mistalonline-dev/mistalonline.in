@@ -85,7 +85,6 @@
             display: flex;
         }
 
-        /* BACK BUTTON - BADA */
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -114,7 +113,6 @@
             stroke: currentColor;
         }
 
-        /* INSTRUCTIONS - HINDI */
         .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
@@ -162,7 +160,27 @@
             font-size: 15px;
         }
 
-        /* AMOUNT - "₹" aur "पैसे" ke saath */
+        /* 🔥 NOTE - QR SCAN KARNE KE LIYE */
+        .qr-note {
+            text-align: center;
+            padding: 6px 12px;
+            margin-bottom: 2px;
+            flex-shrink: 0;
+            background: rgba(249, 212, 35, 0.04);
+            border: 1px solid rgba(249, 212, 35, 0.06);
+            border-radius: 10px;
+        }
+        .qr-note p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .qr-note p strong {
+            color: #f9d423;
+            font-weight: 700;
+        }
+
         .amount-display-box {
             text-align: center;
             padding: 4px 12px;
@@ -221,10 +239,10 @@
             font-weight: 900;
         }
 
-        /* 🔥 QR CODE - BADA, UPAR, FAST LOAD */
+        /* 🔥 QR CODE - SIRF SCAN KE LIYE (click remove) */
         .qr-container {
             text-align: center;
-            padding: 4px;
+            padding: 6px;
             background: rgba(255, 255, 255, 0.02);
             border: 2px solid rgba(255, 215, 0, 0.05);
             border-radius: 14px;
@@ -235,11 +253,7 @@
             align-items: center;
             justify-content: center;
             min-height: 0;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .qr-container:hover {
-            border-color: rgba(249, 212, 35, 0.15);
+            cursor: default;
         }
         .qr-container .qr-label {
             display: flex;
@@ -248,7 +262,7 @@
             gap: 8px;
             color: rgba(255, 255, 255, 0.15);
             font-size: 11px;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
@@ -260,13 +274,13 @@
         }
         .qr-container img {
             width: 100%;
-            max-width: 330px;
+            max-width: 340px;
             height: auto;
             aspect-ratio: 1/1;
             border-radius: 12px;
             display: block;
             background: white;
-            padding: 6px;
+            padding: 8px;
             object-fit: contain;
         }
 
@@ -308,14 +322,22 @@
             color: #ffffff;
         }
 
+        /* 🔥 PAY NOW - 1.5 minute baad enable */
         .btn-submit {
             background: linear-gradient(135deg, #f9d423, #f7971e);
             color: #0a0a0a;
+            opacity: 0.4;
+            cursor: not-allowed;
+            transition: 0.3s;
         }
         .btn-submit svg {
             stroke: #0a0a0a;
         }
-        .btn-submit:hover {
+        .btn-submit.enabled {
+            opacity: 1;
+            cursor: pointer;
+        }
+        .btn-submit.enabled:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 40px rgba(249, 212, 35, 0.2);
         }
@@ -547,6 +569,9 @@
             .instructions .inst-step {
                 font-size: 12px;
             }
+            .qr-note p {
+                font-size: 14px;
+            }
         }
         @media (max-height: 600px) {
             .payment-container {
@@ -591,6 +616,10 @@
             }
             .qr-amount .qr-pay-text strong {
                 font-size: 14px;
+            }
+            .qr-note p {
+                font-size: 13px;
+                padding: 2px 0;
             }
             .btn-row .btn-half {
                 font-size: 12px;
@@ -662,25 +691,27 @@
         <!-- ========================================================== -->
         <div class="screen active" id="screenPayment">
 
-            <!-- BACK BUTTON - SIRF EK -->
             <a href="index.html" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
                 ← वापस जाएं
             </a>
 
-            <!-- INSTRUCTIONS - HINDI -->
             <div class="instructions">
                 <div class="inst-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     भुगतान कैसे करें
                 </div>
-                <div class="inst-step">1. <strong>QR Code</strong> या <strong>Pay Now</strong> पर क्लिक करें</div>
+                <div class="inst-step">1. <strong>QR Code</strong> scan करें</div>
                 <div class="inst-step">2. <strong id="instAmount">₹0</strong> का भुगतान करें</div>
-                <div class="inst-step">3. भुगतान के बाद <strong>Confirm</strong> करें</div>
+                <div class="inst-step">3. फिर <strong>Pay Now</strong> पर क्लिक करें</div>
                 <div class="inst-step">4. आपका ऑर्डर <strong>Confirm</strong> हो जाएगा</div>
             </div>
 
-            <!-- AMOUNT - "₹" aur "पैसे" ke saath -->
+            <!-- 🔥 NOTE - QR SCAN KARNE KE LIYE -->
+            <div class="qr-note">
+                <p>📱 <strong>QR को scan</strong> करके payment करें, आपकी payment अपने आप हो जाएगी</p>
+            </div>
+
             <div class="amount-display-box">
                 <span class="amount-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
@@ -691,31 +722,30 @@
             </div>
 
             <div class="qr-amount">
-                <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Tap QR</span>
+                <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong></span>
             </div>
 
-            <!-- 🔥 QR CODE - FAST LOAD, UPAR, BADA -->
+            <!-- 🔥 QR CODE - SIRF SCAN KE LIYE (click remove) -->
             <div class="qr-container" id="qrContainer">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                    Tap to Pay
+                    Scan to Pay
                 </span>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=330x330&data=upi%3A%2F%2Fpay%3Fpa%3Dmistalonline%40naviaxis%26pn%3DMistalOnline%26am%3D0%26cu%3DINR" alt="QR Code" id="qrImage" />
+                <img src="" alt="QR Code" id="qrImage" />
             </div>
 
-            <!-- BUTTONS -->
             <div class="btn-row">
                 <button class="btn-half btn-download" id="downloadBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     QR
                 </button>
-                <button class="btn-half btn-submit" id="submitBtn">
+                <button class="btn-half btn-submit" id="submitBtn" disabled>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                     Pay Now
                 </button>
             </div>
 
-            <div id="statusMsg">QR पर टैप करें या Pay Now पर क्लिक करें 💳</div>
+            <div id="statusMsg">📱 QR scan करें, फिर Pay Now करें</div>
         </div>
 
         <!-- ========================================================== -->
@@ -745,11 +775,11 @@
                 <div class="btn-row-success">
                     <button class="btn-success btn-download-order" id="orderDownloadBtn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Download 
+                        डाउनलोड
                     </button>
                     <a href="index.html" class="btn-success btn-home">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                        Home
+                        होम
                     </a>
                 </div>
             </div>
@@ -784,9 +814,22 @@
         document.getElementById('instAmount').textContent = formattedAmount;
         document.getElementById('qrPayAmount').textContent = formattedAmount;
 
-        // 🔥 FAST QR LOAD - Update QR with actual amount
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=330x330&data=${encodeURIComponent(`upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`)}`;
+        // 🔥 FAST QR LOAD
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=${encodeURIComponent(`upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`)}`;
         document.getElementById('qrImage').src = qrUrl;
+
+        // ============================================================
+        // 🔥 1.5 MINUTE (90 SECONDS) WAIT - PAY NOW ENABLE
+        // ============================================================
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMsg = document.getElementById('statusMsg');
+
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.classList.add('enabled');
+            statusMsg.textContent = '✅ Pay Now पर क्लिक करें';
+            statusMsg.className = 'success';
+        }, 90000); // 90 seconds = 1.5 minute
 
         // ============================================================
         // UPI LINKS
@@ -806,9 +849,6 @@
             ios_cred: `credpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
         };
 
-        // ============================================================
-        // DETECT PLATFORM
-        // ============================================================
         function isIOS() {
             return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -819,71 +859,17 @@
         }
 
         // ============================================================
-        // OPEN UPI APP
+        // PAY NOW CLICK - UPI APP OPEN
         // ============================================================
-        function openUpiApp(appName) {
-            if (!currentOrder.amount || !currentOrder.orderId) {
-                alert('Please refresh, order not loaded!');
-                return;
-            }
-
-            let link = '';
-
-            if (isAndroid()) {
-                switch(appName) {
-                    case 'gpay': link = UPI_LINKS.gpay; break;
-                    case 'phonepe': link = UPI_LINKS.phonepe; break;
-                    case 'paytm': link = UPI_LINKS.paytm; break;
-                    case 'bhim': link = UPI_LINKS.bhim; break;
-                    case 'fampay': link = UPI_LINKS.fampay; break;
-                    case 'cred': link = UPI_LINKS.cred; break;
-                    default: link = UPI_LINKS.generic;
-                }
-            } else if (isIOS()) {
-                switch(appName) {
-                    case 'gpay': link = UPI_LINKS.ios_gpay; break;
-                    case 'phonepe': link = UPI_LINKS.ios_phonepe; break;
-                    case 'paytm': link = UPI_LINKS.ios_paytm; break;
-                    case 'fampay': link = UPI_LINKS.ios_fampay; break;
-                    case 'cred': link = UPI_LINKS.ios_cred; break;
-                    default: link = UPI_LINKS.generic;
-                }
-            } else {
-                link = UPI_LINKS.generic;
-            }
-
-            window.location.href = link;
-
-            document.getElementById('statusMsg').textContent = `⏳ UPI App खुल रही है...`;
-            document.getElementById('statusMsg').className = 'warning';
-
-            setTimeout(() => {
-                if (!currentOrder.confirmed) {
-                    document.getElementById('statusMsg').textContent = '✅ भुगतान हो गया? "Pay Now" पर क्लिक करें';
-                    document.getElementById('statusMsg').className = 'success';
-                    document.getElementById('submitBtn').innerHTML = 'Confirm ✅';
-                }
-            }, 30000);
-        }
-
-        // ============================================================
-        // EVENTS
-        // ============================================================
-        document.getElementById('qrContainer').addEventListener('click', function() {
-            if (isAndroid()) {
-                window.location.href = UPI_LINKS.generic;
-            } else if (isIOS()) {
-                window.location.href = UPI_LINKS.ios_gpay;
-            } else {
-                window.location.href = UPI_LINKS.generic;
-            }
-            document.getElementById('statusMsg').textContent = '⏳ UPI App खुल रही है...';
-            document.getElementById('statusMsg').className = 'warning';
-        });
-
         document.getElementById('submitBtn').addEventListener('click', function() {
             if (currentOrder.confirmed) {
                 showSuccessScreen();
+                return;
+            }
+
+            if (this.disabled) {
+                statusMsg.textContent = '⏳ कृपया थोड़ी देर बाद प्रयास करें';
+                statusMsg.className = 'warning';
                 return;
             }
 
@@ -895,8 +881,8 @@
                 window.location.href = UPI_LINKS.generic;
             }
             
-            document.getElementById('statusMsg').textContent = '⏳ UPI App खुल रही है...';
-            document.getElementById('statusMsg').className = 'warning';
+            statusMsg.textContent = '⏳ UPI App खुल रही है...';
+            statusMsg.className = 'warning';
             
             setTimeout(() => {
                 if (!currentOrder.confirmed) {
@@ -917,11 +903,11 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            document.getElementById('statusMsg').textContent = '✅ QR Code डाउनलोड हो गया!';
-            document.getElementById('statusMsg').className = 'success';
+            statusMsg.textContent = '✅ QR Code डाउनलोड हो गया!';
+            statusMsg.className = 'success';
             setTimeout(() => {
-                document.getElementById('statusMsg').textContent = 'QR पर टैप करें या Pay Now पर क्लिक करें 💳';
-                document.getElementById('statusMsg').className = '';
+                statusMsg.textContent = '📱 QR scan करें, फिर Pay Now करें';
+                statusMsg.className = '';
             }, 3000);
         });
 
@@ -1031,7 +1017,7 @@
             if (!('speechSynthesis' in window)) return;
 
             const messages = {
-                welcome: 'QR Code पर टैप करें या Pay Now पर क्लिक करें',
+                welcome: 'QR Code scan करें, payment करें, फिर Pay Now करें',
                 amount: 'आपको ₹' + currentOrder.amount + ' का Payment करना है',
                 submit: 'UPI App खुल रही है',
                 success: 'आपका ऑर्डर सफलतापूर्वक पूरा हो गया है'
@@ -1067,6 +1053,7 @@
         console.log('✅ Payment Page Ready');
         console.log('📦 Order:', currentOrder);
         console.log('🔑 UPI ID:', UPI_ID);
+        console.log('⏳ Pay Now will enable after 90 seconds');
     </script>
 
 </body>
