@@ -105,9 +105,6 @@
             stroke: currentColor;
         }
 
-        /* ============================================================ */
-        /* SCREEN 1 - PAYMENT */
-        /* ============================================================ */
         .payment-header {
             text-align: center;
             margin-bottom: 2px;
@@ -126,7 +123,6 @@
             letter-spacing: 1px;
         }
 
-        /* 🔥 INSTRUCTIONS - TOP PE */
         .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
@@ -175,7 +171,6 @@
             font-size: 16px;
         }
 
-        /* 🔥 TOTAL AMOUNT */
         .amount-display-box {
             text-align: center;
             padding: 5px 12px;
@@ -210,7 +205,6 @@
             letter-spacing: 2px;
         }
 
-        /* 🔥 QR KE UPAR AMOUNT - SCAN & PAY */
         .qr-amount {
             text-align: center;
             padding: 3px 0;
@@ -229,7 +223,7 @@
             font-weight: 900;
         }
 
-        /* 🔥 QR CODE - BADA AUR SAHI SHOW */
+        /* QR CODE - CLICKABLE UPI LINK */
         .qr-container {
             text-align: center;
             padding: 4px;
@@ -243,6 +237,11 @@
             align-items: center;
             justify-content: center;
             min-height: 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .qr-container:hover {
+            border-color: rgba(249, 212, 35, 0.15);
         }
         .qr-container .qr-label {
             display: flex;
@@ -261,17 +260,18 @@
             height: 16px;
             stroke: rgba(255, 255, 255, 0.15);
         }
-        .qr-container iframe {
+        .qr-container img {
             width: 100%;
             max-width: 320px;
-            height: 320px;
-            border: none;
+            height: auto;
+            aspect-ratio: 1/1;
             border-radius: 12px;
-            background: white;
             display: block;
+            background: white;
+            padding: 8px;
+            object-fit: contain;
         }
 
-        /* 🔥 BUTTONS - BADE AUR UPAR */
         .btn-row {
             display: flex;
             gap: 10px;
@@ -553,9 +553,8 @@
                 max-height: 720px;
                 border-radius: 24px;
             }
-            .qr-container iframe {
+            .qr-container img {
                 max-width: 260px;
-                height: 260px;
             }
             .payment-header h2 {
                 font-size: 19px;
@@ -612,9 +611,8 @@
                 max-height: 580px;
                 border-radius: 20px;
             }
-            .qr-container iframe {
+            .qr-container img {
                 max-width: 190px;
-                height: 190px;
             }
             .qr-container {
                 padding: 2px;
@@ -747,8 +745,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     How to Pay
                 </div>
-                <div class="inst-step">Open <strong>PhonePe / GPay / Paytm</strong></div>
-                <div class="inst-step">Scan QR Code &amp; Pay <strong id="instAmount">₹0</strong></div>
+                <div class="inst-step">Click on <strong>QR Code</strong> to open UPI App</div>
+                <div class="inst-step">Pay <strong id="instAmount">₹0</strong> via PhonePe / GPay / Paytm</div>
                 <div class="inst-step">After Payment, click <strong>Submit</strong></div>
                 <div class="inst-step">Order will be <strong>Confirmed</strong> automatically</div>
             </div>
@@ -767,13 +765,13 @@
                 <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Scan QR</span>
             </div>
 
-            <!-- 🔥 QR CODE -->
-            <div class="qr-container">
+            <!-- 🔥 QR CODE - CLICK KARNE PE UPI APP OPEN HOGA -->
+            <div class="qr-container" id="qrContainer">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                    Scan to Pay
+                    Tap to Pay
                 </span>
-                <iframe src="image.html" title="QR Code" id="qrIframe"></iframe>
+                <img src="" alt="QR Code" id="qrImage" />
             </div>
 
             <!-- 🔥 BUTTONS -->
@@ -793,7 +791,7 @@
                 Back
             </a>
 
-            <div id="statusMsg">⏳ Pehle Payment Karein, phir Submit karein</div>
+            <div id="statusMsg">⏳ Tap QR to Pay, then Submit</div>
         </div>
 
         <!-- ========================================================== -->
@@ -843,6 +841,12 @@
 
         const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
 
+        // ============================================================
+        // 🔥 YOUR UPI DETAILS - SAFE (Number visible nahi hai)
+        // ============================================================
+        const UPI_ID = 'mistalonline@naviaxis';  // ✅ Safe - Business UPI ID
+        const MERCHANT_NAME = 'MistalOnline';
+
         const orderData = JSON.parse(localStorage.getItem('orderData'));
 
         let currentOrder = {
@@ -860,7 +864,25 @@
         document.getElementById('qrPayAmount').textContent = formattedAmount;
 
         // ============================================================
-        // 🔥 1 MINUTE WAIT - PURE BACKGROUND (kuch dikhega nahi)
+        // 🔥 UPI DEEP LINK GENERATE - Aapka UPI ID
+        // ============================================================
+        const upiLink = `upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR`;
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encodeURIComponent(upiLink)}`;
+        document.getElementById('qrImage').src = qrUrl;
+
+        // ============================================================
+        // 🔥 QR CLICK - UPI APP OPEN HOGA
+        // ============================================================
+        document.getElementById('qrContainer').addEventListener('click', function() {
+            if (currentOrder.amount > 0) {
+                window.location.href = upiLink;
+            } else {
+                alert('Please refresh, amount not loaded!');
+            }
+        });
+
+        // ============================================================
+        // 🔥 1 MINUTE WAIT - BACKGROUND
         // ============================================================
         let waitTime = 60;
         const submitBtn = document.getElementById('submitBtn');
@@ -868,7 +890,6 @@
         const statusMsg = document.getElementById('statusMsg');
         let isWaiting = true;
 
-        // ⏳ Background timer - kuch show nahi hoga
         setTimeout(() => {
             submitBtn.disabled = false;
             downloadBtn.disabled = false;
@@ -876,7 +897,7 @@
             statusMsg.textContent = '✅ Payment karein aur Submit karein';
             statusMsg.className = 'success';
             console.log('✅ 1 minute wait complete - Buttons enabled');
-        }, 60000); // 60 seconds = 1 minute
+        }, 60000);
 
         // ============================================================
         // VOICE
@@ -885,7 +906,7 @@
             if (!('speechSynthesis' in window)) return;
 
             const messages = {
-                welcome: 'कृपया QR Code Scan करें और Payment करें',
+                welcome: 'QR Code par click karein, UPI app open hogi, payment karein',
                 amount: 'आपको ₹' + currentOrder.amount + ' का Payment करना है',
                 submit: 'पेमेंट सबमिट हो रहा है',
                 success: 'आपका ऑर्डर सफलतापूर्वक पूरा हो गया है'
@@ -916,35 +937,15 @@
                 statusMsg.textContent = '⏳ Wait 1 minute before downloading!';
                 statusMsg.className = 'warning';
                 setTimeout(() => {
-                    statusMsg.textContent = '⏳ Pehle Payment Karein, phir Submit karein';
+                    statusMsg.textContent = '⏳ Tap QR to Pay, then Submit';
                     statusMsg.className = '';
                 }, 2000);
                 return;
             }
-            try {
-                const iframe = document.getElementById('qrIframe');
-                const imgSrc = iframe?.contentDocument?.querySelector('img')?.src;
-
-                if (imgSrc) {
-                    const link = document.createElement('a');
-                    link.download = 'QR_Code_MistalOnline.png';
-                    link.href = imgSrc;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    statusMsg.textContent = '✅ QR Code downloaded!';
-                    statusMsg.className = 'success';
-                    setTimeout(() => {
-                        statusMsg.textContent = '✅ Payment karein aur Submit karein';
-                        statusMsg.className = 'success';
-                    }, 3000);
-                    return;
-                }
-            } catch (e) {}
-
+            const img = document.getElementById('qrImage');
             const link = document.createElement('a');
             link.download = 'QR_Code_MistalOnline.png';
-            link.href = 'AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp';
+            link.href = img.src;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -1060,9 +1061,8 @@
         // SUBMIT PAYMENT
         // ============================================================
         async function submitPayment() {
-            // 🔥 Check if 1 minute passed
             if (isWaiting) {
-                statusMsg.textContent = '⏳ Pehle Payment Karein, phir Submit karein!';
+                statusMsg.textContent = '⏳ Wait 1 minute, then Submit!';
                 statusMsg.className = 'warning';
                 return;
             }
@@ -1137,8 +1137,9 @@
 
         console.log('Payment Page Ready');
         console.log('Order:', currentOrder);
-        console.log('⏳ 1 minute wait - Background mein chal raha hai (kuch dikhega nahi)');
-        console.log('✅ QR Code from image.html');
+        console.log('✅ UPI ID:', UPI_ID, '(Safe - Number visible nahi)');
+        console.log('✅ UPI Deep Link Ready - Click QR to open UPI app');
+        console.log('⏳ 1 minute wait - Background mein chal raha hai');
     </script>
 
 </body>
