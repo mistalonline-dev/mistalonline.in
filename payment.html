@@ -37,7 +37,7 @@
             backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 215, 0, 0.08);
             border-radius: 32px;
-            padding: 10px 18px 8px 18px;
+            padding: 8px 18px 6px 18px;
             box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
             transition: 0.4s ease;
             display: flex;
@@ -85,7 +85,7 @@
             display: flex;
         }
 
-        /* 🔥 BACK BUTTON - SIRF EK, BADA */
+        /* BACK BUTTON - BADA */
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -94,10 +94,10 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
             transition: 0.3s;
             flex-shrink: 0;
-            padding: 6px 12px;
+            padding: 4px 10px;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -114,85 +114,67 @@
             stroke: currentColor;
         }
 
-        .payment-header {
-            text-align: center;
-            margin-bottom: 2px;
-            flex-shrink: 0;
-        }
-        .payment-header h2 {
-            font-size: 22px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-        }
-        .payment-header p {
-            color: rgba(255, 255, 255, 0.15);
-            font-size: 11px;
-            margin-top: 0px;
-            letter-spacing: 1px;
-        }
-
+        /* INSTRUCTIONS - HINDI */
         .instructions {
             background: rgba(46, 213, 115, 0.04);
             border: 1px solid rgba(46, 213, 115, 0.06);
             border-radius: 12px;
-            padding: 6px 14px;
-            margin-bottom: 3px;
+            padding: 5px 14px;
+            margin-bottom: 2px;
             flex-shrink: 0;
-            order: -1;
         }
         .instructions .inst-title {
             color: #2ed573;
             font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 2px;
+            font-size: 14px;
+            margin-bottom: 1px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         .instructions .inst-title svg {
-            width: 17px;
-            height: 17px;
+            width: 16px;
+            height: 16px;
             stroke: #2ed573;
         }
         .instructions .inst-step {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             padding: 1px 0;
-            padding-left: 20px;
+            padding-left: 18px;
             position: relative;
-            line-height: 1.6;
+            line-height: 1.5;
         }
         .instructions .inst-step::before {
             content: '';
             position: absolute;
             left: 4px;
-            top: 8px;
-            width: 6px;
-            height: 6px;
+            top: 7px;
+            width: 5px;
+            height: 5px;
             background: #f9d423;
             border-radius: 50%;
         }
         .instructions .inst-step strong {
             color: #f9d423;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
         }
 
-        /* 🔥 AMOUNT - "₹" aur "पैसे" ke saath */
+        /* AMOUNT - "₹" aur "पैसे" ke saath */
         .amount-display-box {
             text-align: center;
-            padding: 8px 12px;
+            padding: 4px 12px;
             background: rgba(249, 212, 35, 0.04);
             border: 1px solid rgba(249, 212, 35, 0.06);
             border-radius: 12px;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             flex-shrink: 0;
         }
         .amount-display-box .amount-label {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: flex;
@@ -202,13 +184,13 @@
             font-weight: 600;
         }
         .amount-display-box .amount-label svg {
-            width: 17px;
-            height: 17px;
+            width: 16px;
+            height: 16px;
             stroke: rgba(255, 255, 255, 0.4);
         }
         .amount-display-box .amount-value {
             color: #f9d423;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 900;
             display: block;
             margin-top: 0px;
@@ -216,37 +198,37 @@
         }
         .amount-display-box .amount-currency {
             color: rgba(255, 255, 255, 0.2);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             margin-top: -2px;
         }
 
         .qr-amount {
             text-align: center;
-            padding: 3px 0;
+            padding: 2px 0;
             flex-shrink: 0;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
         .qr-amount .qr-pay-text {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
         .qr-amount .qr-pay-text strong {
             color: #f9d423;
-            font-size: 21px;
+            font-size: 20px;
             font-weight: 900;
         }
 
-        /* QR CODE - BADA */
+        /* 🔥 QR CODE - BADA, UPAR, FAST LOAD */
         .qr-container {
             text-align: center;
-            padding: 6px;
+            padding: 4px;
             background: rgba(255, 255, 255, 0.02);
             border: 2px solid rgba(255, 215, 0, 0.05);
             border-radius: 14px;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -265,26 +247,26 @@
             justify-content: center;
             gap: 8px;
             color: rgba(255, 255, 255, 0.15);
-            font-size: 12px;
-            margin-bottom: 2px;
+            font-size: 11px;
+            margin-bottom: 1px;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
         }
         .qr-container .qr-label svg {
-            width: 16px;
-            height: 16px;
+            width: 15px;
+            height: 15px;
             stroke: rgba(255, 255, 255, 0.15);
         }
         .qr-container img {
             width: 100%;
-            max-width: 340px;
+            max-width: 330px;
             height: auto;
             aspect-ratio: 1/1;
             border-radius: 12px;
             display: block;
             background: white;
-            padding: 8px;
+            padding: 6px;
             object-fit: contain;
         }
 
@@ -296,9 +278,9 @@
         }
         .btn-row .btn-half {
             flex: 1;
-            padding: 16px 10px;
+            padding: 15px 10px;
             border-radius: 14px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
@@ -311,8 +293,8 @@
             letter-spacing: 0.5px;
         }
         .btn-row .btn-half svg {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             stroke-width: 2;
         }
 
@@ -340,10 +322,10 @@
 
         #statusMsg {
             text-align: center;
-            margin-top: 2px;
+            margin-top: 1px;
             color: rgba(255, 255, 255, 0.2);
-            font-size: 13px;
-            min-height: 20px;
+            font-size: 12px;
+            min-height: 18px;
             flex-shrink: 0;
             font-weight: 500;
         }
@@ -373,7 +355,7 @@
         .success-icon {
             text-align: center;
             font-size: 0;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             flex-shrink: 0;
         }
         .success-icon .check {
@@ -381,14 +363,14 @@
             align-items: center;
             justify-content: center;
             background: rgba(46, 213, 115, 0.08);
-            padding: 16px 20px;
+            padding: 14px 18px;
             border-radius: 50%;
             border: 3px solid rgba(46, 213, 115, 0.15);
             animation: pulse 2s ease-in-out infinite;
         }
         .success-icon .check svg {
-            width: 56px;
-            height: 56px;
+            width: 50px;
+            height: 50px;
             stroke: #2ed573;
             stroke-width: 2.5;
             fill: none;
@@ -400,11 +382,11 @@
 
         .order-header {
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             flex-shrink: 0;
         }
         .order-header h2 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             color: #2ed573;
             letter-spacing: 0.5px;
@@ -412,19 +394,19 @@
         }
         .order-header p {
             color: rgba(255, 255, 255, 0.25);
-            font-size: 14px;
-            margin-top: 2px;
+            font-size: 13px;
+            margin-top: 1px;
         }
 
         .order-details-box {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 14px;
-            padding: 12px 18px;
+            padding: 10px 16px;
             width: 100%;
             flex: 1;
             overflow-y: auto;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .order-details-box::-webkit-scrollbar {
             width: 3px;
@@ -437,7 +419,7 @@
         .detail-row {
             display: flex;
             justify-content: space-between;
-            padding: 7px 0;
+            padding: 6px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
         .detail-row:last-child {
@@ -445,7 +427,7 @@
         }
         .detail-label {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -454,15 +436,15 @@
             gap: 8px;
         }
         .detail-label svg {
-            width: 16px;
-            height: 16px;
+            width: 15px;
+            height: 15px;
             stroke: rgba(255, 255, 255, 0.3);
             fill: none;
             stroke-width: 2;
         }
         .detail-value {
             color: #ffffff;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             text-align: right;
             max-width: 60%;
@@ -470,7 +452,7 @@
         }
         .detail-value.amount {
             color: #f9d423;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
         }
         .detail-value.status {
@@ -485,9 +467,9 @@
         }
         .btn-row-success .btn-success {
             flex: 1;
-            padding: 16px 10px;
+            padding: 15px 10px;
             border-radius: 14px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
@@ -501,8 +483,8 @@
             text-decoration: none;
         }
         .btn-row-success .btn-success svg {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             stroke-width: 2;
             fill: none;
         }
@@ -537,38 +519,38 @@
 
         @media (max-width: 480px) {
             .payment-container {
-                padding: 8px 12px 6px 12px;
+                padding: 6px 12px 4px 12px;
                 max-height: 720px;
                 border-radius: 24px;
             }
             .qr-container img {
                 max-width: 280px;
             }
-            .payment-header h2 {
-                font-size: 19px;
-            }
             .amount-display-box .amount-value {
-                font-size: 30px;
+                font-size: 28px;
             }
             .order-header h2 {
                 font-size: 22px;
             }
             .success-icon .check svg {
-                width: 44px;
-                height: 44px;
+                width: 40px;
+                height: 40px;
             }
             .back-link {
                 font-size: 14px;
-                padding: 4px 10px;
+                padding: 3px 8px;
             }
             .btn-row-success .btn-success {
                 font-size: 13px;
-                padding: 14px 8px;
+                padding: 13px 8px;
+            }
+            .instructions .inst-step {
+                font-size: 12px;
             }
         }
         @media (max-height: 600px) {
             .payment-container {
-                padding: 4px 10px 4px 10px;
+                padding: 3px 10px 3px 10px;
                 max-height: 580px;
                 border-radius: 20px;
             }
@@ -576,54 +558,48 @@
                 max-width: 200px;
             }
             .qr-container {
-                padding: 3px;
+                padding: 2px;
             }
             .instructions {
-                padding: 3px 10px;
+                padding: 2px 10px;
             }
             .instructions .inst-step {
-                font-size: 12px;
+                font-size: 11px;
                 padding: 1px 0 1px 16px;
-                line-height: 1.4;
+                line-height: 1.3;
             }
             .instructions .inst-step::before {
                 top: 6px;
-                width: 5px;
-                height: 5px;
+                width: 4px;
+                height: 4px;
             }
             .instructions .inst-title {
-                font-size: 13px;
+                font-size: 12px;
             }
             .amount-display-box {
-                padding: 3px 8px;
-                margin-bottom: 2px;
+                padding: 2px 8px;
+                margin-bottom: 1px;
             }
             .amount-display-box .amount-value {
-                font-size: 24px;
+                font-size: 22px;
             }
             .amount-display-box .amount-label {
-                font-size: 11px;
+                font-size: 10px;
             }
             .qr-amount .qr-pay-text {
-                font-size: 13px;
+                font-size: 12px;
             }
             .qr-amount .qr-pay-text strong {
-                font-size: 15px;
+                font-size: 14px;
             }
             .btn-row .btn-half {
                 font-size: 12px;
-                padding: 10px 6px;
+                padding: 9px 6px;
                 border-radius: 10px;
             }
             .btn-row .btn-half svg {
-                width: 18px;
-                height: 18px;
-            }
-            .payment-header h2 {
-                font-size: 16px;
-            }
-            .payment-header p {
-                font-size: 10px;
+                width: 17px;
+                height: 17px;
             }
             .order-details-box {
                 padding: 4px 10px;
@@ -632,13 +608,13 @@
                 padding: 3px 0;
             }
             .detail-label {
-                font-size: 11px;
+                font-size: 10px;
             }
             .detail-value {
-                font-size: 12px;
+                font-size: 11px;
             }
             .detail-value.amount {
-                font-size: 16px;
+                font-size: 15px;
             }
             .order-header h2 {
                 font-size: 18px;
@@ -647,32 +623,32 @@
                 font-size: 11px;
             }
             .success-icon .check {
-                padding: 6px 10px;
+                padding: 5px 8px;
             }
             .success-icon .check svg {
-                width: 32px;
-                height: 32px;
+                width: 30px;
+                height: 30px;
             }
             .btn-row-success .btn-success {
                 font-size: 12px;
-                padding: 10px 6px;
+                padding: 9px 6px;
                 border-radius: 10px;
             }
             .btn-row-success .btn-success svg {
-                width: 18px;
-                height: 18px;
+                width: 17px;
+                height: 17px;
             }
             #statusMsg {
-                font-size: 11px;
-                min-height: 16px;
+                font-size: 10px;
+                min-height: 14px;
             }
             .back-link {
                 font-size: 13px;
-                padding: 3px 8px;
+                padding: 2px 6px;
             }
             .back-link svg {
-                width: 16px;
-                height: 16px;
+                width: 15px;
+                height: 15px;
             }
         }
     </style>
@@ -686,16 +662,11 @@
         <!-- ========================================================== -->
         <div class="screen active" id="screenPayment">
 
-            <!-- 🔥 BACK BUTTON - SIRF EK, BADA -->
+            <!-- BACK BUTTON - SIRF EK -->
             <a href="index.html" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
                 ← वापस जाएं
             </a>
-
-            <div class="payment-header">
-                <h2>💳 Payment</h2>
-                <p>SCAN QR &amp; PAY</p>
-            </div>
 
             <!-- INSTRUCTIONS - HINDI -->
             <div class="instructions">
@@ -709,7 +680,7 @@
                 <div class="inst-step">4. आपका ऑर्डर <strong>Confirm</strong> हो जाएगा</div>
             </div>
 
-            <!-- 🔥 AMOUNT - "₹" aur "पैसे" ke saath -->
+            <!-- AMOUNT - "₹" aur "पैसे" ke saath -->
             <div class="amount-display-box">
                 <span class="amount-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
@@ -723,13 +694,13 @@
                 <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Tap QR</span>
             </div>
 
-            <!-- QR CODE -->
+            <!-- 🔥 QR CODE - FAST LOAD, UPAR, BADA -->
             <div class="qr-container" id="qrContainer">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
                     Tap to Pay
                 </span>
-                <img src="" alt="QR Code" id="qrImage" />
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=330x330&data=upi%3A%2F%2Fpay%3Fpa%3Dmistalonline%40naviaxis%26pn%3DMistalOnline%26am%3D0%26cu%3DINR" alt="QR Code" id="qrImage" />
             </div>
 
             <!-- BUTTONS -->
@@ -813,6 +784,10 @@
         document.getElementById('instAmount').textContent = formattedAmount;
         document.getElementById('qrPayAmount').textContent = formattedAmount;
 
+        // 🔥 FAST QR LOAD - Update QR with actual amount
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=330x330&data=${encodeURIComponent(`upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`)}`;
+        document.getElementById('qrImage').src = qrUrl;
+
         // ============================================================
         // UPI LINKS
         // ============================================================
@@ -830,9 +805,6 @@
             ios_fampay: `in.fampay.app://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
             ios_cred: `credpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
         };
-
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=${encodeURIComponent(UPI_LINKS.generic)}`;
-        document.getElementById('qrImage').src = qrUrl;
 
         // ============================================================
         // DETECT PLATFORM
