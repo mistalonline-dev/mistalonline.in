@@ -272,98 +272,6 @@
             object-fit: contain;
         }
 
-        /* 🔥 UTR SECTION */
-        .utr-section {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 8px 14px;
-            margin-bottom: 4px;
-            flex-shrink: 0;
-        }
-        .utr-section .utr-title {
-            color: #f9d423;
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .utr-section .utr-title svg {
-            width: 18px;
-            height: 18px;
-            stroke: #f9d423;
-        }
-        .utr-section .utr-sub {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-            margin-bottom: 6px;
-        }
-        .utr-row {
-            display: flex;
-            gap: 8px;
-        }
-        .utr-row input {
-            flex: 1;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            outline: none;
-            transition: 0.3s;
-            font-family: monospace;
-        }
-        .utr-row input:focus {
-            border-color: #f9d423;
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .utr-row input::placeholder {
-            color: rgba(255, 255, 255, 0.2);
-            letter-spacing: 1px;
-        }
-        .utr-row button {
-            padding: 10px 18px;
-            border-radius: 10px;
-            border: none;
-            background: linear-gradient(135deg, #f9d423, #f7971e);
-            color: #0a0a0a;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-            white-space: nowrap;
-        }
-        .utr-row button:hover {
-            transform: scale(1.02);
-        }
-        .utr-row button:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .utr-status {
-            margin-top: 6px;
-            font-size: 13px;
-            font-weight: 500;
-            text-align: center;
-            min-height: 20px;
-        }
-        .utr-status.success {
-            color: #2ed573;
-        }
-        .utr-status.error {
-            color: #ff4757;
-        }
-        .utr-status.pending {
-            color: #f9d423;
-        }
-
-        /* BUTTONS */
         .btn-row {
             display: flex;
             gap: 10px;
@@ -401,10 +309,6 @@
             background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
         }
-        .btn-download:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
 
         .btn-submit {
             background: linear-gradient(135deg, #2ed573, #26de81);
@@ -416,11 +320,6 @@
         .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 40px rgba(46, 213, 115, 0.25);
-        }
-        .btn-submit:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none !important;
         }
 
         .btn-back-bottom {
@@ -654,14 +553,6 @@
             .amount-display-box .amount-value {
                 font-size: 28px;
             }
-            .utr-row input {
-                font-size: 13px;
-                padding: 8px 10px;
-            }
-            .utr-row button {
-                font-size: 12px;
-                padding: 8px 14px;
-            }
         }
         @media (max-height: 600px) {
             .payment-container {
@@ -706,23 +597,6 @@
             }
             .qr-amount .qr-pay-text strong {
                 font-size: 15px;
-            }
-            .utr-section {
-                padding: 5px 10px;
-            }
-            .utr-section .utr-title {
-                font-size: 12px;
-            }
-            .utr-section .utr-sub {
-                font-size: 10px;
-            }
-            .utr-row input {
-                font-size: 12px;
-                padding: 6px 8px;
-            }
-            .utr-row button {
-                font-size: 11px;
-                padding: 6px 12px;
             }
             .btn-row .btn-half {
                 font-size: 12px;
@@ -814,7 +688,6 @@
                 <p>SCAN QR &amp; PAY</p>
             </div>
 
-            <!-- INSTRUCTIONS -->
             <div class="instructions">
                 <div class="inst-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
@@ -822,12 +695,10 @@
                 </div>
                 <div class="inst-step">1. Click <strong>QR Code</strong> → UPI App open</div>
                 <div class="inst-step">2. Pay <strong id="instAmount">₹0</strong> via PhonePe / GPay / Paytm</div>
-                <div class="inst-step">3. Copy <strong>UTR Number</strong> (12 digits)</div>
-                <div class="inst-step">4. Paste UTR below &amp; click <strong>Verify</strong></div>
-                <div class="inst-step">5. After verification, click <strong>Submit</strong></div>
+                <div class="inst-step">3. After payment, click <strong>Submit</strong></div>
+                <div class="inst-step">4. Order will be <strong>Confirmed</strong> automatically</div>
             </div>
 
-            <!-- TOTAL AMOUNT -->
             <div class="amount-display-box">
                 <span class="amount-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
@@ -836,7 +707,6 @@
                 <span class="amount-value" id="displayAmount">₹0</span>
             </div>
 
-            <!-- QR KE UPAR AMOUNT -->
             <div class="qr-amount">
                 <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Tap QR</span>
             </div>
@@ -850,27 +720,13 @@
                 <img src="" alt="QR Code" id="qrImage" />
             </div>
 
-            <!-- 🔥 UTR SECTION -->
-            <div class="utr-section">
-                <div class="utr-title">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                    Verify Payment
-                </div>
-                <div class="utr-sub">Enter UTR Number from your UPI app</div>
-                <div class="utr-row">
-                    <input type="text" id="utrInput" placeholder="e.g. 432112345678" maxlength="20" />
-                    <button id="verifyBtn">Verify</button>
-                </div>
-                <div class="utr-status" id="utrStatus">⏳ Enter UTR to verify</div>
-            </div>
-
             <!-- BUTTONS -->
             <div class="btn-row">
                 <button class="btn-half btn-download" id="downloadBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     QR
                 </button>
-                <button class="btn-half btn-submit" id="submitBtn" disabled>
+                <button class="btn-half btn-submit" id="submitBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                     Submit
                 </button>
@@ -881,7 +737,7 @@
                 Back
             </a>
 
-            <div id="statusMsg">🔑 Pay → Enter UTR → Verify → Submit</div>
+            <div id="statusMsg">Tap QR to Pay, then Submit ✅</div>
         </div>
 
         <!-- ========================================================== -->
@@ -946,10 +802,6 @@
             confirmed: false
         };
 
-        // 🔥 UTR Verification State
-        let isUtrVerified = false;
-        let verifiedUtr = '';
-
         const formattedAmount = '₹' + currentOrder.amount;
         document.getElementById('displayAmount').textContent = formattedAmount;
         document.getElementById('instAmount').textContent = formattedAmount;
@@ -974,205 +826,6 @@
         });
 
         // ============================================================
-        // 🔥 UTR VERIFICATION SYSTEM
-        // ============================================================
-        const utrInput = document.getElementById('utrInput');
-        const verifyBtn = document.getElementById('verifyBtn');
-        const utrStatus = document.getElementById('utrStatus');
-        const submitBtn = document.getElementById('submitBtn');
-
-        // 🔥 UTR Input auto-format (only numbers)
-        utrInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-
-        // 🔥 Verify Button Click
-        verifyBtn.addEventListener('click', function() {
-            const utr = utrInput.value.trim();
-
-            if (!utr) {
-                utrStatus.textContent = '❌ Please enter UTR number';
-                utrStatus.className = 'utr-status error';
-                return;
-            }
-
-            if (utr.length < 10 || utr.length > 20) {
-                utrStatus.textContent = '❌ Invalid UTR! Must be 10-20 digits';
-                utrStatus.className = 'utr-status error';
-                return;
-            }
-
-            // 🔥 Show verifying status
-            utrStatus.textContent = '⏳ Verifying UTR...';
-            utrStatus.className = 'utr-status pending';
-            verifyBtn.disabled = true;
-            verifyBtn.textContent = 'Verifying...';
-
-            // 🔥 Call UTR Verification (Mock + Real)
-            verifyUTR(utr);
-        });
-
-        // 🔥 Enter key press - UTR verify
-        utrInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                verifyBtn.click();
-            }
-        });
-
-        // ============================================================
-        // 🔥 UTR VERIFICATION FUNCTION
-        // ============================================================
-        async function verifyUTR(utr) {
-            try {
-                // 🔥 OPTION 1: REAL API VERIFICATION (BharatPe / Bank)
-                // Agar aapke paas API hai toh use karein
-                // const response = await fetch('https://your-api.com/verify-utr', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({
-                //         utr: utr,
-                //         amount: currentOrder.amount,
-                //         orderId: currentOrder.orderId
-                //     })
-                // });
-                // const result = await response.json();
-                // 
-                // if (result.verified) {
-                //     utrVerified(true, utr);
-                // } else {
-                //     utrVerified(false, utr, result.message || 'UTR not found');
-                // }
-
-                // ============================================================
-                // 🔥 OPTION 2: SIMPLE UTR VALIDATION (No API)
-                // ============================================================
-                // UTR format check: 10-20 digits
-                if (utr.length >= 10 && utr.length <= 20 && /^\d+$/.test(utr)) {
-                    // 🔥 Send notification to admin (Telegram/WhatsApp)
-                    const message = `
-        🔔 NEW PAYMENT VERIFICATION REQUIRED!
-
-        📦 Order ID: ${currentOrder.orderId}
-        👤 UID: ${currentOrder.uid}
-        🌍 Country: ${currentOrder.country}
-        🔥 Service: ${currentOrder.service}
-        💰 Amount: ₹${currentOrder.amount}
-        🔢 UTR: ${utr}
-
-        ⏳ Admin verify karein aur approve karein.
-                    `;
-
-                    // Send to Telegram
-                    sendTelegramNotification(message);
-
-                    // 🔥 Store for admin approval
-                    const pendingData = {
-                        orderId: currentOrder.orderId,
-                        uid: currentOrder.uid,
-                        amount: currentOrder.amount,
-                        utr: utr,
-                        status: 'PENDING',
-                        timestamp: new Date().toISOString()
-                    };
-
-                    // LocalStorage mein save karein (admin panel ke liye)
-                    let pendingList = JSON.parse(localStorage.getItem('pendingUTR') || '[]');
-                    pendingList.push(pendingData);
-                    localStorage.setItem('pendingUTR', JSON.stringify(pendingList));
-
-                    // 🔥 Show pending status
-                    utrStatus.textContent = '⏳ UTR submitted! Admin will verify shortly.';
-                    utrStatus.className = 'utr-status pending';
-                    verifyBtn.disabled = false;
-                    verifyBtn.textContent = 'Verify';
-
-                    // 🔥 Enable submit - but with pending status
-                    // User submit kar sakta hai, lekin admin approve karega
-                    isUtrVerified = true;
-                    verifiedUtr = utr;
-                    submitBtn.disabled = false;
-                    document.getElementById('statusMsg').textContent = '⏳ Payment pending admin approval...';
-                    document.getElementById('statusMsg').className = 'warning';
-
-                    // 🔥 Auto approve for testing (Remove this in production)
-                    // 30 seconds baad auto approve (testing ke liye)
-                    setTimeout(() => {
-                        // Auto approve for demo
-                        const updatedList = JSON.parse(localStorage.getItem('pendingUTR') || '[]');
-                        const index = updatedList.findIndex(p => p.orderId === currentOrder.orderId);
-                        if (index !== -1) {
-                            updatedList[index].status = 'APPROVED';
-                            localStorage.setItem('pendingUTR', JSON.stringify(updatedList));
-                        }
-                        utrStatus.textContent = '✅ Payment Verified! UTR: ' + utr;
-                        utrStatus.className = 'utr-status success';
-                        document.getElementById('statusMsg').textContent = '✅ Payment verified! Click Submit.';
-                        document.getElementById('statusMsg').className = 'success';
-                        isUtrVerified = true;
-                    }, 10000); // 10 seconds auto approve (testing)
-
-                } else {
-                    utrVerified(false, utr, 'Invalid UTR format');
-                }
-
-            } catch (error) {
-                utrVerified(false, utr, error.message || 'Verification failed');
-            }
-        }
-
-        // ============================================================
-        // 🔥 UTR VERIFICATION RESULT HANDLER
-        // ============================================================
-        function utrVerified(success, utr, message) {
-            verifyBtn.disabled = false;
-            verifyBtn.textContent = 'Verify';
-
-            if (success) {
-                isUtrVerified = true;
-                verifiedUtr = utr;
-                submitBtn.disabled = false;
-                utrStatus.textContent = '✅ Payment Verified! UTR: ' + utr;
-                utrStatus.className = 'utr-status success';
-                document.getElementById('statusMsg').textContent = '✅ Payment verified! Click Submit.';
-                document.getElementById('statusMsg').className = 'success';
-            } else {
-                isUtrVerified = false;
-                submitBtn.disabled = true;
-                utrStatus.textContent = '❌ ' + (message || 'Verification failed! Try again.');
-                utrStatus.className = 'utr-status error';
-                document.getElementById('statusMsg').textContent = '❌ Verification failed! Check UTR.';
-                document.getElementById('statusMsg').className = 'error';
-            }
-        }
-
-        // ============================================================
-        // 🔥 TELEGRAM NOTIFICATION (FREE)
-        // ============================================================
-        function sendTelegramNotification(message) {
-            // 🔥 Apna Telegram Bot Token aur Chat ID daalein
-            const botToken = ''; // Yahan apna bot token daalein
-            const chatId = ''; // Yahan apna chat ID daalein
-
-            if (!botToken || !chatId) {
-                console.log('📢 Telegram notification: (Bot not configured)');
-                console.log(message);
-                return;
-            }
-
-            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            }).catch(err => console.log('Telegram error:', err));
-        }
-
-        // ============================================================
         // 🔥 DOWNLOAD QR
         // ============================================================
         document.getElementById('downloadBtn').addEventListener('click', function() {
@@ -1186,78 +839,10 @@
             document.getElementById('statusMsg').textContent = '✅ QR Code downloaded!';
             document.getElementById('statusMsg').className = 'success';
             setTimeout(() => {
-                document.getElementById('statusMsg').textContent = '🔑 Pay → Enter UTR → Verify → Submit';
+                document.getElementById('statusMsg').textContent = 'Tap QR to Pay, then Submit ✅';
                 document.getElementById('statusMsg').className = '';
             }, 3000);
         });
-
-        // ============================================================
-        // 🔥 SUBMIT PAYMENT - Only if UTR Verified
-        // ============================================================
-        document.getElementById('submitBtn').addEventListener('click', function() {
-            if (!isUtrVerified) {
-                alert('❌ Please verify your payment with UTR first!');
-                return;
-            }
-            submitPayment();
-        });
-
-        // ============================================================
-        // 🔥 SUBMIT PAYMENT FUNCTION
-        // ============================================================
-        async function submitPayment() {
-            if (currentOrder.confirmed) {
-                showSuccessScreen();
-                return;
-            }
-
-            if (!currentOrder.orderId) {
-                document.getElementById('statusMsg').textContent = 'No order found!';
-                document.getElementById('statusMsg').className = 'error';
-                return;
-            }
-
-            document.getElementById('statusMsg').textContent = 'Submitting payment...';
-            document.getElementById('statusMsg').className = '';
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Processing...';
-
-            try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        access_key: WEB3FORMS_KEY,
-                        subject: '✅ Order Confirmed - ' + currentOrder.orderId,
-                        order_id: currentOrder.orderId,
-                        uid: currentOrder.uid,
-                        country: currentOrder.country,
-                        service: currentOrder.service,
-                        amount: '₹' + currentOrder.amount,
-                        utr: verifiedUtr,
-                        status: 'CONFIRMED'
-                    })
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    currentOrder.confirmed = true;
-                    showSuccessScreen();
-                } else {
-                    throw new Error('Submission failed');
-                }
-
-            } catch (error) {
-                document.getElementById('statusMsg').textContent = 'Failed: ' + (error.message || 'Try again.');
-                document.getElementById('statusMsg').className = 'error';
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Submit';
-            }
-        }
 
         // ============================================================
         // 🔥 SHOW SUCCESS SCREEN
@@ -1306,13 +891,6 @@
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
-                                UTR
-                            </span>
-                            <span class="detail-value">${verifiedUtr || '—'}</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                                 Date
                             </span>
@@ -1345,7 +923,6 @@
         Country     : ${order.country || '—'}
         Service     : ${order.service || '—'}
         Amount      : ₹${order.amount}
-        UTR         : ${verifiedUtr || '—'}
         Date        : ${new Date().toLocaleString()}
         Status      : CONFIRMED ✅
 
@@ -1364,6 +941,67 @@
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
+        });
+
+        // ============================================================
+        // 🔥 SUBMIT PAYMENT
+        // ============================================================
+        async function submitPayment() {
+            if (currentOrder.confirmed) {
+                showSuccessScreen();
+                return;
+            }
+
+            if (!currentOrder.orderId) {
+                document.getElementById('statusMsg').textContent = 'No order found!';
+                document.getElementById('statusMsg').className = 'error';
+                return;
+            }
+
+            document.getElementById('statusMsg').textContent = 'Submitting payment...';
+            document.getElementById('statusMsg').className = '';
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').innerHTML = 'Processing...';
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_KEY,
+                        subject: '✅ Order Confirmed - ' + currentOrder.orderId,
+                        order_id: currentOrder.orderId,
+                        uid: currentOrder.uid,
+                        country: currentOrder.country,
+                        service: currentOrder.service,
+                        amount: '₹' + currentOrder.amount,
+                        status: 'CONFIRMED'
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    currentOrder.confirmed = true;
+                    showSuccessScreen();
+                } else {
+                    throw new Error('Submission failed');
+                }
+
+            } catch (error) {
+                document.getElementById('statusMsg').textContent = 'Failed: ' + (error.message || 'Try again.');
+                document.getElementById('statusMsg').className = 'error';
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerHTML = 'Submit';
+            }
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            submitPayment();
         });
 
         // ============================================================
@@ -1409,8 +1047,8 @@
         console.log('✅ Payment Page Ready');
         console.log('📦 Order:', currentOrder);
         console.log('🔑 UPI ID:', UPI_ID, '(Safe)');
-        console.log('✅ UTR Verification System Active');
         console.log('📱 QR Click → UPI App Open');
+        console.log('✅ No UTR - Direct Submit');
     </script>
 
 </body>
