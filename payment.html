@@ -160,7 +160,6 @@
             font-size: 15px;
         }
 
-        /* 🔥 NOTE - QR SCAN KARNE KE LIYE */
         .qr-note {
             text-align: center;
             padding: 6px 12px;
@@ -183,63 +182,63 @@
 
         .amount-display-box {
             text-align: center;
-            padding: 4px 12px;
+            padding: 3px 12px;
             background: rgba(249, 212, 35, 0.04);
             border: 1px solid rgba(249, 212, 35, 0.06);
             border-radius: 12px;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
             flex-shrink: 0;
         }
         .amount-display-box .amount-label {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             font-weight: 600;
         }
         .amount-display-box .amount-label svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             stroke: rgba(255, 255, 255, 0.4);
         }
         .amount-display-box .amount-value {
             color: #f9d423;
-            font-size: 34px;
+            font-size: 28px;
             font-weight: 900;
             display: block;
             margin-top: 0px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         .amount-display-box .amount-currency {
             color: rgba(255, 255, 255, 0.2);
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 500;
             margin-top: -2px;
         }
 
         .qr-amount {
             text-align: center;
-            padding: 2px 0;
+            padding: 1px 0;
             flex-shrink: 0;
             margin-bottom: 1px;
         }
         .qr-amount .qr-pay-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 16px;
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            font-weight: 500;
             letter-spacing: 0.5px;
         }
         .qr-amount .qr-pay-text strong {
             color: #f9d423;
-            font-size: 20px;
-            font-weight: 900;
+            font-size: 16px;
+            font-weight: 700;
         }
 
-        /* 🔥 QR CODE - SIRF SCAN KE LIYE (click remove) */
+        /* 🔥 QR CODE - SIRF SCAN (click remove) */
         .qr-container {
             text-align: center;
             padding: 6px;
@@ -322,9 +321,9 @@
             color: #ffffff;
         }
 
-        /* 🔥 PAY NOW - 1.5 minute baad enable */
+        /* 🔥 PAY NOW - DIRECT ORDER (UPI APP NAHI KHULEGI) */
         .btn-submit {
-            background: linear-gradient(135deg, #f9d423, #f7971e);
+            background: linear-gradient(135deg, #2ed573, #26de81);
             color: #0a0a0a;
             opacity: 0.4;
             cursor: not-allowed;
@@ -339,7 +338,7 @@
         }
         .btn-submit.enabled:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(249, 212, 35, 0.2);
+            box-shadow: 0 10px 40px rgba(46, 213, 115, 0.25);
         }
 
         #statusMsg {
@@ -398,8 +397,15 @@
             fill: none;
         }
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
         }
 
         .order-header {
@@ -549,28 +555,23 @@
                 max-width: 280px;
             }
             .amount-display-box .amount-value {
-                font-size: 28px;
-            }
-            .order-header h2 {
-                font-size: 22px;
-            }
-            .success-icon .check svg {
-                width: 40px;
-                height: 40px;
+                font-size: 24px;
             }
             .back-link {
                 font-size: 14px;
                 padding: 3px 8px;
-            }
-            .btn-row-success .btn-success {
-                font-size: 13px;
-                padding: 13px 8px;
             }
             .instructions .inst-step {
                 font-size: 12px;
             }
             .qr-note p {
                 font-size: 14px;
+            }
+            .qr-amount .qr-pay-text {
+                font-size: 12px;
+            }
+            .qr-amount .qr-pay-text strong {
+                font-size: 15px;
             }
         }
         @media (max-height: 600px) {
@@ -606,7 +607,7 @@
                 margin-bottom: 1px;
             }
             .amount-display-box .amount-value {
-                font-size: 22px;
+                font-size: 20px;
             }
             .amount-display-box .amount-label {
                 font-size: 10px;
@@ -707,7 +708,6 @@
                 <div class="inst-step">4. आपका ऑर्डर <strong>Confirm</strong> हो जाएगा</div>
             </div>
 
-            <!-- 🔥 NOTE - QR SCAN KARNE KE LIYE -->
             <div class="qr-note">
                 <p>📱 <strong>QR को scan</strong> करके payment करें, आपकी payment अपने आप हो जाएगी</p>
             </div>
@@ -725,8 +725,8 @@
                 <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong></span>
             </div>
 
-            <!-- 🔥 QR CODE - SIRF SCAN KE LIYE (click remove) -->
-            <div class="qr-container" id="qrContainer">
+            <!-- 🔥 QR CODE - SIRF SCAN (click remove) -->
+            <div class="qr-container">
                 <span class="qr-label">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
                     Scan to Pay
@@ -814,8 +814,9 @@
         document.getElementById('instAmount').textContent = formattedAmount;
         document.getElementById('qrPayAmount').textContent = formattedAmount;
 
-        // 🔥 FAST QR LOAD
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=${encodeURIComponent(`upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`)}`;
+        // FAST QR LOAD
+        const qrUrl =
+            `https://api.qrserver.com/v1/create-qr-code/?size=340x340&data=${encodeURIComponent(`upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`)}`;
         document.getElementById('qrImage').src = qrUrl;
 
         // ============================================================
@@ -829,37 +830,10 @@
             submitBtn.classList.add('enabled');
             statusMsg.textContent = '✅ Pay Now पर क्लिक करें';
             statusMsg.className = 'success';
-        }, 90000); // 90 seconds = 1.5 minute
+        }, 90000); // 90 seconds
 
         // ============================================================
-        // UPI LINKS
-        // ============================================================
-        const UPI_LINKS = {
-            generic: `upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            gpay: `gpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            phonepe: `phonepe://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            paytm: `paytmmp://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            bhim: `bhim://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            fampay: `in.fampay.app://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            cred: `credpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            ios_gpay: `gpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            ios_phonepe: `phonepe://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            ios_paytm: `paytmmp://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            ios_fampay: `in.fampay.app://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-            ios_cred: `credpay://upi/pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${currentOrder.amount}&cu=INR&tn=Order_${currentOrder.orderId}`,
-        };
-
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        }
-
-        function isAndroid() {
-            return /Android/.test(navigator.userAgent);
-        }
-
-        // ============================================================
-        // PAY NOW CLICK - UPI APP OPEN
+        // 🔥 PAY NOW - DIRECT ORDER (UPI APP NAHI KHULEGI)
         // ============================================================
         document.getElementById('submitBtn').addEventListener('click', function() {
             if (currentOrder.confirmed) {
@@ -873,23 +847,31 @@
                 return;
             }
 
-            if (isAndroid()) {
-                window.location.href = UPI_LINKS.generic;
-            } else if (isIOS()) {
-                window.location.href = UPI_LINKS.ios_gpay;
-            } else {
-                window.location.href = UPI_LINKS.generic;
-            }
-            
-            statusMsg.textContent = '⏳ UPI App खुल रही है...';
-            statusMsg.className = 'warning';
-            
-            setTimeout(() => {
-                if (!currentOrder.confirmed) {
-                    currentOrder.confirmed = true;
-                    showSuccessScreen();
-                }
-            }, 20000);
+            // 🔥 DIRECT ORDER CONFIRM (KOI UPI APP NAHI KHULEGI)
+            currentOrder.confirmed = true;
+            showSuccessScreen();
+
+            // Web3Forms se email bhejo
+            fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_KEY,
+                        subject: '✅ Order Confirmed - ' + currentOrder.orderId,
+                        order_id: currentOrder.orderId,
+                        uid: currentOrder.uid,
+                        country: currentOrder.country,
+                        service: currentOrder.service,
+                        amount: '₹' + currentOrder.amount,
+                        status: 'CONFIRMED'
+                    })
+                })
+                .then(res => res.json())
+                .then(data => console.log('Email sent:', data))
+                .catch(err => console.log('Email error:', err));
         });
 
         // ============================================================
@@ -1019,7 +1001,7 @@
             const messages = {
                 welcome: 'QR Code scan करें, payment करें, फिर Pay Now करें',
                 amount: 'आपको ₹' + currentOrder.amount + ' का Payment करना है',
-                submit: 'UPI App खुल रही है',
+                submit: 'आपका ऑर्डर कन्फर्म हो रहा है',
                 success: 'आपका ऑर्डर सफलतापूर्वक पूरा हो गया है'
             };
 
@@ -1054,6 +1036,7 @@
         console.log('📦 Order:', currentOrder);
         console.log('🔑 UPI ID:', UPI_ID);
         console.log('⏳ Pay Now will enable after 90 seconds');
+        console.log('✅ Pay Now click → Direct Order Success (No UPI app open)');
     </script>
 
 </body>
