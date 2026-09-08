@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Payment - MistalOnline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            background-image: radial-gradient(ellipse at 30% 20%, #1a0a2e 0%, #0a0a0a 70%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .payment-container {
+            max-width: 580px;
+            width: 100%;
+            height: 100vh;
+            max-height: 820px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            border-radius: 32px;
+            padding: 12px 20px 10px 20px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .payment-container.success-mode {
+            border-color: rgba(46, 213, 115, 0.35);
+            box-shadow: 0 0 60px rgba(46, 213, 115, 0.08), 0 30px 70px rgba(0, 0, 0, 0.6);
+        }
+        .payment-container.success-mode::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(46, 213, 115, 0.04), transparent 60%);
+            animation: glowPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes glowPulse {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.04);
+            }
+        }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        .screen.active {
+            display: flex;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.25);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 1px;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+        .back-link:hover {
+            color: #f9d423;
+        }
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+        }
+
+        /* ============================================================ */
+        /* SCREEN 1 - PAYMENT */
+        /* ============================================================ */
+        .payment-header {
+            text-align: center;
+            margin-bottom: 2px;
+            flex-shrink: 0;
+        }
+        .payment-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .payment-header h2 span {
+            background: linear-gradient(135deg, #f9d423, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .payment-header p {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 12px;
+            margin-top: 0px;
+            letter-spacing: 1px;
+        }
+
+        /* 🔥 TOTAL AMOUNT - BADA TEXT */
+        .amount-display-box {
+            text-align: center;
+            padding: 8px 12px;
+            background: rgba(249, 212, 35, 0.04);
+            border: 1px solid rgba(249, 212, 35, 0.06);
+            border-radius: 12px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
+        }
+        .amount-display-box .amount-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        .amount-display-box .amount-label svg {
+            width: 18px;
+            height: 18px;
+            stroke: rgba(255, 255, 255, 0.4);
+        }
+        .amount-display-box .amount-value {
+            color: #f9d423;
+            font-size: 36px;
+            font-weight: 900;
+            display: block;
+            margin-top: 2px;
+            letter-spacing: 2px;
+        }
+
+        /* 🔥 QR KE UPAR AMOUNT - SCAN & PAY */
+        .qr-amount {
+            text-align: center;
+            padding: 4px 0;
+            flex-shrink: 0;
+            margin-bottom: 2px;
+        }
+        .qr-amount .qr-pay-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .qr-amount .qr-pay-text strong {
+            color: #f9d423;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        /* 🔥 INSTRUCTIONS - BADA TEXT */
+        .instructions {
+            background: rgba(46, 213, 115, 0.04);
+            border: 1px solid rgba(46, 213, 115, 0.06);
+            border-radius: 12px;
+            padding: 8px 16px;
+            margin-bottom: 3px;
+            flex-shrink: 0;
+        }
+        .instructions .inst-title {
+            color: #2ed573;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .instructions .inst-title svg {
+            width: 18px;
+            height: 18px;
+            stroke: #2ed573;
+        }
+        .instructions .inst-step {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 2px 0;
+            padding-left: 22px;
+            position: relative;
+            line-height: 1.7;
+        }
+        .instructions .inst-step::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 9px;
+            width: 7px;
+            height: 7px;
+            background: #f9d423;
+            border-radius: 50%;
+        }
+        .instructions .inst-step strong {
+            color: #f9d423;
+            font-weight: 700;
+            font-size: 17px;
+        }
+
+        /* 🔥 QR CODE - TERA image.html (BADA) */
+        .qr-container {
+            text-align: center;
+            padding: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 215, 0, 0.05);
+            border-radius: 14px;
+            margin-bottom: 4px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 0;
+        }
+        .qr-container .qr-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 12px;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .qr-container .qr-label svg {
+            width: 16px;
+            height: 16px;
+            stroke: rgba(255, 255, 255, 0.15);
+        }
+        .qr-container iframe {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border: none;
+            border-radius: 12px;
+            background: white;
+            display: block;
+        }
+
+        /* 🔥 BUTTONS - BADE AUR UPAR */
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+            margin-bottom: 1px;
+        }
+        .btn-row .btn-half {
+            flex: 1;
+            padding: 17px 10px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            letter-spacing: 0.5px;
+        }
+        .btn-row .btn-half svg {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2;
+        }
+
+        .btn-download {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .btn-download:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        .btn-download:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2ed573, #26de81);
+            color: #0a0a0a;
+        }
+        .btn-submit svg {
+            stroke: #0a0a0a;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(46, 213, 115, 0.25);
+        }
+        .btn-submit:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-back-bottom {
+            width: 100%;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .btn-back-bottom svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+        }
+        .btn-back-bottom:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+        }
+
+        #statusMsg {
+            text-align: center;
+            margin-top: 2px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            min-height: 22px;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+        #statusMsg.warning {
+            color: #f9d423;
+        }
+        #statusMsg.success {
+            color: #2ed573;
+        }
+        #statusMsg.error {
+            color: #ff4757;
+        }
+
+        /* ============================================================ */
+        /* SCREEN 2 - ORDER SUCCESS */
+        /* ============================================================ */
+        .success-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .success-icon {
+            text-align: center;
+            font-size: 0;
+            margin-bottom: 1px;
+            flex-shrink: 0;
+        }
+        .success-icon .check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(46, 213, 115, 0.08);
+            padding: 8px 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(46, 213, 115, 0.15);
+        }
+        .success-icon .check svg {
+            width: 46px;
+            height: 46px;
+            stroke: #2ed573;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .order-header {
+            text-align: center;
+            margin-bottom: 3px;
+            flex-shrink: 0;
+        }
+        .order-header h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #2ed573;
+            letter-spacing: 0.5px;
+        }
+        .order-header p {
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 14px;
+            margin-top: 1px;
+        }
+
+        .order-details-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 10px 16px;
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 3px;
+        }
+        .order-details-box::-webkit-scrollbar {
+            width: 3px;
+        }
+        .order-details-box::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .detail-label svg {
+            width: 17px;
+            height: 17px;
+            stroke: rgba(255, 255, 255, 0.3);
+            fill: none;
+            stroke-width: 2;
+        }
+        .detail-value {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-all;
+        }
+        .detail-value.amount {
+            color: #f9d423;
+            font-size: 22px;
+            font-weight: 900;
+        }
+        .detail-value.status {
+            color: #2ed573;
+        }
+
+        /* 🔥 SUCCESS BUTTONS - UPAR AUR BADA */
+        .btn-row-success {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .btn-row-success .btn-success {
+            flex: 1;
+            padding: 17px 10px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+        .btn-row-success .btn-success svg {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .btn-download-order {
+            background: linear-gradient(135deg, #f9d423, #f7971e);
+            color: #0a0a0a;
+        }
+        .btn-download-order svg {
+            stroke: #0a0a0a;
+        }
+        .btn-download-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(249, 212, 35, 0.2);
+        }
+
+        .btn-home {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .btn-home svg {
+            stroke: rgba(255, 255, 255, 0.6);
+        }
+        .btn-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        .btn-home:hover svg {
+            stroke: #ffffff;
+        }
+
+        /* ============================================================ */
+        /* RESPONSIVE */
+        /* ============================================================ */
+        @media (max-width: 480px) {
+            .payment-container {
+                padding: 10px 14px 8px 14px;
+                max-height: 720px;
+                border-radius: 24px;
+            }
+            .qr-container iframe {
+                max-width: 250px;
+                height: 250px;
+            }
+            .payment-header h2 {
+                font-size: 20px;
+            }
+            .amount-display-box .amount-value {
+                font-size: 30px;
+            }
+            .amount-display-box .amount-label {
+                font-size: 14px;
+            }
+            .qr-amount .qr-pay-text {
+                font-size: 16px;
+            }
+            .qr-amount .qr-pay-text strong {
+                font-size: 19px;
+            }
+            .order-header h2 {
+                font-size: 22px;
+            }
+            .success-icon .check svg {
+                width: 40px;
+                height: 40px;
+            }
+            .instructions .inst-step {
+                font-size: 14px;
+            }
+            .instructions .inst-title {
+                font-size: 15px;
+            }
+            .btn-row .btn-half {
+                font-size: 14px;
+                padding: 14px 8px;
+            }
+            .btn-row-success .btn-success {
+                font-size: 14px;
+                padding: 14px 8px;
+            }
+            .detail-value {
+                font-size: 14px;
+            }
+            .detail-value.amount {
+                font-size: 19px;
+            }
+            .detail-label {
+                font-size: 13px;
+            }
+            #statusMsg {
+                font-size: 13px;
+            }
+        }
+        @media (max-height: 600px) {
+            .payment-container {
+                padding: 4px 10px 4px 10px;
+                max-height: 580px;
+                border-radius: 20px;
+            }
+            .qr-container iframe {
+                max-width: 180px;
+                height: 180px;
+            }
+            .qr-container {
+                padding: 2px;
+            }
+            .instructions {
+                padding: 3px 10px;
+            }
+            .instructions .inst-step {
+                font-size: 13px;
+                padding: 1px 0 1px 16px;
+                line-height: 1.4;
+            }
+            .instructions .inst-step::before {
+                top: 6px;
+                width: 5px;
+                height: 5px;
+            }
+            .instructions .inst-title {
+                font-size: 14px;
+            }
+            .amount-display-box {
+                padding: 3px 8px;
+                margin-bottom: 3px;
+            }
+            .amount-display-box .amount-value {
+                font-size: 24px;
+            }
+            .amount-display-box .amount-label {
+                font-size: 12px;
+            }
+            .qr-amount .qr-pay-text {
+                font-size: 14px;
+            }
+            .qr-amount .qr-pay-text strong {
+                font-size: 16px;
+            }
+            .btn-row .btn-half {
+                font-size: 13px;
+                padding: 10px 6px;
+                border-radius: 10px;
+            }
+            .btn-row .btn-half svg {
+                width: 18px;
+                height: 18px;
+            }
+            .payment-header h2 {
+                font-size: 17px;
+            }
+            .payment-header p {
+                font-size: 10px;
+            }
+            .order-details-box {
+                padding: 4px 10px;
+            }
+            .detail-row {
+                padding: 3px 0;
+            }
+            .detail-label {
+                font-size: 12px;
+            }
+            .detail-value {
+                font-size: 13px;
+            }
+            .detail-value.amount {
+                font-size: 17px;
+            }
+            .order-header h2 {
+                font-size: 19px;
+            }
+            .order-header p {
+                font-size: 12px;
+            }
+            .success-icon .check {
+                padding: 4px 8px;
+            }
+            .success-icon .check svg {
+                width: 32px;
+                height: 32px;
+            }
+            .btn-row-success .btn-success {
+                font-size: 13px;
+                padding: 10px 6px;
+                border-radius: 10px;
+            }
+            .btn-row-success .btn-success svg {
+                width: 18px;
+                height: 18px;
+            }
+            .btn-back-bottom {
+                padding: 3px;
+                font-size: 11px;
+            }
+            #statusMsg {
+                font-size: 12px;
+                min-height: 16px;
+            }
+            .back-link {
+                font-size: 12px;
+                margin-bottom: 0px;
+            }
+            .back-link svg {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container" id="paymentContainer">
+
+        <!-- ========================================================== -->
+        <!-- SCREEN 1: PAYMENT -->
+        <!-- ========================================================== -->
+        <div class="screen active" id="screenPayment">
+
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Back
+            </a>
+
+            <div class="payment-header">
+                <h2>Payment</h2>
+                <p>SCAN QR &amp; PAY</p>
+            </div>
+
+            <!-- 🔥 TOTAL AMOUNT - "Total" likha hai -->
+            <div class="amount-display-box">
+                <span class="amount-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
+                    Total
+                </span>
+                <span class="amount-value" id="displayAmount">₹0</span>
+            </div>
+
+            <!-- 🔥 QR KE UPAR AMOUNT - Scan & Pay -->
+            <div class="qr-amount">
+                <span class="qr-pay-text">Pay <strong id="qrPayAmount">₹0</strong> &amp; Scan QR</span>
+            </div>
+
+            <!-- 🔥 INSTRUCTIONS - BADA TEXT -->
+            <div class="instructions">
+                <div class="inst-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    How to Pay
+                </div>
+                <div class="inst-step">Open <strong>PhonePe / GPay / Paytm</strong></div>
+                <div class="inst-step">Scan QR Code &amp; Pay <strong id="instAmount">₹0</strong></div>
+                <div class="inst-step">After Payment, click <strong>Submit</strong></div>
+                <div class="inst-step">Order will be <strong>Confirmed</strong> automatically</div>
+            </div>
+
+            <!-- 🔥 QR CODE - TERA image.html -->
+            <div class="qr-container">
+                <span class="qr-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    Scan to Pay
+                </span>
+                <iframe src="image.html" title="QR Code" id="qrIframe"></iframe>
+            </div>
+
+            <!-- 🔥 BUTTONS - BADE AUR UPAR -->
+            <div class="btn-row">
+                <button class="btn-half btn-download" id="downloadBtn" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    QR
+                </button>
+                <button class="btn-half btn-submit" id="submitBtn" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Submit
+                </button>
+            </div>
+
+            <a href="index.html" class="btn-back-bottom">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Back
+            </a>
+
+            <!-- 🔥 STATUS MESSAGE - BADA TEXT -->
+            <div id="statusMsg" class="warning">⏳ Pehle Payment Karein, phir Submit karein</div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- SCREEN 2: ORDER SUCCESS - BUTTONS UPAR -->
+        <!-- ========================================================== -->
+        <div class="screen" id="screenSuccess">
+
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Back
+            </a>
+
+            <div class="success-screen">
+                <div class="success-icon">
+                    <span class="check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                </div>
+
+                <div class="order-header">
+                    <h2>Order Successfully</h2>
+                    <p>Your order has been confirmed</p>
+                </div>
+
+                <div class="order-details-box" id="orderDetailsBox">
+                    <!-- Filled by JavaScript -->
+                </div>
+
+                <!-- 🔥 SUCCESS BUTTONS - UPAR AUR BADA -->
+                <div class="btn-row-success">
+                    <button class="btn-success btn-download-order" id="orderDownloadBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download
+                    </button>
+                    <a href="index.html" class="btn-success btn-home">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        Home
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        // PAYMENT PAGE SCRIPT
+        // ============================================================
+
+        const WEB3FORMS_KEY = '010b2958-2b53-4e7e-ad45-1f4dbe57ed52';
+
+        const orderData = JSON.parse(localStorage.getItem('orderData'));
+
+        let currentOrder = {
+            uid: orderData?.uid || '',
+            country: orderData?.country || '',
+            service: orderData?.service || '',
+            amount: orderData?.amount || 0,
+            orderId: orderData?.orderId || '',
+            confirmed: false
+        };
+
+        // Set amounts everywhere
+        const formattedAmount = '₹' + currentOrder.amount;
+        document.getElementById('displayAmount').textContent = formattedAmount;
+        document.getElementById('instAmount').textContent = formattedAmount;
+        document.getElementById('qrPayAmount').textContent = formattedAmount;
+
+        // ============================================================
+        // 🔥 1 MINUTE WAIT - BACKGROUND MEIN
+        // ============================================================
+        let waitTime = 60;
+        const submitBtn = document.getElementById('submitBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const statusMsg = document.getElementById('statusMsg');
+
+        function startWaitTimer() {
+            const timer = setInterval(() => {
+                waitTime--;
+                if (waitTime <= 0) {
+                    clearInterval(timer);
+                    submitBtn.disabled = false;
+                    downloadBtn.disabled = false;
+                    statusMsg.textContent = '✅ Payment karein aur Submit karein';
+                    statusMsg.className = 'success';
+                }
+            }, 1000);
+        }
+
+        startWaitTimer();
+
+        // ============================================================
+        // VOICE
+        // ============================================================
+        function playVoice(type) {
+            if (!('speechSynthesis' in window)) return;
+
+            const messages = {
+                welcome: 'कृपया QR Code Scan करें और Payment करें',
+                amount: 'आपको ₹' + currentOrder.amount + ' का Payment करना है',
+                submit: 'पेमेंट सबमिट हो रहा है',
+                success: 'आपका ऑर्डर सफलतापूर्वक पूरा हो गया है'
+            };
+
+            const msg = messages[type];
+            if (!msg) return;
+
+            const utterance = new SpeechSynthesisUtterance(msg);
+            utterance.lang = 'hi-IN';
+            utterance.rate = 0.85;
+            utterance.pitch = 0.9;
+            utterance.volume = 1.0;
+
+            const voices = window.speechSynthesis.getVoices();
+            const hindiVoice = voices.find(v => v.lang === 'hi-IN') ||
+                voices.find(v => v.lang.startsWith('hi'));
+            if (hindiVoice) utterance.voice = hindiVoice;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // ============================================================
+        // DOWNLOAD QR
+        // ============================================================
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            try {
+                const iframe = document.getElementById('qrIframe');
+                const imgSrc = iframe?.contentDocument?.querySelector('img')?.src;
+
+                if (imgSrc) {
+                    const link = document.createElement('a');
+                    link.download = 'QR_Code_MistalOnline.png';
+                    link.href = imgSrc;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    statusMsg.textContent = '✅ QR Code downloaded!';
+                    statusMsg.className = 'success';
+                    setTimeout(() => {
+                        statusMsg.textContent = '✅ Payment karein aur Submit karein';
+                        statusMsg.className = 'success';
+                    }, 3000);
+                    return;
+                }
+            } catch (e) {}
+
+            const link = document.createElement('a');
+            link.download = 'QR_Code_MistalOnline.png';
+            link.href = 'AccountQRCodeBank Of Baroda - 1530_LIGHT_THEME.webp';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            statusMsg.textContent = '✅ QR Code downloaded!';
+            statusMsg.className = 'success';
+            setTimeout(() => {
+                statusMsg.textContent = '✅ Payment karein aur Submit karein';
+                statusMsg.className = 'success';
+            }, 3000);
+        });
+
+        // ============================================================
+        // SHOW SUCCESS SCREEN
+        // ============================================================
+        function showSuccessScreen() {
+            document.getElementById('screenPayment').classList.remove('active');
+            document.getElementById('screenSuccess').classList.add('active');
+            document.getElementById('paymentContainer').classList.add('success-mode');
+
+            const box = document.getElementById('orderDetailsBox');
+            box.innerHTML = `
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 10h2"/><path d="M16 14h2"/></svg>
+                                Order ID
+                            </span>
+                            <span class="detail-value">${currentOrder.orderId || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                UID
+                            </span>
+                            <span class="detail-value">${currentOrder.uid || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                                Country
+                            </span>
+                            <span class="detail-value">${currentOrder.country || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                Service
+                            </span>
+                            <span class="detail-value">${currentOrder.service || '—'}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Amount
+                            </span>
+                            <span class="detail-value amount">₹${currentOrder.amount}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                Date
+                            </span>
+                            <span class="detail-value">${new Date().toLocaleString()}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                                Status
+                            </span>
+                            <span class="detail-value status">CONFIRMED</span>
+                        </div>
+                    `;
+
+            playVoice('success');
+            localStorage.removeItem('orderData');
+        }
+
+        // ============================================================
+        // DOWNLOAD ORDER
+        // ============================================================
+        document.getElementById('orderDownloadBtn').addEventListener('click', function() {
+            const order = currentOrder;
+            const text = `
+        ═════════════════════════════════════════════
+                    ORDER CONFIRMATION
+        ═════════════════════════════════════════════
+
+        Order ID    : ${order.orderId || '—'}
+        UID         : ${order.uid || '—'}
+        Country     : ${order.country || '—'}
+        Service     : ${order.service || '—'}
+        Amount      : ₹${order.amount}
+        Date        : ${new Date().toLocaleString()}
+        Status      : CONFIRMED
+
+        ═════════════════════════════════════════════
+        Thank you for your order!
+        MistalOnline.in
+        ═════════════════════════════════════════════
+            `;
+
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = `Order_${order.orderId || 'details'}_Confirmed.txt`;
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
+
+        // ============================================================
+        // SUBMIT PAYMENT
+        // ============================================================
+        async function submitPayment() {
+            if (currentOrder.confirmed) {
+                showSuccessScreen();
+                return;
+            }
+
+            if (waitTime > 0) {
+                statusMsg.textContent = '⏳ Pehle Payment Karein, phir Submit karein!';
+                statusMsg.className = 'warning';
+                return;
+            }
+
+            if (!currentOrder.orderId) {
+                statusMsg.textContent = 'No order found!';
+                statusMsg.className = 'error';
+                return;
+            }
+
+            statusMsg.textContent = 'Submitting payment...';
+            statusMsg.className = '';
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Processing...';
+            playVoice('submit');
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_KEY,
+                        subject: 'Order Confirmed - ' + currentOrder.orderId,
+                        order_id: currentOrder.orderId,
+                        uid: currentOrder.uid,
+                        country: currentOrder.country,
+                        service: currentOrder.service,
+                        amount: '₹' + currentOrder.amount,
+                        status: 'CONFIRMED'
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    currentOrder.confirmed = true;
+                    showSuccessScreen();
+                } else {
+                    throw new Error('Submission failed');
+                }
+
+            } catch (error) {
+                statusMsg.textContent = 'Failed: ' + (error.message || 'Try again.');
+                statusMsg.className = 'error';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Submit';
+            }
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            submitPayment();
+        });
+
+        // ============================================================
+        // ON LOAD
+        // ============================================================
+        setTimeout(() => {
+            playVoice('welcome');
+            setTimeout(() => {
+                playVoice('amount');
+            }, 1800);
+        }, 800);
+
+        console.log('Payment Page Ready');
+        console.log('Order:', currentOrder);
+        console.log('⏳ 1 minute wait active - Background mein chal raha hai');
+        console.log('✅ QR Code from image.html');
+    </script>
+
+</body>
+</html>
