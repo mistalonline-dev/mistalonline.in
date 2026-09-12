@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1980 के दशक के ट्रेंड्स और उनके छिपे हुए साइड इफेक्ट्स</title>
+    <style>
+        /* CSS: रेट्रो 80s थीम */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Hind:wght@300;400;600&display=swap');
+
+        :root {
+            --neon-pink: #ff2a75;
+            --neon-cyan: #00f0ff;
+            --neon-yellow: #fcee0a;
+            --dark-bg: #1a0b1c;
+            --card-bg: #2a1b2e;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.8;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 42, 117, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 20%);
+            background-attachment: fixed;
+        }
+
+        /* हेडर सेक्शन */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, rgba(26, 11, 28, 0.9) 0%, rgba(26, 11, 28, 0.4) 100%);
+            border-bottom: 2px solid var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 42, 117, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px var(--neon-yellow), 0 0 20px rgba(252, 238, 10, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.8);
+            font-weight: 300;
+        }
+
+        /* मुख्य कंटेंट */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(42, 27, 46, 0.6);
+            border-left: 4px solid var(--neon-cyan);
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ब्लॉग कार्ड्स */
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 42, 117, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 42, 117, 0.3);
+            border-color: var(--neon-pink);
+        }
+
+        .blog-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--neon-pink), var(--neon-cyan));
+        }
+
+        .blog-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-pink);
+            font-size: 1.6rem;
+            margin-top: 0;
+            text-shadow: 0 0 8px rgba(255, 42, 117, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .blog-card h2 span {
+            font-size: 1.8rem;
+        }
+
+        .side-effect {
+            background: rgba(255, 42, 117, 0.1);
+            border: 1px dashed var(--neon-pink);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .side-effect strong {
+            color: var(--neon-yellow);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* फूटर */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 42, 117, 0.3);
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* एनिमेशन */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0.5;
+            }
+        }
+
+        .flicker {
+            animation: flicker 3s infinite alternate;
+        }
+
+        /* रिस्पॉन्सिव डिज़ाइन */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .blog-card {
+                padding: 20px;
+            }
+            .blog-card h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="flicker">1980 के दशक के ट्रेंड्स और उनके छिपे हुए साइड इफेक्ट्स</h1>
+        <p class="subtitle">जब रंगीन दौर ने छोड़ी गहरी छाप</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="intro">
+            <p>1980 का दशक एक ऐसा दौर था जिसे रंग, संगीत, डिस्को और अनोखे फैशन के लिए हमेशा याद किया जाता है। इस दशक ने दुनिया भर के साथ-साथ भारतीय संस्कृति और शहरी जीवनशैली पर भी एक गहरी छाप छोड़ी। चाहे वह फिल्मों में बड़े शोल्डर पैड वाले कपड़े हों, वीसीआर (VCR) का क्रेज हो, या फिर खान-पान और फिटनेस के बदलते तौर-तरीके हों—यह समय ऊर्जा से भरपूर था।</p>
+            <p>लेकिन हर चमकती हुई चीज़ सोना नहीं होती। 80 के दशक के इन लोकप्रिय ट्रेंड्स और लाइफस्टाइल बदलावों के कुछ ऐसे गंभीर साइड इफेक्ट्स भी थे, जिनका असर हमारी सेहत, पर्यावरण और सामाजिक ताने-बाने पर लंबे समय तक रहा। आइए विस्तार से जानते हैं कि उस दौर के ट्रेंड्स ने कैसे हमारी आने वाली पीढ़ियों को प्रभावित किया।</p>
+        </div>
+
+        <!-- ब्लॉग 1 -->
+        <div class="blog-card">
+            <h2><span>👗</span> 1. फ़ैशन और प्लास्टिक का मेल: ज़हरीला स्टाइल</h2>
+            <p>80 के दशक का फैशन बोल्ड और लाउड था। इस दौर में पॉलिएस्टर, नायलॉन और विभिन्न सिंथेटिक कपड़ों का बड़े पैमाने पर इस्तेमाल होने लगा। चमकदार लेगिंग्‍स, पैराशूट पैंट और सिंथेटिक शर्ट्स हर युवा की पसंद बन गए थे।</p>
+            <div class="side-effect">
+                <strong>⚠️ साइड इफेक्ट:</strong>
+                <p>सिंथेटिक कपड़ों ने जहां एक तरफ स्टाइल स्टेटमेंट बदला, वहीं दूसरी ओर त्वचा संबंधी समस्याएं (स्किन एलर्जी, रैशेज) और अत्यधिक पसीना आने की समस्या आम कर दी। इसके अलावा, नॉन-बायोडिग्रेडेबल कपड़ों के कचरे ने पर्यावरण प्रदूषण को बढ़ाने में बड़ी भूमिका निभाई।</p>
+            </div>
+        </div>
+
+        <!-- ब्लॉग 2 -->
+        <div class="blog-card">
+            <h2><span>🍔</span> 2. जंक फूड और पैकेज्ड फूड की शुरुआत</h2>
+            <p>इसी दशक में शहरी इलाकों में 'कन्वीनियंस फूड' यानी तुरंत बनने वाले या डिब्बाबंद खाद्य पदार्थों का चलन तेजी से बढ़ा। कोल्ड ड्रिंक्स, पैकेज्ड चिप्स और इंस्टेंट नूडल्स जैसी चीज़ें आधुनिकता की पहचान बन गईं। घरों में पारंपरिक और ताजे खाने की जगह पैकेटबंद स्नैक्स ने लेनी शुरू कर दी।</p>
+            <div class="side-effect">
+                <strong>⚠️ साइड इफेक्ट:</strong>
+                <p>इसके भयंकर दुष्परिणाम आज मोटापे (Obesity), डायबिटीज और हृदय रोगों के रूप में हमारे सामने हैं। उस समय के खान-पान में हुए बदलावों ने धीरे-धीरे लोगों को शारीरिक रूप से कमजोर और सुस्त बनाना शुरू कर दिया था।</p>
+            </div>
+        </div>
+
+        <!-- ब्लॉग 3 -->
+        <div class="blog-card">
+            <h2><span>📺</span> 3. अत्यधिक टेलीविज़न देखना और स्क्रीन कल्चर की नींव</h2>
+            <p>यह वह दौर था जब घरों में रंगीन टेलीविजन और वीसीआर (VCR) ने मुख्य जगह ले ली थी। शाम के समय परिवार का एक साथ वीसीआर पर फिल्में देखना या कैसेट किराए पर लाना एक बड़ा ट्रेंड बन गया।</p>
+            <div class="side-effect">
+                <strong>⚠️ साइड इफेक्ट:</strong>
+                <p>इस 'काउच पोटैटो' संस्कृति ने शारीरिक गतिविधियों को बहुत कम कर दिया। बच्चों का बाहर मैदान में खेलना कम हुआ और इनडोर स्क्रीन टाइम बढ़ना शुरू हुआ, जिससे बाद की पीढ़ियों में मानसिक सुस्ती और आँखों की कमज़ोरी जैसी दिक्कतें बढ़ने लगीं।</p>
+            </div>
+        </div>
+
+        <!-- ब्लॉग 4 -->
+        <div class="blog-card">
+            <h2><span>💰</span> 4. अंधी दौड़ और 'शो-ऑफ़' संस्कृति</h2>
+            <p>80 के दशक में उदारीकरण की आहट और आर्थिक बदलावों ने लोगों में दिखावे की संस्कृति को जन्म दिया। बड़ी गाड़ियां, महंगे इलेक्ट्रॉनिक सामान और ब्रांडेड वस्तुएं सफलता का पैमाना बन गईं। इस अंधी दौड़ ने मध्यम वर्ग पर मानसिक दबाव बहुत बढ़ा दिया।</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2024 रेट्रो ब्लॉग। सभी अधिकार सुरक्षित।</p>
+    </footer>
+
+    <script>
+        // जावास्क्रिप्ट: स्क्रॉल पर कार्ड्स को एनिमेट करने के लिए
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.blog-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+
+</body>
+</html>
